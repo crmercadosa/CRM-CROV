@@ -1,6 +1,35 @@
 'use client';
 
+import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useHeader } from '@/contexts/headerContexts';
+
 export default function DashboardPage() {
+
+  const router = useRouter();
+  const { setTitle } = useHeader();
+  const { data: session, status } = useSession();
+
+  useEffect(() => {
+    // Redirigir a login si no está autenticado
+    if (status === 'unauthenticated') {
+      router.push('/login');
+    }
+  }, [status, router, setTitle]);
+
+  if (status === 'loading') {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <p className="text-lg text-gray-500">Cargando...</p>
+      </div>
+    );
+  }
+
+  if (!session?.user) {
+    return null;
+  }
+
   const kpis = [
     { label: 'Sucursales Activas', value: '24', change: '+12%', icon: '🏪' },
     { label: 'Conversaciones Hoy', value: '156', change: '+8%', icon: '💬' },
