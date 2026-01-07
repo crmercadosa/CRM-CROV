@@ -24,12 +24,12 @@ export default function NavItem({ item, isCollapsed }: NavItemProps) {
     return (
       <Link
         href={item.href}
-        className={`flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors ${
+        className={`flex items-center gap-2 px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors ${
           isCollapsed ? 'justify-center' : ''
         }`}
       >
-        <Icon className="w-5 h-5" />
-        {!isCollapsed && <span className="font-medium">{item.label}</span>}
+        <Icon className="w-4 h-4 flex-shrink-0" />
+        {!isCollapsed && <span className="text-sm font-medium truncate">{item.label}</span>}
       </Link>
     );
   }
@@ -40,17 +40,17 @@ export default function NavItem({ item, isCollapsed }: NavItemProps) {
     <div>
       <button
         onClick={handleClick}
-        className={`w-full flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors ${
+        className={`w-full flex items-center justify-between px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors ${
           isCollapsed ? 'justify-center' : ''
         }`}
       >
-        <div className="flex items-center gap-3">
-          <Icon className="w-5 h-5" />
-          {!isCollapsed && <span className="font-medium">{item.label}</span>}
+        <div className="flex items-center gap-2">
+          <Icon className="w-4 h-4 flex-shrink-0" />
+          {!isCollapsed && <span className="text-sm font-medium truncate">{item.label}</span>}
         </div>
         {!isCollapsed && hasChildren && (
           <svg
-            className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+            className={`w-3 h-3 transition-transform ${isOpen ? 'rotate-180' : ''}`}
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -61,17 +61,17 @@ export default function NavItem({ item, isCollapsed }: NavItemProps) {
       </button>
 
       {hasChildren && isOpen && !isCollapsed && (
-        <div className="ml-4 mt-1 space-y-1">
+        <div className="ml-3 mt-0.5 space-y-0.5">
           {item.children?.map((child) => {
             const ChildIcon = child.icon;
             return (
               <Link
                 key={child.id}
                 href={child.href || '#'}
-                className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
               >
-                <ChildIcon className="w-4 h-4" />
-                <span>{child.label}</span>
+                <ChildIcon className="w-3.5 h-3.5 flex-shrink-0" />
+                <span className="truncate">{child.label}</span>
               </Link>
             );
           })}

@@ -24,29 +24,30 @@ export default function Sidebar() {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={`${
-        isExpanded ? 'w-64' : 'w-20'
+        isExpanded ? 'w-56' : 'w-16'
       } h-screen bg-white border-r border-gray-200 transition-all duration-300 flex flex-col`}
     >
       {/* Header con logo y botón hamburguesa */}
-      <div className="p-4 border-b border-gray-200">
+      <div className="p-3 border-b border-gray-200">
         {isExpanded ? (
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
               <Image 
-                src="/logo_crov.webp" 
+                src="/logo_Crov.webp" 
                 alt="Logo" 
-                width={40} 
-                height={40}
+                width={28} 
+                height={28}
                 className="rounded"
               />
+              <h2 className="text-sm font-bold text-gray-800 whitespace-nowrap">Mi App</h2>
             </div>
             <button
               onClick={() => setIsCollapsed(!isCollapsed)}
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"
+              className="p-1.5 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer flex-shrink-0"
               aria-label="Colapsar sidebar"
             >
               <svg
-                className="w-6 h-6 text-black"
+                className="w-4 h-4 text-black"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -64,14 +65,14 @@ export default function Sidebar() {
           <div className="flex items-center justify-center">
             <button
               onClick={() => setIsCollapsed(!isCollapsed)}
-              className="p-2 cursor-pointer"
+              className="p-1.5 cursor-pointer"
               aria-label="Expandir sidebar"
             >
               <Image 
-                src="/logo_crov.webp" 
+                src="/logo_Crov.webp" 
                 alt="Logo" 
-                width={40} 
-                height={40}
+                width={28} 
+                height={28}
                 className="rounded"
               />
             </button>
@@ -80,7 +81,7 @@ export default function Sidebar() {
       </div>
 
       {/* Navegación */}
-      <nav className="flex-1 overflow-y-auto p-4 space-y-1">
+      <nav className="flex-1 overflow-y-auto p-2 space-y-0.5">
         {navigationItems.map((item) => (
           <NavItem key={item.id} item={item} isCollapsed={!isExpanded} />
         ))}
