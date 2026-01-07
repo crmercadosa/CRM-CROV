@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 217.2 32.6% 17.5%;
+    --card: 0 0% 100%;
+    --card-foreground: 217.2 32.6% 17.5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 217.2 32.6% 17.5%;
+    --primary: 22 100% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217.2 14.3% 61%;
+    --secondary-foreground: 217.2 32.6% 17.5%;
+    --muted: 217.2 12.2% 82%;
+    --muted-foreground: 217.2 12.2% 42%;
+    --accent: 22 100% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 13% 90.5%;
+    --input: 217.2 13% 95.5%;
+    --ring: 22 100% 55%;
+    --radius: 0.5rem;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  .dark {
+    --background: 217.2 32.6% 17.5%;
+    --foreground: 0 0% 98%;
+    --card: 217.2 32.6% 17.5%;
+    --card-foreground: 0 0% 98%;
+    --popover: 217.2 32.6% 17.5%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 22 100% 55%;
+    --primary-foreground: 217.2 32.6% 17.5%;
+    --secondary: 217.2 14.3% 25%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 217.2 14.3% 25%;
+    --muted-foreground: 217.2 12.2% 65%;
+    --accent: 22 100% 55%;
+    --accent-foreground: 217.2 32.6% 17.5%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 217.2 14.3% 27%;
+    --input: 217.2 14.3% 27%;
+    --ring: 22 100% 55%;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
 }
