@@ -45,7 +45,8 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+       <div className="min-h-screen bg-orange-500 flex items-center justify-center">
+
       {/* Lado izquierdo - Branding */}
       <div className="hidden lg:flex lg:w-1/2 bg-primary text-white flex-col items-center justify-center p-12">
         <div className="max-w-md text-center">

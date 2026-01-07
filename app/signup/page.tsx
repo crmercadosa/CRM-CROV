@@ -8,7 +8,9 @@ export default function SignupPage() {
   const [state, action] = useActionState(signup, initialState)
 
   return (
+    
     <div className="flex min-h-screen items-center justify-center bg-gray-50">
+
       <div className="w-full max-w-md p-8 space-y-6 bg-background rounded-lg shadow-lg border border-border">
         <h2 className="text-3xl font-bold text-center text-foreground">Crear Cuenta</h2>
         
