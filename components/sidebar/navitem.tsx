@@ -20,6 +20,7 @@ export default function NavItem({ item, isCollapsed }: NavItemProps) {
   };
 
   if (item.href && !hasChildren) {
+    const Icon = item.icon;
     return (
       <Link
         href={item.href}
@@ -27,12 +28,14 @@ export default function NavItem({ item, isCollapsed }: NavItemProps) {
           isCollapsed ? 'justify-center' : ''
         }`}
       >
-        <span className="text-xl">{item.icon}</span>
+        <Icon className="w-5 h-5" />
         {!isCollapsed && <span className="font-medium">{item.label}</span>}
       </Link>
     );
   }
 
+  const Icon = item.icon;
+  
   return (
     <div>
       <button
@@ -42,7 +45,7 @@ export default function NavItem({ item, isCollapsed }: NavItemProps) {
         }`}
       >
         <div className="flex items-center gap-3">
-          <span className="text-xl">{item.icon}</span>
+          <Icon className="w-5 h-5" />
           {!isCollapsed && <span className="font-medium">{item.label}</span>}
         </div>
         {!isCollapsed && hasChildren && (
@@ -59,16 +62,19 @@ export default function NavItem({ item, isCollapsed }: NavItemProps) {
 
       {hasChildren && isOpen && !isCollapsed && (
         <div className="ml-4 mt-1 space-y-1">
-          {item.children?.map((child) => (
-            <Link
-              key={child.id}
-              href={child.href || '#'}
-              className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
-            >
-              <span className="text-lg">{child.icon}</span>
-              <span>{child.label}</span>
-            </Link>
-          ))}
+          {item.children?.map((child) => {
+            const ChildIcon = child.icon;
+            return (
+              <Link
+                key={child.id}
+                href={child.href || '#'}
+                className="flex items-center gap-3 px-4 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+              >
+                <ChildIcon className="w-4 h-4" />
+                <span>{child.label}</span>
+              </Link>
+            );
+          })}
         </div>
       )}
     </div>

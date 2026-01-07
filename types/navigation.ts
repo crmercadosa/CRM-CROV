@@ -1,7 +1,29 @@
+import { LucideIcon } from 'lucide-react';
+import {
+  LayoutDashboard,
+  Building2,
+  Radio,
+  Bot,
+  TrendingUp,
+  BarChart3,
+  Settings,
+  Store,
+  Users,
+  MessageSquare,
+  Plug,
+  Sparkles,
+  Target,
+  Zap,
+  UserPlus,
+  Calendar,
+  FileText,
+  ScrollText,
+} from 'lucide-react';
+
 export interface NavItem {
   id: string;
   label: string;
-  icon: string;
+  icon: LucideIcon;
   href?: string;
   children?: NavItem[];
 }
@@ -10,24 +32,24 @@ export const navigationItems: NavItem[] = [
   {
     id: 'dashboard',
     label: 'Dashboard',
-    icon: '📊',
+    icon: LayoutDashboard,
     href: '/dashboard',
   },
   {
     id: 'operacion',
     label: 'Operación',
-    icon: '🏢',
+    icon: Building2,
     children: [
       {
         id: 'sucursales',
         label: 'Sucursales',
-        icon: '🏪',
+        icon: Store,
         href: '/operacion/sucursales',
       },
       {
         id: 'usuarios-roles',
         label: 'Usuarios & Roles',
-        icon: '👥',
+        icon: Users,
         href: '/operacion/usuarios-roles',
       },
     ],
@@ -35,18 +57,18 @@ export const navigationItems: NavItem[] = [
   {
     id: 'comunicacion',
     label: 'Comunicación',
-    icon: '📡',
+    icon: Radio,
     children: [
       {
         id: 'conversaciones',
         label: 'Conversaciones',
-        icon: '💬',
+        icon: MessageSquare,
         href: '/comunicacion/conversaciones',
       },
       {
         id: 'canales',
         label: 'Canales',
-        icon: '🔌',
+        icon: Plug,
         href: '/comunicacion/canales',
       },
     ],
@@ -54,30 +76,30 @@ export const navigationItems: NavItem[] = [
   {
     id: 'ia',
     label: 'Inteligencia Artificial',
-    icon: '🤖',
+    icon: Bot,
     children: [
       {
         id: 'asistentes',
         label: 'Asistentes IA',
-        icon: '🤖',
+        icon: Bot,
         href: '/ia/asistentes',
       },
       {
         id: 'prompt-builder',
         label: 'Prompt Builder',
-        icon: '🧩',
+        icon: Sparkles,
         href: '/ia/prompt-builder',
       },
       {
         id: 'intenciones',
         label: 'Intenciones',
-        icon: '🎯',
+        icon: Target,
         href: '/ia/intenciones',
       },
       {
         id: 'automatizaciones',
         label: 'Automatizaciones',
-        icon: '🔄',
+        icon: Zap,
         href: '/ia/automatizaciones',
       },
     ],
@@ -85,24 +107,24 @@ export const navigationItems: NavItem[] = [
   {
     id: 'ventas',
     label: 'Ventas',
-    icon: '📈',
+    icon: TrendingUp,
     children: [
       {
         id: 'prospectos',
         label: 'Prospectos',
-        icon: '👤',
+        icon: UserPlus,
         href: '/ventas/prospectos',
       },
       {
         id: 'oportunidades',
         label: 'Oportunidades',
-        icon: '📊',
+        icon: BarChart3,
         href: '/ventas/oportunidades',
       },
       {
         id: 'agenda-demos',
         label: 'Agenda & Demos',
-        icon: '📅',
+        icon: Calendar,
         href: '/ventas/agenda-demos',
       },
     ],
@@ -110,18 +132,18 @@ export const navigationItems: NavItem[] = [
   {
     id: 'analitica',
     label: 'Analítica',
-    icon: '📊',
+    icon: BarChart3,
     children: [
       {
         id: 'reportes',
         label: 'Reportes',
-        icon: '📈',
+        icon: FileText,
         href: '/analitica/reportes',
       },
       {
         id: 'logs',
         label: 'Logs',
-        icon: '📝',
+        icon: ScrollText,
         href: '/analitica/logs',
       },
     ],
@@ -129,7 +151,7 @@ export const navigationItems: NavItem[] = [
   {
     id: 'configuracion',
     label: 'Configuración',
-    icon: '⚙️',
+    icon: Settings,
     href: '/configuracion',
   },
 ];
