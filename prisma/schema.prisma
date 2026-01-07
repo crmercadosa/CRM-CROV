@@ -1,14 +1,150 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client"
-  output   = "../app/generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
+}
+
+model asistente {
+  id          BigInt      @id @default(autoincrement())
+  id_canal    BigInt
+  nombre      String      @db.VarChar(45)
+  tipo        String      @db.VarChar(45)
+  estado      String      @db.VarChar(45)
+  descripcion String?     @db.Text
+  canal       canal       @relation(fields: [id_canal], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_asistente_canal1")
+  intencion   intencion[]
+  prompt      prompt[]
+
+  @@index([id_canal], map: "fk_asistente_canal1_idx")
+}
+
+model canal {
+  id           BigInt         @id @default(autoincrement())
+  id_sucursal  BigInt
+  tipo         String         @db.VarChar(45)
+  nombre       String         @db.Text
+  estado       String         @db.VarChar(45)
+  asistente    asistente[]
+  sucursal     sucursal       @relation(fields: [id_sucursal], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "canales_ibfk_1")
+  canal_config canal_config[]
+
+  @@index([id_sucursal], map: "id_sucursal")
+}
+
+model canal_config {
+  id       Int    @id
+  id_canal BigInt
+  config   Json
+  canal    canal  @relation(fields: [id_canal], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_canal_config_canal1")
+
+  @@index([id_canal], map: "fk_canal_config_canal1_idx")
+}
+
+model intencion {
+  id           BigInt    @id @default(autoincrement())
+  id_asistente BigInt
+  clave        String?   @db.Text
+  nombre       String?   @db.VarChar(45)
+  descripcion  String?   @db.Text
+  tipo_accion  String?   @db.VarChar(45)
+  config       Json?
+  activo       Int?      @db.TinyInt
+  asistente    asistente @relation(fields: [id_asistente], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_intencion_asistente1")
+
+  @@index([id_asistente], map: "fk_intencion_asistente1_idx")
+}
+
+model lead_prospectos {
+  id          BigInt    @id @default(autoincrement())
+  id_sucursal BigInt?
+  nombre      String?   @db.Text
+  telefono    String?   @db.Text
+  fuente      String?   @db.Text
+  etapa       String?   @db.Text
+  sucursal    sucursal? @relation(fields: [id_sucursal], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "lead_prospectos_ibfk_1")
+  mensaje     mensaje[]
+
+  @@index([id_sucursal], map: "id_sucursal")
+}
+
+model mensaje {
+  id              BigInt           @id @default(autoincrement())
+  id_lead         BigInt?
+  rol             String?          @db.Text
+  contenido       String?          @db.Text
+  tipo            mensaje_tipo?    @default(texto)
+  fecha_envio     DateTime?        @default(now()) @db.DateTime(0)
+  lead_prospectos lead_prospectos? @relation(fields: [id_lead], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "mensajes_ibfk_1")
+
+  @@index([id_lead], map: "id_lead")
+}
+
+model prompt {
+  id               BigInt             @id @default(autoincrement())
+  id_asistente     BigInt
+  titulo           String             @db.VarChar(255)
+  prompt_final     String             @db.Text
+  fecha_creacion   DateTime?          @default(now()) @db.DateTime(0)
+  asistente        asistente          @relation(fields: [id_asistente], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_prompt_asistente1")
+  prompt_atributos prompt_atributos[]
+
+  @@index([id_asistente], map: "fk_prompt_asistente1_idx")
+}
+
+model prompt_atributos {
+  id             BigInt  @id @default(autoincrement())
+  id_prompt      BigInt
+  clave_variable String? @db.VarChar(100)
+  pregunta       String? @db.Text
+  respuesta      String  @db.Text
+  prompt         prompt  @relation(fields: [id_prompt], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "prompt_atributos_ibfk_1")
+
+  @@index([id_prompt], map: "id_prompt")
+}
+
+model sucursal {
+  id                 BigInt            @id @default(autoincrement())
+  id_usuario         BigInt
+  nombre_negocio     String?           @db.Text
+  giro               String?           @db.Text
+  ciudad             String?           @db.Text
+  horarios           String?           @db.Text
+  url_redes_sociales String?           @db.Text
+  estado             String?           @db.VarChar(15)
+  canal              canal[]
+  lead_prospectos    lead_prospectos[]
+  usuario            usuario           @relation(fields: [id_usuario], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_sucursal_usuario1")
+
+  @@index([id_usuario], map: "fk_sucursal_usuario1_idx")
+}
+
+model usuario {
+  id             BigInt         @id @default(autoincrement())
+  tipo           usuario_tipo   @default(cliente)
+  estado         usuario_estado @default(activo)
+  email          String         @unique(map: "email") @db.VarChar(255)
+  password_hash  String         @db.VarChar(255)
+  fecha_creacion DateTime?      @default(now()) @db.DateTime(0)
+  nombre         String?        @db.VarChar(255)
+  sucursal       sucursal[]
+}
+
+enum usuario_tipo {
+  cliente
+  admin
+}
+
+enum usuario_estado {
+  activo
+  inactivo
+}
+
+enum mensaje_tipo {
+  texto
+  imagen
+  boton
+  archivo
 }
