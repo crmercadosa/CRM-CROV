@@ -7,7 +7,7 @@
  * - `Geist` y `Geist_Mono` de "next/font/google": Para cargar fuentes personalizadas.
  * - `"./globals.css"`: Para importar estilos globales.
  * - `SessionProvider` de "next-auth/react": Para proveer el contexto de la sesión a la aplicación.
- * - `auth` de "@/app/Auth/Auth": Para recuperar la información de la sesión.
+ * - `auth` de "@/app/login/Auth": Para recuperar la información de la sesión.
  */
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";

@@ -25,7 +25,7 @@ import type { NextAuthConfig } from 'next-auth';
  */
 export const authConfig = {
   pages: {
-    signIn: '/Auth',
+    signIn: '/login',
   },
   callbacks: {
     /**
@@ -77,7 +77,6 @@ export const authConfig = {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const userRole = (auth?.user as any)?.tipo;
-      const userSucursal = (auth?.user as any)?.id_sucursal;
 
       // Rutas protegidas por autenticación
       const protectedRoutes = ['/dashboard'];
@@ -86,13 +85,13 @@ export const authConfig = {
       );
 
       // Rutas solo para administradores
-      const adminRoutes = ['/dashboard/usuarios', '/dashboard/configuration'];
+      const adminRoutes = ['/dashboard'];
       const isOnAdminRoute = adminRoutes.some((route) =>
         nextUrl.pathname.startsWith(route)
       );
 
       // Rutas solo para clientes
-      const clientRoutes = ['/dashboard/sucursales'];
+      const clientRoutes = ['/dashboard'];
       const isOnClientRoute = clientRoutes.some((route) =>
         nextUrl.pathname.startsWith(route)
       );
@@ -122,7 +121,7 @@ export const authConfig = {
       }
 
       // Si está logueado y va a /Auth, redirigir al dashboard
-      if (isLoggedIn && nextUrl.pathname === '/Auth') {
+      if (isLoggedIn && nextUrl.pathname === '/login') {
         return Response.redirect(new URL('/dashboard', nextUrl));
       }
 
@@ -134,5 +133,6 @@ export const authConfig = {
       return true;
     },
   },
+  // El proveedor se define en Auth.ts y se inyecta en NextAuth, así que aquí no es necesario duplicarlo
   providers: [],
 } satisfies NextAuthConfig;

@@ -1,15 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useHeader } from '@/contexts/headerContexts';
-
 export default function DashboardPage() {
-  const { setTitle } = useHeader();
-
-  useEffect(() => {
-    setTitle('Dashboard');
-  }, [setTitle]);
-
   const kpis = [
     { label: 'Sucursales Activas', value: '24', change: '+12%', icon: '🏪' },
     { label: 'Conversaciones Hoy', value: '156', change: '+8%', icon: '💬' },

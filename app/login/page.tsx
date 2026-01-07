@@ -24,6 +24,8 @@ export default function LoginPage() {
         redirect: false,
       })
 
+      console.log('SignIn result:', result)
+
       if (result?.error) {
         setError('Correo o contraseña inválidos')
         setLoading(false)
@@ -31,10 +33,12 @@ export default function LoginPage() {
       }
 
       if (result?.ok) {
+        console.log('Login successful, redirecting to dashboard')
         router.push('/dashboard')
         return
       }
     } catch (err) {
+      console.error('Login error:', err)
       setError('Ocurrió un error durante el inicio de sesión')
       setLoading(false)
     }
