@@ -6,6 +6,7 @@
  * - `NextAuthConfig` de "next-auth": Para definir la configuración de NextAuth.
  */
 import type { NextAuthConfig } from 'next-auth';
+import '@/types/next-auth';
 
 /**
  * --------------------------------------------------------------------------
@@ -42,7 +43,6 @@ export const authConfig = {
         token.id = user.id;
         token.email = user.email;
         token.tipo = (user as any).tipo;
-        token.id_sucursal = (user as any).id_sucursal;
       }
       return token;
     },
@@ -59,7 +59,6 @@ export const authConfig = {
       if (session.user) {
         (session.user as any).id = token.id;
         (session.user as any).tipo = token.tipo;
-        (session.user as any).id_sucursal = token.id_sucursal;
       }
       return session;
     },

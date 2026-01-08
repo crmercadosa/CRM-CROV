@@ -2,31 +2,47 @@
 
 import { useState } from 'react';
 import { useHeader } from '@/contexts/headerContexts';
+import { useSession, signOut } from "next-auth/react"
 
 export function UserHeader() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { title } = useHeader();
+  const { data: session, status } = useSession();
 
-  // Datos estáticos de ejemplo
-  const user = {
-    email: 'usuario@ejemplo.com',
-    nombre: 'Juan Pérez',
-    tipo: 'admin',
-    avatar: null,
-  };
 
-  const getInitials = () => {
-    if (!user?.email) return 'U';
-    return user.email.substring(0, 2).toUpperCase();
-  };
-
-  const handleLogout = () => {
-    alert('Cerrando sesión...');
-    // Aquí irá la lógica real de logout
-  };
-
+  if (status === "loading") {
   return (
-    <header className="flex items-center justify-between px-6 py-4 bg-white border-b border-gray-200">
+    <header className="px-6 py-4 bg-white border-b">
+      <p className="text-sm text-gray-500">Cargando usuario...</p>
+    </header>
+  );
+  }
+
+if (!session?.user) {
+  return null; // o redirigir si quieres
+}
+
+const getInitials = () => {
+  if (session.user?.name) {
+    return session.user.name
+      .split(' ')
+      .map((name) => name[0])
+      .join('')
+      .toUpperCase();
+  }
+  if (session.user?.email) {
+    return session.user.email.substring(0, 2).toUpperCase();
+  }
+  return 'U';
+};
+
+const handleLogout = async () => {
+  setIsDropdownOpen(false);
+  await signOut({ callbackUrl: "/login" });
+};
+
+return (
+  <header className="flex items-center justify-between px-6 py-4 bg-white border-b border-gray-200">
       {/* Título dinámico */}
       <div className="flex items-center gap-4">
         <h1 className="text-2xl font-bold text-gray-900">{title}</h1>
@@ -42,13 +58,14 @@ export function UserHeader() {
             {/* Avatar */}
             <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-semibold">
               {getInitials()}
-            </div>
+                </div>
+
             
             {/* User Info - oculto en móvil */}
             <div className="hidden md:block text-left">
-              <p className="text-sm font-semibold text-gray-900">{user.nombre}</p>
+              <p className="text-sm font-semibold text-gray-900">{session.user.name}</p>
               <p className="text-xs text-gray-500 capitalize">
-                {user.tipo === 'admin' ? 'Administrador' : 'Usuario'}
+                {session.user.tipo === 'admin' ? 'Administrador' : 'Usuario'}
               </p>
             </div>
 
@@ -84,11 +101,11 @@ export function UserHeader() {
                 {/* User Info */}
                 <div className="px-4 py-3 border-b border-gray-200">
                   <p className="text-sm font-semibold text-gray-900">
-                    {user.nombre}
+                    {session.user.name}
                   </p>
-                  <p className="text-xs text-gray-500">{user.email}</p>
+                  <p className="text-xs text-gray-500">{session.user.email}</p>
                   <p className="text-xs text-gray-500 capitalize mt-1">
-                    {user.tipo === 'admin' ? 'Administrador' : 'Usuario'}
+                    {session.user.tipo === 'admin' ? 'Administrador' : 'Usuario'}
                   </p>
                 </div>
 
