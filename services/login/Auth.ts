@@ -16,6 +16,7 @@ import Credentials from 'next-auth/providers/credentials';
 import { prisma } from '../../lib/prisma';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
+import '@/types/next-auth';
 
 /**
  * --------------------------------------------------------------------------
@@ -56,14 +57,6 @@ async function login(email: string, password: string): Promise<AuthUser | null> 
   try {
     const user = await prisma.usuario.findUnique({
       where: { email },
-      include: {
-        sucursal: {
-          select: {
-            id: true,
-            nombre_negocio: true,
-          },
-        },
-      },
     });
 
     if (!user) {
@@ -78,7 +71,7 @@ async function login(email: string, password: string): Promise<AuthUser | null> 
         id: String(user.id),
         email: user.email,
         nombre: user.nombre || undefined,
-        tipo: user.tipo || undefined,
+        tipo: String(user.tipo),
       };
     }
 

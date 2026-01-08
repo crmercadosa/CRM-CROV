@@ -1,4 +1,4 @@
-import { handlers } from '../../../login/Auth';
+import { handlers } from '../../../../services/login/Auth';
 
 export const { GET, POST } = handlers;
 
