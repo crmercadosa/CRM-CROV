@@ -4,8 +4,6 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useHeader } from '@/contexts/headerContexts';
-import clsx from 'clsx';
-import Link from 'next/link';
 
 export default function DashboardPage() {
 
