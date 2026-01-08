@@ -1,10 +1,11 @@
+// api/sucursales/route.ts
 import { NextResponse } from 'next/server';
-import { useSession } from 'next-auth/react';
+import { auth } from '../../../services/login/Auth';
 import { getSucursalesByUsuario } from '../../../services/sucursales/sucursal';
 
 export async function GET(request: Request) {
   try {
-    const {data: session} = useSession();
+    const session = await auth();
 
     if (!session || !session.user) {
       return NextResponse.json(
@@ -13,7 +14,16 @@ export async function GET(request: Request) {
       );
     }
 
-    const userId = (session.user as any).id;
+    // Convertir el ID de string a number
+    const userId = parseInt(session.user.id, 10);
+    
+    if (isNaN(userId)) {
+      return NextResponse.json(
+        { error: 'ID de usuario inválido' },
+        { status: 400 }
+      );
+    }
+
     const sucursales = await getSucursalesByUsuario(userId);
 
     return NextResponse.json(sucursales);
