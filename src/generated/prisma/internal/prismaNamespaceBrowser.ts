@@ -59,8 +59,8 @@ export const ModelName = {
   mensaje: 'mensaje',
   prompt: 'prompt',
   prompt_atributos: 'prompt_atributos',
-  sucursal: 'sucursal',
-  usuario: 'usuario'
+  usuario: 'usuario',
+  negocio: 'negocio'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -171,20 +171,6 @@ export const Prompt_atributosScalarFieldEnum = {
 export type Prompt_atributosScalarFieldEnum = (typeof Prompt_atributosScalarFieldEnum)[keyof typeof Prompt_atributosScalarFieldEnum]
 
 
-export const SucursalScalarFieldEnum = {
-  id: 'id',
-  id_usuario: 'id_usuario',
-  nombre_negocio: 'nombre_negocio',
-  giro: 'giro',
-  ciudad: 'ciudad',
-  horarios: 'horarios',
-  url_redes_sociales: 'url_redes_sociales',
-  estado: 'estado'
-} as const
-
-export type SucursalScalarFieldEnum = (typeof SucursalScalarFieldEnum)[keyof typeof SucursalScalarFieldEnum]
-
-
 export const UsuarioScalarFieldEnum = {
   id: 'id',
   tipo: 'tipo',
@@ -196,6 +182,20 @@ export const UsuarioScalarFieldEnum = {
 } as const
 
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
+
+
+export const NegocioScalarFieldEnum = {
+  id: 'id',
+  id_usuario: 'id_usuario',
+  nombre_negocio: 'nombre_negocio',
+  giro: 'giro',
+  ciudad: 'ciudad',
+  horarios: 'horarios',
+  url_redes_sociales: 'url_redes_sociales',
+  estado: 'estado'
+} as const
+
+export type NegocioScalarFieldEnum = (typeof NegocioScalarFieldEnum)[keyof typeof NegocioScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -310,7 +310,16 @@ export const prompt_atributosOrderByRelevanceFieldEnum = {
 export type prompt_atributosOrderByRelevanceFieldEnum = (typeof prompt_atributosOrderByRelevanceFieldEnum)[keyof typeof prompt_atributosOrderByRelevanceFieldEnum]
 
 
-export const sucursalOrderByRelevanceFieldEnum = {
+export const usuarioOrderByRelevanceFieldEnum = {
+  email: 'email',
+  password_hash: 'password_hash',
+  nombre: 'nombre'
+} as const
+
+export type usuarioOrderByRelevanceFieldEnum = (typeof usuarioOrderByRelevanceFieldEnum)[keyof typeof usuarioOrderByRelevanceFieldEnum]
+
+
+export const negocioOrderByRelevanceFieldEnum = {
   nombre_negocio: 'nombre_negocio',
   giro: 'giro',
   ciudad: 'ciudad',
@@ -319,14 +328,5 @@ export const sucursalOrderByRelevanceFieldEnum = {
   estado: 'estado'
 } as const
 
-export type sucursalOrderByRelevanceFieldEnum = (typeof sucursalOrderByRelevanceFieldEnum)[keyof typeof sucursalOrderByRelevanceFieldEnum]
-
-
-export const usuarioOrderByRelevanceFieldEnum = {
-  email: 'email',
-  password_hash: 'password_hash',
-  nombre: 'nombre'
-} as const
-
-export type usuarioOrderByRelevanceFieldEnum = (typeof usuarioOrderByRelevanceFieldEnum)[keyof typeof usuarioOrderByRelevanceFieldEnum]
+export type negocioOrderByRelevanceFieldEnum = (typeof negocioOrderByRelevanceFieldEnum)[keyof typeof negocioOrderByRelevanceFieldEnum]
 

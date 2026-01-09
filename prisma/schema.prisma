@@ -28,7 +28,7 @@ model canal {
   nombre       String         @db.Text
   estado       String         @db.VarChar(45)
   asistente    asistente[]
-  sucursal     sucursal       @relation(fields: [id_sucursal], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "canales_ibfk_1")
+  sucursal     negocio        @relation(fields: [id_sucursal], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "canales_ibfk_1")
   canal_config canal_config[]
 
   @@index([id_sucursal], map: "id_sucursal")
@@ -64,7 +64,7 @@ model lead_prospectos {
   telefono    String?   @db.Text
   fuente      String?   @db.Text
   etapa       String?   @db.Text
-  sucursal    sucursal? @relation(fields: [id_sucursal], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "lead_prospectos_ibfk_1")
+  sucursal    negocio?  @relation(fields: [id_sucursal], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "lead_prospectos_ibfk_1")
   mensaje     mensaje[]
 
   @@index([id_sucursal], map: "id_sucursal")
@@ -105,7 +105,18 @@ model prompt_atributos {
   @@index([id_prompt], map: "id_prompt")
 }
 
-model sucursal {
+model usuario {
+  id             BigInt         @id @default(autoincrement())
+  tipo           usuario_tipo   @default(cliente)
+  estado         usuario_estado @default(activo)
+  email          String         @unique(map: "email") @db.VarChar(255)
+  password_hash  String         @db.VarChar(255)
+  fecha_creacion DateTime?      @default(now()) @db.DateTime(0)
+  nombre         String?        @db.VarChar(255)
+  negocio        negocio[]
+}
+
+model negocio {
   id                 BigInt            @id @default(autoincrement())
   id_usuario         BigInt
   nombre_negocio     String?           @db.Text
@@ -119,17 +130,6 @@ model sucursal {
   usuario            usuario           @relation(fields: [id_usuario], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_sucursal_usuario1")
 
   @@index([id_usuario], map: "fk_sucursal_usuario1_idx")
-}
-
-model usuario {
-  id             BigInt         @id @default(autoincrement())
-  tipo           usuario_tipo   @default(cliente)
-  estado         usuario_estado @default(activo)
-  email          String         @unique(map: "email") @db.VarChar(255)
-  password_hash  String         @db.VarChar(255)
-  fecha_creacion DateTime?      @default(now()) @db.DateTime(0)
-  nombre         String?        @db.VarChar(255)
-  sucursal       sucursal[]
 }
 
 enum usuario_tipo {
