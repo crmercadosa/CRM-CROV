@@ -50,7 +50,7 @@ export const navigationItems: NavItem[] = [
         id: 'usuarios-roles',
         label: 'Usuarios & Roles',
         icon: Users,
-        href: '/usuarios',
+        href: '/operacion/usuarios',
       },
     ],
   },

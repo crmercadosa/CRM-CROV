@@ -92,6 +92,9 @@ export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<Usuario
       where,
       include: {
         sucursal: {
+          where: {
+            estado: 'activo',
+          },
           select: {
             id: true,
             nombre_negocio: true,
@@ -126,6 +129,9 @@ export async function obtenerUsuarioById(id: bigint): Promise<UsuarioConSucursal
       where: { id },
       include: {
         sucursal: {
+          where: {
+            estado: 'activo',
+          },
           select: {
             id: true,
             nombre_negocio: true,
