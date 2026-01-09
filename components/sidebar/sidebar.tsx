@@ -1,3 +1,4 @@
+//sidebar.tsx
 'use client';
 
 import { useState } from 'react';
@@ -25,10 +26,10 @@ export default function Sidebar() {
       onMouseLeave={handleMouseLeave}
       className={`${
         isExpanded ? 'w-56' : 'w-16'
-      } h-screen bg-white border-r border-gray-200 transition-all duration-300 flex flex-col`}
+      } h-full bg-white border-r border-gray-200 transition-all duration-300 flex flex-col flex-shrink-0`}
     >
       {/* Header con logo y botón hamburguesa */}
-      <div className="p-3 border-b border-gray-200">
+      <div className="p-3 border-b border-gray-200 flex-shrink-0">
         {isExpanded ? (
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">

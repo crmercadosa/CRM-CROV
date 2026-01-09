@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { Sucursal } from '@/types/sucursal';
+import { useSession } from 'next-auth/react';
+import { X } from 'lucide-react';
 
 interface SucursalModalProps {
   sucursal: Sucursal | null;
@@ -14,6 +16,7 @@ export default function SucursalModal({
   onClose,
   onSave,
 }: SucursalModalProps) {
+  const { data: session } = useSession();
   const [formData, setFormData] = useState<Sucursal>({
     id: '',
     id_usuario: '',
@@ -28,6 +31,11 @@ export default function SucursalModal({
   useEffect(() => {
     if (sucursal) {
       setFormData(sucursal);
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        id_usuario: session?.user?.id || session?.user?.email || '',
+      }));
     }
   }, [sucursal]);
 
@@ -43,18 +51,36 @@ export default function SucursalModal({
     onSave(formData);
   };
 
+  // Cerrar modal al hacer clic en el fondo
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6 border-b border-gray-200">
+    <div 
+      className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      onClick={handleBackdropClick}
+    >
+      <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-200">
+        <div className="p-6 border-b border-gray-200 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-gray-900">
             {sucursal ? 'Editar Sucursal' : 'Nueva Sucursal'}
           </h2>
+          <button
+            onClick={onClose}
+            className=" cursor-pointer text-gray-400 hover:text-gray-600 transition-colors"
+            type="button"
+          >
+            <X className="w-6 h-6" />
+          </button>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
+            {sucursal && (
+              <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 ID Usuario
               </label>
@@ -68,8 +94,8 @@ export default function SucursalModal({
                 placeholder="USR001"
               />
             </div>
-
-            <div>
+          )}
+            <div className={sucursal ? '' : 'md:col-span-2'}>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Nombre del Negocio
               </label>
@@ -163,13 +189,13 @@ export default function SucursalModal({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              className="cursor-pointer px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="cursor-pointer px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
               {sucursal ? 'Guardar Cambios' : 'Crear Sucursal'}
             </button>

@@ -1,3 +1,4 @@
+//(principal) layout.tsx
 import Sidebar from '@/components/sidebar/sidebar';
 import { UserHeader } from '@/components/header/userHeader';
 import { HeaderProvider } from '@/contexts/headerContexts';
@@ -9,11 +10,13 @@ export default function DashboardLayout({
 }) {
   return (
     <HeaderProvider>
-      <div className="flex min-h-screen bg-gray-50">
+      <div className="flex h-screen bg-gray-50">
         <Sidebar />
         <div className="flex-1 flex flex-col overflow-hidden">
           <UserHeader />
-          {children}
+          <main className="flex-1 overflow-y-auto">
+            {children}
+          </main>
         </div>
       </div>
     </HeaderProvider>
