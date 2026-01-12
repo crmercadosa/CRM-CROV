@@ -7,7 +7,7 @@
  *
  * Esta página permite a los administradores:
  * - Ver todos los usuarios activos registrados en la plataforma
- * - Aplicar filtros avanzados (sin sucursales, rol, estado)
+ * - Aplicar filtros avanzados (sin negocios, rol, estado)
  * - Buscar usuarios por email o nombre
  * - Ver estadísticas de usuarios
  */
@@ -18,7 +18,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { UsuarioFilters } from '@/components/AdminUsuarios/usuario-filters'
 import { UsuariosTable } from '@/components/AdminUsuarios/usuarios-table'
 import { Users, TrendingUp } from 'lucide-react'
-import type { UsuarioConSucursal, FiltrosUsuarios } from '@/services/usuarios/usuario.service'
+import type { UsuarioConNegocio, FiltrosUsuarios } from '@/services/usuarios/usuario.service'
 import {
   cargarUsuarios,
   cargarEstadisticas,
@@ -40,8 +40,8 @@ export default function UsuariosPage() {
   const user = session?.user as any
 
   // Estados
-  const [usuarios, setUsuarios] = useState<UsuarioConSucursal[]>([])
-  const [usuariosFiltrados, setUsuariosFiltrados] = useState<UsuarioConSucursal[]>([])
+  const [usuarios, setUsuarios] = useState<UsuarioConNegocio[]>([])
+  const [usuariosFiltrados, setUsuariosFiltrados] = useState<UsuarioConNegocio[]>([])
   const [estadisticas, setEstadisticas] = useState<Estadisticas | null>(null)
   const [rolesDisponibles, setRolesDisponibles] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(true)
@@ -183,7 +183,7 @@ export default function UsuariosPage() {
             </div>
           </div>
 
-          {/* Usuarios sin sucursal */}
+          {/* Usuarios sin negocio */}
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>

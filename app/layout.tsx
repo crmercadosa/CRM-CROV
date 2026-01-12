@@ -43,7 +43,7 @@ const geistMono = Geist_Mono({
  */
 export const metadata: Metadata = {
   title: "CROV AI - Plataforma para Negocios",
-  description: "Gestiona tus sucursales y automatiza procesos con inteligencia artificial avanzada.",
+  description: "Gestiona tus negocios y automatiza procesos con inteligencia artificial avanzada.",
 };
 
 /**

@@ -6,7 +6,7 @@
  * GET /api/usuarios
  *
  * Parámetros de query:
- * - sinSucursal: boolean - Filtrar usuarios sin sucursales
+ * - sinSucursal: boolean - Filtrar usuarios sin negocios
  * - rol: string - Filtrar por tipo de rol
  * - estado: string - Filtrar por estado
  * - busqueda: string - Búsqueda por email o nombre

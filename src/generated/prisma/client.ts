@@ -80,11 +80,6 @@ export type prompt = Prisma.promptModel
  */
 export type prompt_atributos = Prisma.prompt_atributosModel
 /**
- * Model sucursal
- * 
- */
-export type sucursal = Prisma.sucursalModel
-/**
  * Model usuario
  * 
  */
@@ -94,3 +89,8 @@ export type usuario = Prisma.usuarioModel
  * 
  */
 export type verification_tokens = Prisma.verification_tokensModel
+/**
+ * Model negocio
+ * 
+ */
+export type negocio = Prisma.negocioModel

@@ -5,7 +5,7 @@
  *
  * Este servicio proporciona métodos para obtener y filtrar usuarios de la
  * plataforma. Incluye funcionalidad para filtros avanzados como:
- * - Usuarios sin sucursales activas
+ * - Usuarios sin negocios activos
  * - Filtrado por tipo de rol
  * - Filtrado por estado
  */
@@ -18,14 +18,14 @@ import { prisma } from "@/lib/prisma";
  * --------------------------------------------------------------------------
  */
 
-export interface UsuarioConSucursal {
-  id_usuario: bigint;
+export interface UsuarioConNegocio {
+  id: bigint;
   email: string;
   nombre: string | null;
   tipo: string | null;
   estado: string | null;
-  created_at: Date | null;
-  sucursal: {
+  fecha_creacion: Date | null;
+  negocio: {
     id: bigint;
     nombre_negocio: string | null;
     estado: string | null;
@@ -33,7 +33,7 @@ export interface UsuarioConSucursal {
 }
 
 export interface FiltrosUsuarios {
-  sinSucursal?: boolean;
+  sinNegocio?: boolean;
   rol?: string;
   estado?: string;
   busqueda?: string;
@@ -44,7 +44,7 @@ export interface FiltrosUsuarios {
  * Obtener todos los usuarios con opciones de filtrado
  * --------------------------------------------------------------------------
  */
-export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<UsuarioConSucursal[]> {
+export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<UsuarioConNegocio[]> {
   try {
     // Excluir administradores por defecto
     const where: any = {
@@ -53,9 +53,9 @@ export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<Usuario
       },
     };
 
-    // Filtro: usuarios sin sucursales activas
-    if (filtros.sinSucursal) {
-      where.sucursal = {
+    // Filtro: usuarios sin negocios activos
+    if (filtros.sinNegocio) {
+      where.negocio = {
         none: {},
       };
     }
@@ -87,11 +87,10 @@ export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<Usuario
         },
       ];
     }
-
-    const usuarios = await prisma.usuario.findMany({
+const usuarios = await prisma.usuario.findMany({
       where,
       include: {
-        sucursal: {
+        negocio: {
           where: {
             estado: 'activo',
           },
@@ -108,14 +107,21 @@ export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<Usuario
       },
     });
 
+    // Mapear campos de Prisma al tipo UsuarioConNegocio
     return usuarios.map(usuario => ({
-      id_usuario: usuario.id_usuario,
+      id: usuario.id_usuario as unknown as bigint,
       email: usuario.email,
-      nombre: usuario.nombre,
-      tipo: usuario.tipo,
-      estado: usuario.estado,
-      created_at: usuario.created_at,
-      sucursal: usuario.sucursal[0] || null,
+      nombre: usuario.nombre ?? null,
+      tipo: usuario.tipo ?? null,
+      estado: usuario.estado ?? null,
+      fecha_creacion: usuario.created_at ?? null,
+      negocio: usuario.negocio && usuario.negocio.length > 0
+        ? {
+            id: usuario.negocio[0].id as unknown as bigint,
+            nombre_negocio: usuario.negocio[0].nombre_negocio ?? null,
+            estado: usuario.negocio[0].estado ?? null,
+          }
+        : null,
     }));
   } catch (error) {
     console.error('Error al obtener usuarios:', error);
@@ -128,12 +134,12 @@ export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<Usuario
  * Obtener un usuario por ID
  * --------------------------------------------------------------------------
  */
-export async function obtenerUsuarioById(id: bigint): Promise<UsuarioConSucursal | null> {
+export async function obtenerUsuarioById(id: bigint): Promise<UsuarioConNegocio | null> {
   try {
     const usuario = await prisma.usuario.findUnique({
       where: { id_usuario: id },
       include: {
-        sucursal: {
+        negocio: {
           where: {
             estado: 'activo',
           },
@@ -150,13 +156,10 @@ export async function obtenerUsuarioById(id: bigint): Promise<UsuarioConSucursal
     if (!usuario) return null;
 
     return {
-      id_usuario: usuario.id_usuario,
-      email: usuario.email,
-      nombre: usuario.nombre,
-      tipo: usuario.tipo,
-      estado: usuario.estado,
-      created_at: usuario.created_at,
-      sucursal: usuario.sucursal[0] || null,
+      ...usuario,
+      id: usuario.id_usuario as unknown as bigint,
+      fecha_creacion: usuario.created_at ?? null,
+      negocio: usuario.negocio[0] || null,
     };
   } catch (error) {
     console.error('Error al obtener usuario:', error);
@@ -179,7 +182,7 @@ export async function obtenerEstadisticasUsuarios() {
       },
     });
 
-    const sinSucursal = await prisma.usuario.count({
+    const sinNegocio = await prisma.usuario.count({
       where: {
         AND: [
           {
@@ -188,7 +191,7 @@ export async function obtenerEstadisticasUsuarios() {
             },
           },
           {
-            sucursal: {
+            negocio: {
               none: {},
             },
           },
@@ -234,7 +237,7 @@ export async function obtenerEstadisticasUsuarios() {
 
     return {
       total,
-      sinSucursal,
+      sinNegocio,
       activos,
       inactivos,
       porRol: rolesCuenta,

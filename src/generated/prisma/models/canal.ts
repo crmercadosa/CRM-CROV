@@ -28,17 +28,17 @@ export type AggregateCanal = {
 
 export type CanalAvgAggregateOutputType = {
   id: number | null
-  id_sucursal: number | null
+  id_negocio: number | null
 }
 
 export type CanalSumAggregateOutputType = {
   id: bigint | null
-  id_sucursal: bigint | null
+  id_negocio: bigint | null
 }
 
 export type CanalMinAggregateOutputType = {
   id: bigint | null
-  id_sucursal: bigint | null
+  id_negocio: bigint | null
   tipo: string | null
   nombre: string | null
   estado: string | null
@@ -46,7 +46,7 @@ export type CanalMinAggregateOutputType = {
 
 export type CanalMaxAggregateOutputType = {
   id: bigint | null
-  id_sucursal: bigint | null
+  id_negocio: bigint | null
   tipo: string | null
   nombre: string | null
   estado: string | null
@@ -54,7 +54,7 @@ export type CanalMaxAggregateOutputType = {
 
 export type CanalCountAggregateOutputType = {
   id: number
-  id_sucursal: number
+  id_negocio: number
   tipo: number
   nombre: number
   estado: number
@@ -64,17 +64,17 @@ export type CanalCountAggregateOutputType = {
 
 export type CanalAvgAggregateInputType = {
   id?: true
-  id_sucursal?: true
+  id_negocio?: true
 }
 
 export type CanalSumAggregateInputType = {
   id?: true
-  id_sucursal?: true
+  id_negocio?: true
 }
 
 export type CanalMinAggregateInputType = {
   id?: true
-  id_sucursal?: true
+  id_negocio?: true
   tipo?: true
   nombre?: true
   estado?: true
@@ -82,7 +82,7 @@ export type CanalMinAggregateInputType = {
 
 export type CanalMaxAggregateInputType = {
   id?: true
-  id_sucursal?: true
+  id_negocio?: true
   tipo?: true
   nombre?: true
   estado?: true
@@ -90,7 +90,7 @@ export type CanalMaxAggregateInputType = {
 
 export type CanalCountAggregateInputType = {
   id?: true
-  id_sucursal?: true
+  id_negocio?: true
   tipo?: true
   nombre?: true
   estado?: true
@@ -185,7 +185,7 @@ export type canalGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 
 export type CanalGroupByOutputType = {
   id: bigint
-  id_sucursal: bigint
+  id_negocio: bigint
   tipo: string
   nombre: string
   estado: string
@@ -216,23 +216,23 @@ export type canalWhereInput = {
   OR?: Prisma.canalWhereInput[]
   NOT?: Prisma.canalWhereInput | Prisma.canalWhereInput[]
   id?: Prisma.BigIntFilter<"canal"> | bigint | number
-  id_sucursal?: Prisma.BigIntFilter<"canal"> | bigint | number
+  id_negocio?: Prisma.BigIntFilter<"canal"> | bigint | number
   tipo?: Prisma.StringFilter<"canal"> | string
   nombre?: Prisma.StringFilter<"canal"> | string
   estado?: Prisma.StringFilter<"canal"> | string
   asistente?: Prisma.AsistenteListRelationFilter
-  sucursal?: Prisma.XOR<Prisma.SucursalScalarRelationFilter, Prisma.sucursalWhereInput>
+  negocio?: Prisma.XOR<Prisma.NegocioScalarRelationFilter, Prisma.negocioWhereInput>
   canal_config?: Prisma.Canal_configListRelationFilter
 }
 
 export type canalOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  id_sucursal?: Prisma.SortOrder
+  id_negocio?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   estado?: Prisma.SortOrder
   asistente?: Prisma.asistenteOrderByRelationAggregateInput
-  sucursal?: Prisma.sucursalOrderByWithRelationInput
+  negocio?: Prisma.negocioOrderByWithRelationInput
   canal_config?: Prisma.canal_configOrderByRelationAggregateInput
   _relevance?: Prisma.canalOrderByRelevanceInput
 }
@@ -242,18 +242,18 @@ export type canalWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.canalWhereInput | Prisma.canalWhereInput[]
   OR?: Prisma.canalWhereInput[]
   NOT?: Prisma.canalWhereInput | Prisma.canalWhereInput[]
-  id_sucursal?: Prisma.BigIntFilter<"canal"> | bigint | number
+  id_negocio?: Prisma.BigIntFilter<"canal"> | bigint | number
   tipo?: Prisma.StringFilter<"canal"> | string
   nombre?: Prisma.StringFilter<"canal"> | string
   estado?: Prisma.StringFilter<"canal"> | string
   asistente?: Prisma.AsistenteListRelationFilter
-  sucursal?: Prisma.XOR<Prisma.SucursalScalarRelationFilter, Prisma.sucursalWhereInput>
+  negocio?: Prisma.XOR<Prisma.NegocioScalarRelationFilter, Prisma.negocioWhereInput>
   canal_config?: Prisma.Canal_configListRelationFilter
 }, "id">
 
 export type canalOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  id_sucursal?: Prisma.SortOrder
+  id_negocio?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   estado?: Prisma.SortOrder
@@ -269,7 +269,7 @@ export type canalScalarWhereWithAggregatesInput = {
   OR?: Prisma.canalScalarWhereWithAggregatesInput[]
   NOT?: Prisma.canalScalarWhereWithAggregatesInput | Prisma.canalScalarWhereWithAggregatesInput[]
   id?: Prisma.BigIntWithAggregatesFilter<"canal"> | bigint | number
-  id_sucursal?: Prisma.BigIntWithAggregatesFilter<"canal"> | bigint | number
+  id_negocio?: Prisma.BigIntWithAggregatesFilter<"canal"> | bigint | number
   tipo?: Prisma.StringWithAggregatesFilter<"canal"> | string
   nombre?: Prisma.StringWithAggregatesFilter<"canal"> | string
   estado?: Prisma.StringWithAggregatesFilter<"canal"> | string
@@ -281,13 +281,13 @@ export type canalCreateInput = {
   nombre: string
   estado: string
   asistente?: Prisma.asistenteCreateNestedManyWithoutCanalInput
-  sucursal: Prisma.sucursalCreateNestedOneWithoutCanalInput
+  negocio: Prisma.negocioCreateNestedOneWithoutCanalInput
   canal_config?: Prisma.canal_configCreateNestedManyWithoutCanalInput
 }
 
 export type canalUncheckedCreateInput = {
   id?: bigint | number
-  id_sucursal: bigint | number
+  id_negocio: bigint | number
   tipo: string
   nombre: string
   estado: string
@@ -301,13 +301,13 @@ export type canalUpdateInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   asistente?: Prisma.asistenteUpdateManyWithoutCanalNestedInput
-  sucursal?: Prisma.sucursalUpdateOneRequiredWithoutCanalNestedInput
+  negocio?: Prisma.negocioUpdateOneRequiredWithoutCanalNestedInput
   canal_config?: Prisma.canal_configUpdateManyWithoutCanalNestedInput
 }
 
 export type canalUncheckedUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  id_sucursal?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id_negocio?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
@@ -317,7 +317,7 @@ export type canalUncheckedUpdateInput = {
 
 export type canalCreateManyInput = {
   id?: bigint | number
-  id_sucursal: bigint | number
+  id_negocio: bigint | number
   tipo: string
   nombre: string
   estado: string
@@ -332,7 +332,7 @@ export type canalUpdateManyMutationInput = {
 
 export type canalUncheckedUpdateManyInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  id_sucursal?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id_negocio?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
@@ -351,7 +351,7 @@ export type canalOrderByRelevanceInput = {
 
 export type canalCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_sucursal?: Prisma.SortOrder
+  id_negocio?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   estado?: Prisma.SortOrder
@@ -359,12 +359,12 @@ export type canalCountOrderByAggregateInput = {
 
 export type canalAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_sucursal?: Prisma.SortOrder
+  id_negocio?: Prisma.SortOrder
 }
 
 export type canalMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_sucursal?: Prisma.SortOrder
+  id_negocio?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   estado?: Prisma.SortOrder
@@ -372,7 +372,7 @@ export type canalMaxOrderByAggregateInput = {
 
 export type canalMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_sucursal?: Prisma.SortOrder
+  id_negocio?: Prisma.SortOrder
   tipo?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   estado?: Prisma.SortOrder
@@ -380,7 +380,7 @@ export type canalMinOrderByAggregateInput = {
 
 export type canalSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_sucursal?: Prisma.SortOrder
+  id_negocio?: Prisma.SortOrder
 }
 
 export type CanalListRelationFilter = {
@@ -421,45 +421,45 @@ export type canalUpdateOneRequiredWithoutCanal_configNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.canalUpdateToOneWithWhereWithoutCanal_configInput, Prisma.canalUpdateWithoutCanal_configInput>, Prisma.canalUncheckedUpdateWithoutCanal_configInput>
 }
 
-export type canalCreateNestedManyWithoutSucursalInput = {
-  create?: Prisma.XOR<Prisma.canalCreateWithoutSucursalInput, Prisma.canalUncheckedCreateWithoutSucursalInput> | Prisma.canalCreateWithoutSucursalInput[] | Prisma.canalUncheckedCreateWithoutSucursalInput[]
-  connectOrCreate?: Prisma.canalCreateOrConnectWithoutSucursalInput | Prisma.canalCreateOrConnectWithoutSucursalInput[]
-  createMany?: Prisma.canalCreateManySucursalInputEnvelope
+export type canalCreateNestedManyWithoutNegocioInput = {
+  create?: Prisma.XOR<Prisma.canalCreateWithoutNegocioInput, Prisma.canalUncheckedCreateWithoutNegocioInput> | Prisma.canalCreateWithoutNegocioInput[] | Prisma.canalUncheckedCreateWithoutNegocioInput[]
+  connectOrCreate?: Prisma.canalCreateOrConnectWithoutNegocioInput | Prisma.canalCreateOrConnectWithoutNegocioInput[]
+  createMany?: Prisma.canalCreateManyNegocioInputEnvelope
   connect?: Prisma.canalWhereUniqueInput | Prisma.canalWhereUniqueInput[]
 }
 
-export type canalUncheckedCreateNestedManyWithoutSucursalInput = {
-  create?: Prisma.XOR<Prisma.canalCreateWithoutSucursalInput, Prisma.canalUncheckedCreateWithoutSucursalInput> | Prisma.canalCreateWithoutSucursalInput[] | Prisma.canalUncheckedCreateWithoutSucursalInput[]
-  connectOrCreate?: Prisma.canalCreateOrConnectWithoutSucursalInput | Prisma.canalCreateOrConnectWithoutSucursalInput[]
-  createMany?: Prisma.canalCreateManySucursalInputEnvelope
+export type canalUncheckedCreateNestedManyWithoutNegocioInput = {
+  create?: Prisma.XOR<Prisma.canalCreateWithoutNegocioInput, Prisma.canalUncheckedCreateWithoutNegocioInput> | Prisma.canalCreateWithoutNegocioInput[] | Prisma.canalUncheckedCreateWithoutNegocioInput[]
+  connectOrCreate?: Prisma.canalCreateOrConnectWithoutNegocioInput | Prisma.canalCreateOrConnectWithoutNegocioInput[]
+  createMany?: Prisma.canalCreateManyNegocioInputEnvelope
   connect?: Prisma.canalWhereUniqueInput | Prisma.canalWhereUniqueInput[]
 }
 
-export type canalUpdateManyWithoutSucursalNestedInput = {
-  create?: Prisma.XOR<Prisma.canalCreateWithoutSucursalInput, Prisma.canalUncheckedCreateWithoutSucursalInput> | Prisma.canalCreateWithoutSucursalInput[] | Prisma.canalUncheckedCreateWithoutSucursalInput[]
-  connectOrCreate?: Prisma.canalCreateOrConnectWithoutSucursalInput | Prisma.canalCreateOrConnectWithoutSucursalInput[]
-  upsert?: Prisma.canalUpsertWithWhereUniqueWithoutSucursalInput | Prisma.canalUpsertWithWhereUniqueWithoutSucursalInput[]
-  createMany?: Prisma.canalCreateManySucursalInputEnvelope
+export type canalUpdateManyWithoutNegocioNestedInput = {
+  create?: Prisma.XOR<Prisma.canalCreateWithoutNegocioInput, Prisma.canalUncheckedCreateWithoutNegocioInput> | Prisma.canalCreateWithoutNegocioInput[] | Prisma.canalUncheckedCreateWithoutNegocioInput[]
+  connectOrCreate?: Prisma.canalCreateOrConnectWithoutNegocioInput | Prisma.canalCreateOrConnectWithoutNegocioInput[]
+  upsert?: Prisma.canalUpsertWithWhereUniqueWithoutNegocioInput | Prisma.canalUpsertWithWhereUniqueWithoutNegocioInput[]
+  createMany?: Prisma.canalCreateManyNegocioInputEnvelope
   set?: Prisma.canalWhereUniqueInput | Prisma.canalWhereUniqueInput[]
   disconnect?: Prisma.canalWhereUniqueInput | Prisma.canalWhereUniqueInput[]
   delete?: Prisma.canalWhereUniqueInput | Prisma.canalWhereUniqueInput[]
   connect?: Prisma.canalWhereUniqueInput | Prisma.canalWhereUniqueInput[]
-  update?: Prisma.canalUpdateWithWhereUniqueWithoutSucursalInput | Prisma.canalUpdateWithWhereUniqueWithoutSucursalInput[]
-  updateMany?: Prisma.canalUpdateManyWithWhereWithoutSucursalInput | Prisma.canalUpdateManyWithWhereWithoutSucursalInput[]
+  update?: Prisma.canalUpdateWithWhereUniqueWithoutNegocioInput | Prisma.canalUpdateWithWhereUniqueWithoutNegocioInput[]
+  updateMany?: Prisma.canalUpdateManyWithWhereWithoutNegocioInput | Prisma.canalUpdateManyWithWhereWithoutNegocioInput[]
   deleteMany?: Prisma.canalScalarWhereInput | Prisma.canalScalarWhereInput[]
 }
 
-export type canalUncheckedUpdateManyWithoutSucursalNestedInput = {
-  create?: Prisma.XOR<Prisma.canalCreateWithoutSucursalInput, Prisma.canalUncheckedCreateWithoutSucursalInput> | Prisma.canalCreateWithoutSucursalInput[] | Prisma.canalUncheckedCreateWithoutSucursalInput[]
-  connectOrCreate?: Prisma.canalCreateOrConnectWithoutSucursalInput | Prisma.canalCreateOrConnectWithoutSucursalInput[]
-  upsert?: Prisma.canalUpsertWithWhereUniqueWithoutSucursalInput | Prisma.canalUpsertWithWhereUniqueWithoutSucursalInput[]
-  createMany?: Prisma.canalCreateManySucursalInputEnvelope
+export type canalUncheckedUpdateManyWithoutNegocioNestedInput = {
+  create?: Prisma.XOR<Prisma.canalCreateWithoutNegocioInput, Prisma.canalUncheckedCreateWithoutNegocioInput> | Prisma.canalCreateWithoutNegocioInput[] | Prisma.canalUncheckedCreateWithoutNegocioInput[]
+  connectOrCreate?: Prisma.canalCreateOrConnectWithoutNegocioInput | Prisma.canalCreateOrConnectWithoutNegocioInput[]
+  upsert?: Prisma.canalUpsertWithWhereUniqueWithoutNegocioInput | Prisma.canalUpsertWithWhereUniqueWithoutNegocioInput[]
+  createMany?: Prisma.canalCreateManyNegocioInputEnvelope
   set?: Prisma.canalWhereUniqueInput | Prisma.canalWhereUniqueInput[]
   disconnect?: Prisma.canalWhereUniqueInput | Prisma.canalWhereUniqueInput[]
   delete?: Prisma.canalWhereUniqueInput | Prisma.canalWhereUniqueInput[]
   connect?: Prisma.canalWhereUniqueInput | Prisma.canalWhereUniqueInput[]
-  update?: Prisma.canalUpdateWithWhereUniqueWithoutSucursalInput | Prisma.canalUpdateWithWhereUniqueWithoutSucursalInput[]
-  updateMany?: Prisma.canalUpdateManyWithWhereWithoutSucursalInput | Prisma.canalUpdateManyWithWhereWithoutSucursalInput[]
+  update?: Prisma.canalUpdateWithWhereUniqueWithoutNegocioInput | Prisma.canalUpdateWithWhereUniqueWithoutNegocioInput[]
+  updateMany?: Prisma.canalUpdateManyWithWhereWithoutNegocioInput | Prisma.canalUpdateManyWithWhereWithoutNegocioInput[]
   deleteMany?: Prisma.canalScalarWhereInput | Prisma.canalScalarWhereInput[]
 }
 
@@ -468,13 +468,13 @@ export type canalCreateWithoutAsistenteInput = {
   tipo: string
   nombre: string
   estado: string
-  sucursal: Prisma.sucursalCreateNestedOneWithoutCanalInput
+  negocio: Prisma.negocioCreateNestedOneWithoutCanalInput
   canal_config?: Prisma.canal_configCreateNestedManyWithoutCanalInput
 }
 
 export type canalUncheckedCreateWithoutAsistenteInput = {
   id?: bigint | number
-  id_sucursal: bigint | number
+  id_negocio: bigint | number
   tipo: string
   nombre: string
   estado: string
@@ -502,13 +502,13 @@ export type canalUpdateWithoutAsistenteInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
-  sucursal?: Prisma.sucursalUpdateOneRequiredWithoutCanalNestedInput
+  negocio?: Prisma.negocioUpdateOneRequiredWithoutCanalNestedInput
   canal_config?: Prisma.canal_configUpdateManyWithoutCanalNestedInput
 }
 
 export type canalUncheckedUpdateWithoutAsistenteInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  id_sucursal?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id_negocio?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
@@ -521,12 +521,12 @@ export type canalCreateWithoutCanal_configInput = {
   nombre: string
   estado: string
   asistente?: Prisma.asistenteCreateNestedManyWithoutCanalInput
-  sucursal: Prisma.sucursalCreateNestedOneWithoutCanalInput
+  negocio: Prisma.negocioCreateNestedOneWithoutCanalInput
 }
 
 export type canalUncheckedCreateWithoutCanal_configInput = {
   id?: bigint | number
-  id_sucursal: bigint | number
+  id_negocio: bigint | number
   tipo: string
   nombre: string
   estado: string
@@ -555,19 +555,19 @@ export type canalUpdateWithoutCanal_configInput = {
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   asistente?: Prisma.asistenteUpdateManyWithoutCanalNestedInput
-  sucursal?: Prisma.sucursalUpdateOneRequiredWithoutCanalNestedInput
+  negocio?: Prisma.negocioUpdateOneRequiredWithoutCanalNestedInput
 }
 
 export type canalUncheckedUpdateWithoutCanal_configInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  id_sucursal?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id_negocio?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
   estado?: Prisma.StringFieldUpdateOperationsInput | string
   asistente?: Prisma.asistenteUncheckedUpdateManyWithoutCanalNestedInput
 }
 
-export type canalCreateWithoutSucursalInput = {
+export type canalCreateWithoutNegocioInput = {
   id?: bigint | number
   tipo: string
   nombre: string
@@ -576,7 +576,7 @@ export type canalCreateWithoutSucursalInput = {
   canal_config?: Prisma.canal_configCreateNestedManyWithoutCanalInput
 }
 
-export type canalUncheckedCreateWithoutSucursalInput = {
+export type canalUncheckedCreateWithoutNegocioInput = {
   id?: bigint | number
   tipo: string
   nombre: string
@@ -585,30 +585,30 @@ export type canalUncheckedCreateWithoutSucursalInput = {
   canal_config?: Prisma.canal_configUncheckedCreateNestedManyWithoutCanalInput
 }
 
-export type canalCreateOrConnectWithoutSucursalInput = {
+export type canalCreateOrConnectWithoutNegocioInput = {
   where: Prisma.canalWhereUniqueInput
-  create: Prisma.XOR<Prisma.canalCreateWithoutSucursalInput, Prisma.canalUncheckedCreateWithoutSucursalInput>
+  create: Prisma.XOR<Prisma.canalCreateWithoutNegocioInput, Prisma.canalUncheckedCreateWithoutNegocioInput>
 }
 
-export type canalCreateManySucursalInputEnvelope = {
-  data: Prisma.canalCreateManySucursalInput | Prisma.canalCreateManySucursalInput[]
+export type canalCreateManyNegocioInputEnvelope = {
+  data: Prisma.canalCreateManyNegocioInput | Prisma.canalCreateManyNegocioInput[]
   skipDuplicates?: boolean
 }
 
-export type canalUpsertWithWhereUniqueWithoutSucursalInput = {
+export type canalUpsertWithWhereUniqueWithoutNegocioInput = {
   where: Prisma.canalWhereUniqueInput
-  update: Prisma.XOR<Prisma.canalUpdateWithoutSucursalInput, Prisma.canalUncheckedUpdateWithoutSucursalInput>
-  create: Prisma.XOR<Prisma.canalCreateWithoutSucursalInput, Prisma.canalUncheckedCreateWithoutSucursalInput>
+  update: Prisma.XOR<Prisma.canalUpdateWithoutNegocioInput, Prisma.canalUncheckedUpdateWithoutNegocioInput>
+  create: Prisma.XOR<Prisma.canalCreateWithoutNegocioInput, Prisma.canalUncheckedCreateWithoutNegocioInput>
 }
 
-export type canalUpdateWithWhereUniqueWithoutSucursalInput = {
+export type canalUpdateWithWhereUniqueWithoutNegocioInput = {
   where: Prisma.canalWhereUniqueInput
-  data: Prisma.XOR<Prisma.canalUpdateWithoutSucursalInput, Prisma.canalUncheckedUpdateWithoutSucursalInput>
+  data: Prisma.XOR<Prisma.canalUpdateWithoutNegocioInput, Prisma.canalUncheckedUpdateWithoutNegocioInput>
 }
 
-export type canalUpdateManyWithWhereWithoutSucursalInput = {
+export type canalUpdateManyWithWhereWithoutNegocioInput = {
   where: Prisma.canalScalarWhereInput
-  data: Prisma.XOR<Prisma.canalUpdateManyMutationInput, Prisma.canalUncheckedUpdateManyWithoutSucursalInput>
+  data: Prisma.XOR<Prisma.canalUpdateManyMutationInput, Prisma.canalUncheckedUpdateManyWithoutNegocioInput>
 }
 
 export type canalScalarWhereInput = {
@@ -616,20 +616,20 @@ export type canalScalarWhereInput = {
   OR?: Prisma.canalScalarWhereInput[]
   NOT?: Prisma.canalScalarWhereInput | Prisma.canalScalarWhereInput[]
   id?: Prisma.BigIntFilter<"canal"> | bigint | number
-  id_sucursal?: Prisma.BigIntFilter<"canal"> | bigint | number
+  id_negocio?: Prisma.BigIntFilter<"canal"> | bigint | number
   tipo?: Prisma.StringFilter<"canal"> | string
   nombre?: Prisma.StringFilter<"canal"> | string
   estado?: Prisma.StringFilter<"canal"> | string
 }
 
-export type canalCreateManySucursalInput = {
+export type canalCreateManyNegocioInput = {
   id?: bigint | number
   tipo: string
   nombre: string
   estado: string
 }
 
-export type canalUpdateWithoutSucursalInput = {
+export type canalUpdateWithoutNegocioInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
@@ -638,7 +638,7 @@ export type canalUpdateWithoutSucursalInput = {
   canal_config?: Prisma.canal_configUpdateManyWithoutCanalNestedInput
 }
 
-export type canalUncheckedUpdateWithoutSucursalInput = {
+export type canalUncheckedUpdateWithoutNegocioInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
@@ -647,7 +647,7 @@ export type canalUncheckedUpdateWithoutSucursalInput = {
   canal_config?: Prisma.canal_configUncheckedUpdateManyWithoutCanalNestedInput
 }
 
-export type canalUncheckedUpdateManyWithoutSucursalInput = {
+export type canalUncheckedUpdateManyWithoutNegocioInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   nombre?: Prisma.StringFieldUpdateOperationsInput | string
@@ -696,12 +696,12 @@ export type CanalCountOutputTypeCountCanal_configArgs<ExtArgs extends runtime.Ty
 
 export type canalSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  id_sucursal?: boolean
+  id_negocio?: boolean
   tipo?: boolean
   nombre?: boolean
   estado?: boolean
   asistente?: boolean | Prisma.canal$asistenteArgs<ExtArgs>
-  sucursal?: boolean | Prisma.sucursalDefaultArgs<ExtArgs>
+  negocio?: boolean | Prisma.negocioDefaultArgs<ExtArgs>
   canal_config?: boolean | Prisma.canal$canal_configArgs<ExtArgs>
   _count?: boolean | Prisma.CanalCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["canal"]>
@@ -710,16 +710,16 @@ export type canalSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 
 export type canalSelectScalar = {
   id?: boolean
-  id_sucursal?: boolean
+  id_negocio?: boolean
   tipo?: boolean
   nombre?: boolean
   estado?: boolean
 }
 
-export type canalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_sucursal" | "tipo" | "nombre" | "estado", ExtArgs["result"]["canal"]>
+export type canalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_negocio" | "tipo" | "nombre" | "estado", ExtArgs["result"]["canal"]>
 export type canalInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   asistente?: boolean | Prisma.canal$asistenteArgs<ExtArgs>
-  sucursal?: boolean | Prisma.sucursalDefaultArgs<ExtArgs>
+  negocio?: boolean | Prisma.negocioDefaultArgs<ExtArgs>
   canal_config?: boolean | Prisma.canal$canal_configArgs<ExtArgs>
   _count?: boolean | Prisma.CanalCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -728,12 +728,12 @@ export type $canalPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "canal"
   objects: {
     asistente: Prisma.$asistentePayload<ExtArgs>[]
-    sucursal: Prisma.$sucursalPayload<ExtArgs>
+    negocio: Prisma.$negocioPayload<ExtArgs>
     canal_config: Prisma.$canal_configPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
-    id_sucursal: bigint
+    id_negocio: bigint
     tipo: string
     nombre: string
     estado: string
@@ -1078,7 +1078,7 @@ readonly fields: canalFieldRefs;
 export interface Prisma__canalClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   asistente<T extends Prisma.canal$asistenteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.canal$asistenteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$asistentePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  sucursal<T extends Prisma.sucursalDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.sucursalDefaultArgs<ExtArgs>>): Prisma.Prisma__sucursalClient<runtime.Types.Result.GetResult<Prisma.$sucursalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  negocio<T extends Prisma.negocioDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.negocioDefaultArgs<ExtArgs>>): Prisma.Prisma__negocioClient<runtime.Types.Result.GetResult<Prisma.$negocioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   canal_config<T extends Prisma.canal$canal_configArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.canal$canal_configArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$canal_configPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1110,7 +1110,7 @@ export interface Prisma__canalClient<T, Null = never, ExtArgs extends runtime.Ty
  */
 export interface canalFieldRefs {
   readonly id: Prisma.FieldRef<"canal", 'BigInt'>
-  readonly id_sucursal: Prisma.FieldRef<"canal", 'BigInt'>
+  readonly id_negocio: Prisma.FieldRef<"canal", 'BigInt'>
   readonly tipo: Prisma.FieldRef<"canal", 'String'>
   readonly nombre: Prisma.FieldRef<"canal", 'String'>
   readonly estado: Prisma.FieldRef<"canal", 'String'>

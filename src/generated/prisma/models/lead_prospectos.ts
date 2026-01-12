@@ -28,17 +28,17 @@ export type AggregateLead_prospectos = {
 
 export type Lead_prospectosAvgAggregateOutputType = {
   id: number | null
-  id_sucursal: number | null
+  id_negocio: number | null
 }
 
 export type Lead_prospectosSumAggregateOutputType = {
   id: bigint | null
-  id_sucursal: bigint | null
+  id_negocio: bigint | null
 }
 
 export type Lead_prospectosMinAggregateOutputType = {
   id: bigint | null
-  id_sucursal: bigint | null
+  id_negocio: bigint | null
   nombre: string | null
   telefono: string | null
   fuente: string | null
@@ -47,7 +47,7 @@ export type Lead_prospectosMinAggregateOutputType = {
 
 export type Lead_prospectosMaxAggregateOutputType = {
   id: bigint | null
-  id_sucursal: bigint | null
+  id_negocio: bigint | null
   nombre: string | null
   telefono: string | null
   fuente: string | null
@@ -56,7 +56,7 @@ export type Lead_prospectosMaxAggregateOutputType = {
 
 export type Lead_prospectosCountAggregateOutputType = {
   id: number
-  id_sucursal: number
+  id_negocio: number
   nombre: number
   telefono: number
   fuente: number
@@ -67,17 +67,17 @@ export type Lead_prospectosCountAggregateOutputType = {
 
 export type Lead_prospectosAvgAggregateInputType = {
   id?: true
-  id_sucursal?: true
+  id_negocio?: true
 }
 
 export type Lead_prospectosSumAggregateInputType = {
   id?: true
-  id_sucursal?: true
+  id_negocio?: true
 }
 
 export type Lead_prospectosMinAggregateInputType = {
   id?: true
-  id_sucursal?: true
+  id_negocio?: true
   nombre?: true
   telefono?: true
   fuente?: true
@@ -86,7 +86,7 @@ export type Lead_prospectosMinAggregateInputType = {
 
 export type Lead_prospectosMaxAggregateInputType = {
   id?: true
-  id_sucursal?: true
+  id_negocio?: true
   nombre?: true
   telefono?: true
   fuente?: true
@@ -95,7 +95,7 @@ export type Lead_prospectosMaxAggregateInputType = {
 
 export type Lead_prospectosCountAggregateInputType = {
   id?: true
-  id_sucursal?: true
+  id_negocio?: true
   nombre?: true
   telefono?: true
   fuente?: true
@@ -191,7 +191,7 @@ export type lead_prospectosGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 
 export type Lead_prospectosGroupByOutputType = {
   id: bigint
-  id_sucursal: bigint | null
+  id_negocio: bigint | null
   nombre: string | null
   telefono: string | null
   fuente: string | null
@@ -223,23 +223,23 @@ export type lead_prospectosWhereInput = {
   OR?: Prisma.lead_prospectosWhereInput[]
   NOT?: Prisma.lead_prospectosWhereInput | Prisma.lead_prospectosWhereInput[]
   id?: Prisma.BigIntFilter<"lead_prospectos"> | bigint | number
-  id_sucursal?: Prisma.BigIntNullableFilter<"lead_prospectos"> | bigint | number | null
+  id_negocio?: Prisma.BigIntNullableFilter<"lead_prospectos"> | bigint | number | null
   nombre?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
   telefono?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
   fuente?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
   etapa?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
-  sucursal?: Prisma.XOR<Prisma.SucursalNullableScalarRelationFilter, Prisma.sucursalWhereInput> | null
+  negocio?: Prisma.XOR<Prisma.NegocioNullableScalarRelationFilter, Prisma.negocioWhereInput> | null
   mensaje?: Prisma.MensajeListRelationFilter
 }
 
 export type lead_prospectosOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  id_sucursal?: Prisma.SortOrderInput | Prisma.SortOrder
+  id_negocio?: Prisma.SortOrderInput | Prisma.SortOrder
   nombre?: Prisma.SortOrderInput | Prisma.SortOrder
   telefono?: Prisma.SortOrderInput | Prisma.SortOrder
   fuente?: Prisma.SortOrderInput | Prisma.SortOrder
   etapa?: Prisma.SortOrderInput | Prisma.SortOrder
-  sucursal?: Prisma.sucursalOrderByWithRelationInput
+  negocio?: Prisma.negocioOrderByWithRelationInput
   mensaje?: Prisma.mensajeOrderByRelationAggregateInput
   _relevance?: Prisma.lead_prospectosOrderByRelevanceInput
 }
@@ -249,18 +249,18 @@ export type lead_prospectosWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.lead_prospectosWhereInput | Prisma.lead_prospectosWhereInput[]
   OR?: Prisma.lead_prospectosWhereInput[]
   NOT?: Prisma.lead_prospectosWhereInput | Prisma.lead_prospectosWhereInput[]
-  id_sucursal?: Prisma.BigIntNullableFilter<"lead_prospectos"> | bigint | number | null
+  id_negocio?: Prisma.BigIntNullableFilter<"lead_prospectos"> | bigint | number | null
   nombre?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
   telefono?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
   fuente?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
   etapa?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
-  sucursal?: Prisma.XOR<Prisma.SucursalNullableScalarRelationFilter, Prisma.sucursalWhereInput> | null
+  negocio?: Prisma.XOR<Prisma.NegocioNullableScalarRelationFilter, Prisma.negocioWhereInput> | null
   mensaje?: Prisma.MensajeListRelationFilter
 }, "id">
 
 export type lead_prospectosOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  id_sucursal?: Prisma.SortOrderInput | Prisma.SortOrder
+  id_negocio?: Prisma.SortOrderInput | Prisma.SortOrder
   nombre?: Prisma.SortOrderInput | Prisma.SortOrder
   telefono?: Prisma.SortOrderInput | Prisma.SortOrder
   fuente?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -277,7 +277,7 @@ export type lead_prospectosScalarWhereWithAggregatesInput = {
   OR?: Prisma.lead_prospectosScalarWhereWithAggregatesInput[]
   NOT?: Prisma.lead_prospectosScalarWhereWithAggregatesInput | Prisma.lead_prospectosScalarWhereWithAggregatesInput[]
   id?: Prisma.BigIntWithAggregatesFilter<"lead_prospectos"> | bigint | number
-  id_sucursal?: Prisma.BigIntNullableWithAggregatesFilter<"lead_prospectos"> | bigint | number | null
+  id_negocio?: Prisma.BigIntNullableWithAggregatesFilter<"lead_prospectos"> | bigint | number | null
   nombre?: Prisma.StringNullableWithAggregatesFilter<"lead_prospectos"> | string | null
   telefono?: Prisma.StringNullableWithAggregatesFilter<"lead_prospectos"> | string | null
   fuente?: Prisma.StringNullableWithAggregatesFilter<"lead_prospectos"> | string | null
@@ -290,13 +290,13 @@ export type lead_prospectosCreateInput = {
   telefono?: string | null
   fuente?: string | null
   etapa?: string | null
-  sucursal?: Prisma.sucursalCreateNestedOneWithoutLead_prospectosInput
+  negocio?: Prisma.negocioCreateNestedOneWithoutLead_prospectosInput
   mensaje?: Prisma.mensajeCreateNestedManyWithoutLead_prospectosInput
 }
 
 export type lead_prospectosUncheckedCreateInput = {
   id?: bigint | number
-  id_sucursal?: bigint | number | null
+  id_negocio?: bigint | number | null
   nombre?: string | null
   telefono?: string | null
   fuente?: string | null
@@ -310,13 +310,13 @@ export type lead_prospectosUpdateInput = {
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fuente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   etapa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sucursal?: Prisma.sucursalUpdateOneWithoutLead_prospectosNestedInput
+  negocio?: Prisma.negocioUpdateOneWithoutLead_prospectosNestedInput
   mensaje?: Prisma.mensajeUpdateManyWithoutLead_prospectosNestedInput
 }
 
 export type lead_prospectosUncheckedUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  id_sucursal?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id_negocio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fuente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -326,7 +326,7 @@ export type lead_prospectosUncheckedUpdateInput = {
 
 export type lead_prospectosCreateManyInput = {
   id?: bigint | number
-  id_sucursal?: bigint | number | null
+  id_negocio?: bigint | number | null
   nombre?: string | null
   telefono?: string | null
   fuente?: string | null
@@ -343,7 +343,7 @@ export type lead_prospectosUpdateManyMutationInput = {
 
 export type lead_prospectosUncheckedUpdateManyInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  id_sucursal?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id_negocio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fuente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -358,7 +358,7 @@ export type lead_prospectosOrderByRelevanceInput = {
 
 export type lead_prospectosCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_sucursal?: Prisma.SortOrder
+  id_negocio?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
   fuente?: Prisma.SortOrder
@@ -367,12 +367,12 @@ export type lead_prospectosCountOrderByAggregateInput = {
 
 export type lead_prospectosAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_sucursal?: Prisma.SortOrder
+  id_negocio?: Prisma.SortOrder
 }
 
 export type lead_prospectosMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_sucursal?: Prisma.SortOrder
+  id_negocio?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
   fuente?: Prisma.SortOrder
@@ -381,7 +381,7 @@ export type lead_prospectosMaxOrderByAggregateInput = {
 
 export type lead_prospectosMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_sucursal?: Prisma.SortOrder
+  id_negocio?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
   telefono?: Prisma.SortOrder
   fuente?: Prisma.SortOrder
@@ -390,7 +390,7 @@ export type lead_prospectosMinOrderByAggregateInput = {
 
 export type lead_prospectosSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_sucursal?: Prisma.SortOrder
+  id_negocio?: Prisma.SortOrder
 }
 
 export type Lead_prospectosNullableScalarRelationFilter = {
@@ -432,45 +432,45 @@ export type lead_prospectosUpdateOneWithoutMensajeNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.lead_prospectosUpdateToOneWithWhereWithoutMensajeInput, Prisma.lead_prospectosUpdateWithoutMensajeInput>, Prisma.lead_prospectosUncheckedUpdateWithoutMensajeInput>
 }
 
-export type lead_prospectosCreateNestedManyWithoutSucursalInput = {
-  create?: Prisma.XOR<Prisma.lead_prospectosCreateWithoutSucursalInput, Prisma.lead_prospectosUncheckedCreateWithoutSucursalInput> | Prisma.lead_prospectosCreateWithoutSucursalInput[] | Prisma.lead_prospectosUncheckedCreateWithoutSucursalInput[]
-  connectOrCreate?: Prisma.lead_prospectosCreateOrConnectWithoutSucursalInput | Prisma.lead_prospectosCreateOrConnectWithoutSucursalInput[]
-  createMany?: Prisma.lead_prospectosCreateManySucursalInputEnvelope
+export type lead_prospectosCreateNestedManyWithoutNegocioInput = {
+  create?: Prisma.XOR<Prisma.lead_prospectosCreateWithoutNegocioInput, Prisma.lead_prospectosUncheckedCreateWithoutNegocioInput> | Prisma.lead_prospectosCreateWithoutNegocioInput[] | Prisma.lead_prospectosUncheckedCreateWithoutNegocioInput[]
+  connectOrCreate?: Prisma.lead_prospectosCreateOrConnectWithoutNegocioInput | Prisma.lead_prospectosCreateOrConnectWithoutNegocioInput[]
+  createMany?: Prisma.lead_prospectosCreateManyNegocioInputEnvelope
   connect?: Prisma.lead_prospectosWhereUniqueInput | Prisma.lead_prospectosWhereUniqueInput[]
 }
 
-export type lead_prospectosUncheckedCreateNestedManyWithoutSucursalInput = {
-  create?: Prisma.XOR<Prisma.lead_prospectosCreateWithoutSucursalInput, Prisma.lead_prospectosUncheckedCreateWithoutSucursalInput> | Prisma.lead_prospectosCreateWithoutSucursalInput[] | Prisma.lead_prospectosUncheckedCreateWithoutSucursalInput[]
-  connectOrCreate?: Prisma.lead_prospectosCreateOrConnectWithoutSucursalInput | Prisma.lead_prospectosCreateOrConnectWithoutSucursalInput[]
-  createMany?: Prisma.lead_prospectosCreateManySucursalInputEnvelope
+export type lead_prospectosUncheckedCreateNestedManyWithoutNegocioInput = {
+  create?: Prisma.XOR<Prisma.lead_prospectosCreateWithoutNegocioInput, Prisma.lead_prospectosUncheckedCreateWithoutNegocioInput> | Prisma.lead_prospectosCreateWithoutNegocioInput[] | Prisma.lead_prospectosUncheckedCreateWithoutNegocioInput[]
+  connectOrCreate?: Prisma.lead_prospectosCreateOrConnectWithoutNegocioInput | Prisma.lead_prospectosCreateOrConnectWithoutNegocioInput[]
+  createMany?: Prisma.lead_prospectosCreateManyNegocioInputEnvelope
   connect?: Prisma.lead_prospectosWhereUniqueInput | Prisma.lead_prospectosWhereUniqueInput[]
 }
 
-export type lead_prospectosUpdateManyWithoutSucursalNestedInput = {
-  create?: Prisma.XOR<Prisma.lead_prospectosCreateWithoutSucursalInput, Prisma.lead_prospectosUncheckedCreateWithoutSucursalInput> | Prisma.lead_prospectosCreateWithoutSucursalInput[] | Prisma.lead_prospectosUncheckedCreateWithoutSucursalInput[]
-  connectOrCreate?: Prisma.lead_prospectosCreateOrConnectWithoutSucursalInput | Prisma.lead_prospectosCreateOrConnectWithoutSucursalInput[]
-  upsert?: Prisma.lead_prospectosUpsertWithWhereUniqueWithoutSucursalInput | Prisma.lead_prospectosUpsertWithWhereUniqueWithoutSucursalInput[]
-  createMany?: Prisma.lead_prospectosCreateManySucursalInputEnvelope
+export type lead_prospectosUpdateManyWithoutNegocioNestedInput = {
+  create?: Prisma.XOR<Prisma.lead_prospectosCreateWithoutNegocioInput, Prisma.lead_prospectosUncheckedCreateWithoutNegocioInput> | Prisma.lead_prospectosCreateWithoutNegocioInput[] | Prisma.lead_prospectosUncheckedCreateWithoutNegocioInput[]
+  connectOrCreate?: Prisma.lead_prospectosCreateOrConnectWithoutNegocioInput | Prisma.lead_prospectosCreateOrConnectWithoutNegocioInput[]
+  upsert?: Prisma.lead_prospectosUpsertWithWhereUniqueWithoutNegocioInput | Prisma.lead_prospectosUpsertWithWhereUniqueWithoutNegocioInput[]
+  createMany?: Prisma.lead_prospectosCreateManyNegocioInputEnvelope
   set?: Prisma.lead_prospectosWhereUniqueInput | Prisma.lead_prospectosWhereUniqueInput[]
   disconnect?: Prisma.lead_prospectosWhereUniqueInput | Prisma.lead_prospectosWhereUniqueInput[]
   delete?: Prisma.lead_prospectosWhereUniqueInput | Prisma.lead_prospectosWhereUniqueInput[]
   connect?: Prisma.lead_prospectosWhereUniqueInput | Prisma.lead_prospectosWhereUniqueInput[]
-  update?: Prisma.lead_prospectosUpdateWithWhereUniqueWithoutSucursalInput | Prisma.lead_prospectosUpdateWithWhereUniqueWithoutSucursalInput[]
-  updateMany?: Prisma.lead_prospectosUpdateManyWithWhereWithoutSucursalInput | Prisma.lead_prospectosUpdateManyWithWhereWithoutSucursalInput[]
+  update?: Prisma.lead_prospectosUpdateWithWhereUniqueWithoutNegocioInput | Prisma.lead_prospectosUpdateWithWhereUniqueWithoutNegocioInput[]
+  updateMany?: Prisma.lead_prospectosUpdateManyWithWhereWithoutNegocioInput | Prisma.lead_prospectosUpdateManyWithWhereWithoutNegocioInput[]
   deleteMany?: Prisma.lead_prospectosScalarWhereInput | Prisma.lead_prospectosScalarWhereInput[]
 }
 
-export type lead_prospectosUncheckedUpdateManyWithoutSucursalNestedInput = {
-  create?: Prisma.XOR<Prisma.lead_prospectosCreateWithoutSucursalInput, Prisma.lead_prospectosUncheckedCreateWithoutSucursalInput> | Prisma.lead_prospectosCreateWithoutSucursalInput[] | Prisma.lead_prospectosUncheckedCreateWithoutSucursalInput[]
-  connectOrCreate?: Prisma.lead_prospectosCreateOrConnectWithoutSucursalInput | Prisma.lead_prospectosCreateOrConnectWithoutSucursalInput[]
-  upsert?: Prisma.lead_prospectosUpsertWithWhereUniqueWithoutSucursalInput | Prisma.lead_prospectosUpsertWithWhereUniqueWithoutSucursalInput[]
-  createMany?: Prisma.lead_prospectosCreateManySucursalInputEnvelope
+export type lead_prospectosUncheckedUpdateManyWithoutNegocioNestedInput = {
+  create?: Prisma.XOR<Prisma.lead_prospectosCreateWithoutNegocioInput, Prisma.lead_prospectosUncheckedCreateWithoutNegocioInput> | Prisma.lead_prospectosCreateWithoutNegocioInput[] | Prisma.lead_prospectosUncheckedCreateWithoutNegocioInput[]
+  connectOrCreate?: Prisma.lead_prospectosCreateOrConnectWithoutNegocioInput | Prisma.lead_prospectosCreateOrConnectWithoutNegocioInput[]
+  upsert?: Prisma.lead_prospectosUpsertWithWhereUniqueWithoutNegocioInput | Prisma.lead_prospectosUpsertWithWhereUniqueWithoutNegocioInput[]
+  createMany?: Prisma.lead_prospectosCreateManyNegocioInputEnvelope
   set?: Prisma.lead_prospectosWhereUniqueInput | Prisma.lead_prospectosWhereUniqueInput[]
   disconnect?: Prisma.lead_prospectosWhereUniqueInput | Prisma.lead_prospectosWhereUniqueInput[]
   delete?: Prisma.lead_prospectosWhereUniqueInput | Prisma.lead_prospectosWhereUniqueInput[]
   connect?: Prisma.lead_prospectosWhereUniqueInput | Prisma.lead_prospectosWhereUniqueInput[]
-  update?: Prisma.lead_prospectosUpdateWithWhereUniqueWithoutSucursalInput | Prisma.lead_prospectosUpdateWithWhereUniqueWithoutSucursalInput[]
-  updateMany?: Prisma.lead_prospectosUpdateManyWithWhereWithoutSucursalInput | Prisma.lead_prospectosUpdateManyWithWhereWithoutSucursalInput[]
+  update?: Prisma.lead_prospectosUpdateWithWhereUniqueWithoutNegocioInput | Prisma.lead_prospectosUpdateWithWhereUniqueWithoutNegocioInput[]
+  updateMany?: Prisma.lead_prospectosUpdateManyWithWhereWithoutNegocioInput | Prisma.lead_prospectosUpdateManyWithWhereWithoutNegocioInput[]
   deleteMany?: Prisma.lead_prospectosScalarWhereInput | Prisma.lead_prospectosScalarWhereInput[]
 }
 
@@ -480,12 +480,12 @@ export type lead_prospectosCreateWithoutMensajeInput = {
   telefono?: string | null
   fuente?: string | null
   etapa?: string | null
-  sucursal?: Prisma.sucursalCreateNestedOneWithoutLead_prospectosInput
+  negocio?: Prisma.negocioCreateNestedOneWithoutLead_prospectosInput
 }
 
 export type lead_prospectosUncheckedCreateWithoutMensajeInput = {
   id?: bigint | number
-  id_sucursal?: bigint | number | null
+  id_negocio?: bigint | number | null
   nombre?: string | null
   telefono?: string | null
   fuente?: string | null
@@ -514,19 +514,19 @@ export type lead_prospectosUpdateWithoutMensajeInput = {
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fuente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   etapa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sucursal?: Prisma.sucursalUpdateOneWithoutLead_prospectosNestedInput
+  negocio?: Prisma.negocioUpdateOneWithoutLead_prospectosNestedInput
 }
 
 export type lead_prospectosUncheckedUpdateWithoutMensajeInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  id_sucursal?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id_negocio?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fuente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   etapa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type lead_prospectosCreateWithoutSucursalInput = {
+export type lead_prospectosCreateWithoutNegocioInput = {
   id?: bigint | number
   nombre?: string | null
   telefono?: string | null
@@ -535,7 +535,7 @@ export type lead_prospectosCreateWithoutSucursalInput = {
   mensaje?: Prisma.mensajeCreateNestedManyWithoutLead_prospectosInput
 }
 
-export type lead_prospectosUncheckedCreateWithoutSucursalInput = {
+export type lead_prospectosUncheckedCreateWithoutNegocioInput = {
   id?: bigint | number
   nombre?: string | null
   telefono?: string | null
@@ -544,30 +544,30 @@ export type lead_prospectosUncheckedCreateWithoutSucursalInput = {
   mensaje?: Prisma.mensajeUncheckedCreateNestedManyWithoutLead_prospectosInput
 }
 
-export type lead_prospectosCreateOrConnectWithoutSucursalInput = {
+export type lead_prospectosCreateOrConnectWithoutNegocioInput = {
   where: Prisma.lead_prospectosWhereUniqueInput
-  create: Prisma.XOR<Prisma.lead_prospectosCreateWithoutSucursalInput, Prisma.lead_prospectosUncheckedCreateWithoutSucursalInput>
+  create: Prisma.XOR<Prisma.lead_prospectosCreateWithoutNegocioInput, Prisma.lead_prospectosUncheckedCreateWithoutNegocioInput>
 }
 
-export type lead_prospectosCreateManySucursalInputEnvelope = {
-  data: Prisma.lead_prospectosCreateManySucursalInput | Prisma.lead_prospectosCreateManySucursalInput[]
+export type lead_prospectosCreateManyNegocioInputEnvelope = {
+  data: Prisma.lead_prospectosCreateManyNegocioInput | Prisma.lead_prospectosCreateManyNegocioInput[]
   skipDuplicates?: boolean
 }
 
-export type lead_prospectosUpsertWithWhereUniqueWithoutSucursalInput = {
+export type lead_prospectosUpsertWithWhereUniqueWithoutNegocioInput = {
   where: Prisma.lead_prospectosWhereUniqueInput
-  update: Prisma.XOR<Prisma.lead_prospectosUpdateWithoutSucursalInput, Prisma.lead_prospectosUncheckedUpdateWithoutSucursalInput>
-  create: Prisma.XOR<Prisma.lead_prospectosCreateWithoutSucursalInput, Prisma.lead_prospectosUncheckedCreateWithoutSucursalInput>
+  update: Prisma.XOR<Prisma.lead_prospectosUpdateWithoutNegocioInput, Prisma.lead_prospectosUncheckedUpdateWithoutNegocioInput>
+  create: Prisma.XOR<Prisma.lead_prospectosCreateWithoutNegocioInput, Prisma.lead_prospectosUncheckedCreateWithoutNegocioInput>
 }
 
-export type lead_prospectosUpdateWithWhereUniqueWithoutSucursalInput = {
+export type lead_prospectosUpdateWithWhereUniqueWithoutNegocioInput = {
   where: Prisma.lead_prospectosWhereUniqueInput
-  data: Prisma.XOR<Prisma.lead_prospectosUpdateWithoutSucursalInput, Prisma.lead_prospectosUncheckedUpdateWithoutSucursalInput>
+  data: Prisma.XOR<Prisma.lead_prospectosUpdateWithoutNegocioInput, Prisma.lead_prospectosUncheckedUpdateWithoutNegocioInput>
 }
 
-export type lead_prospectosUpdateManyWithWhereWithoutSucursalInput = {
+export type lead_prospectosUpdateManyWithWhereWithoutNegocioInput = {
   where: Prisma.lead_prospectosScalarWhereInput
-  data: Prisma.XOR<Prisma.lead_prospectosUpdateManyMutationInput, Prisma.lead_prospectosUncheckedUpdateManyWithoutSucursalInput>
+  data: Prisma.XOR<Prisma.lead_prospectosUpdateManyMutationInput, Prisma.lead_prospectosUncheckedUpdateManyWithoutNegocioInput>
 }
 
 export type lead_prospectosScalarWhereInput = {
@@ -575,14 +575,14 @@ export type lead_prospectosScalarWhereInput = {
   OR?: Prisma.lead_prospectosScalarWhereInput[]
   NOT?: Prisma.lead_prospectosScalarWhereInput | Prisma.lead_prospectosScalarWhereInput[]
   id?: Prisma.BigIntFilter<"lead_prospectos"> | bigint | number
-  id_sucursal?: Prisma.BigIntNullableFilter<"lead_prospectos"> | bigint | number | null
+  id_negocio?: Prisma.BigIntNullableFilter<"lead_prospectos"> | bigint | number | null
   nombre?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
   telefono?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
   fuente?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
   etapa?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
 }
 
-export type lead_prospectosCreateManySucursalInput = {
+export type lead_prospectosCreateManyNegocioInput = {
   id?: bigint | number
   nombre?: string | null
   telefono?: string | null
@@ -590,7 +590,7 @@ export type lead_prospectosCreateManySucursalInput = {
   etapa?: string | null
 }
 
-export type lead_prospectosUpdateWithoutSucursalInput = {
+export type lead_prospectosUpdateWithoutNegocioInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -599,7 +599,7 @@ export type lead_prospectosUpdateWithoutSucursalInput = {
   mensaje?: Prisma.mensajeUpdateManyWithoutLead_prospectosNestedInput
 }
 
-export type lead_prospectosUncheckedUpdateWithoutSucursalInput = {
+export type lead_prospectosUncheckedUpdateWithoutNegocioInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -608,7 +608,7 @@ export type lead_prospectosUncheckedUpdateWithoutSucursalInput = {
   mensaje?: Prisma.mensajeUncheckedUpdateManyWithoutLead_prospectosNestedInput
 }
 
-export type lead_prospectosUncheckedUpdateManyWithoutSucursalInput = {
+export type lead_prospectosUncheckedUpdateManyWithoutNegocioInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -649,12 +649,12 @@ export type Lead_prospectosCountOutputTypeCountMensajeArgs<ExtArgs extends runti
 
 export type lead_prospectosSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  id_sucursal?: boolean
+  id_negocio?: boolean
   nombre?: boolean
   telefono?: boolean
   fuente?: boolean
   etapa?: boolean
-  sucursal?: boolean | Prisma.lead_prospectos$sucursalArgs<ExtArgs>
+  negocio?: boolean | Prisma.lead_prospectos$negocioArgs<ExtArgs>
   mensaje?: boolean | Prisma.lead_prospectos$mensajeArgs<ExtArgs>
   _count?: boolean | Prisma.Lead_prospectosCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["lead_prospectos"]>
@@ -663,16 +663,16 @@ export type lead_prospectosSelect<ExtArgs extends runtime.Types.Extensions.Inter
 
 export type lead_prospectosSelectScalar = {
   id?: boolean
-  id_sucursal?: boolean
+  id_negocio?: boolean
   nombre?: boolean
   telefono?: boolean
   fuente?: boolean
   etapa?: boolean
 }
 
-export type lead_prospectosOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_sucursal" | "nombre" | "telefono" | "fuente" | "etapa", ExtArgs["result"]["lead_prospectos"]>
+export type lead_prospectosOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_negocio" | "nombre" | "telefono" | "fuente" | "etapa", ExtArgs["result"]["lead_prospectos"]>
 export type lead_prospectosInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  sucursal?: boolean | Prisma.lead_prospectos$sucursalArgs<ExtArgs>
+  negocio?: boolean | Prisma.lead_prospectos$negocioArgs<ExtArgs>
   mensaje?: boolean | Prisma.lead_prospectos$mensajeArgs<ExtArgs>
   _count?: boolean | Prisma.Lead_prospectosCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -680,12 +680,12 @@ export type lead_prospectosInclude<ExtArgs extends runtime.Types.Extensions.Inte
 export type $lead_prospectosPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "lead_prospectos"
   objects: {
-    sucursal: Prisma.$sucursalPayload<ExtArgs> | null
+    negocio: Prisma.$negocioPayload<ExtArgs> | null
     mensaje: Prisma.$mensajePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
-    id_sucursal: bigint | null
+    id_negocio: bigint | null
     nombre: string | null
     telefono: string | null
     fuente: string | null
@@ -1030,7 +1030,7 @@ readonly fields: lead_prospectosFieldRefs;
  */
 export interface Prisma__lead_prospectosClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  sucursal<T extends Prisma.lead_prospectos$sucursalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.lead_prospectos$sucursalArgs<ExtArgs>>): Prisma.Prisma__sucursalClient<runtime.Types.Result.GetResult<Prisma.$sucursalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  negocio<T extends Prisma.lead_prospectos$negocioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.lead_prospectos$negocioArgs<ExtArgs>>): Prisma.Prisma__negocioClient<runtime.Types.Result.GetResult<Prisma.$negocioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   mensaje<T extends Prisma.lead_prospectos$mensajeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.lead_prospectos$mensajeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$mensajePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1062,7 +1062,7 @@ export interface Prisma__lead_prospectosClient<T, Null = never, ExtArgs extends 
  */
 export interface lead_prospectosFieldRefs {
   readonly id: Prisma.FieldRef<"lead_prospectos", 'BigInt'>
-  readonly id_sucursal: Prisma.FieldRef<"lead_prospectos", 'BigInt'>
+  readonly id_negocio: Prisma.FieldRef<"lead_prospectos", 'BigInt'>
   readonly nombre: Prisma.FieldRef<"lead_prospectos", 'String'>
   readonly telefono: Prisma.FieldRef<"lead_prospectos", 'String'>
   readonly fuente: Prisma.FieldRef<"lead_prospectos", 'String'>
@@ -1410,22 +1410,22 @@ export type lead_prospectosDeleteManyArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 /**
- * lead_prospectos.sucursal
+ * lead_prospectos.negocio
  */
-export type lead_prospectos$sucursalArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type lead_prospectos$negocioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the sucursal
+   * Select specific fields to fetch from the negocio
    */
-  select?: Prisma.sucursalSelect<ExtArgs> | null
+  select?: Prisma.negocioSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the sucursal
+   * Omit specific fields from the negocio
    */
-  omit?: Prisma.sucursalOmit<ExtArgs> | null
+  omit?: Prisma.negocioOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.sucursalInclude<ExtArgs> | null
-  where?: Prisma.sucursalWhereInput
+  include?: Prisma.negocioInclude<ExtArgs> | null
+  where?: Prisma.negocioWhereInput
 }
 
 /**

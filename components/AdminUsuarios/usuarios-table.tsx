@@ -6,7 +6,7 @@
  * --------------------------------------------------------------------------
  *
  * Este componente renderiza una tabla con todos los usuarios activos y
- * proporciona información sobre su estado, rol, sucursal asignada, etc.
+ * proporciona información sobre su estado, rol, negocio asignado, etc.
  */
 
 import { formatDistanceToNow } from "date-fns";
@@ -22,11 +22,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/AdminUsuarios/dropdown-menu";
-import { Shield, User, Headphones, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
-import { UsuarioConSucursal } from "@/services/usuarios/usuario.service";
+import { Shield, User, Headphones, ChevronDown } from "lucide-react";
+import { UsuarioConNegocio } from "@/services/usuarios/usuario.service";
 
 interface UsuariosTableProps {
-  usuarios: UsuarioConSucursal[];
+  usuarios: UsuarioConNegocio[];
   isLoading?: boolean;
   onUpdateRole?: (id: string, newRole: 'cliente' | 'admin' | 'agente') => void;
   paginaActual?: number;
@@ -139,7 +139,7 @@ export function UsuariosTable({
                 Estado
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                Sucursal
+                Negocio
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                 Registrado
@@ -216,7 +216,7 @@ export function UsuariosTable({
                     </div>
                   ) : (
                     <Badge variant="outline" className="bg-yellow-50 text-yellow-800">
-                      Sin sucursal
+                      Sin negocio
                     </Badge>
                   )}
                 </td>

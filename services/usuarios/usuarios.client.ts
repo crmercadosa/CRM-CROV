@@ -13,11 +13,11 @@
  * - Actualizar rol de un usuario
  */
 
-import type { UsuarioConSucursal, FiltrosUsuarios } from '@/services/usuarios/usuario.service'
+import type { UsuarioConNegocio, FiltrosUsuarios } from '@/services/usuarios/usuario.service'
 
 interface UsuariosResponse {
   success: boolean
-  usuarios: UsuarioConSucursal[]
+  usuarios: UsuarioConNegocio[]
   total: number
 }
 
@@ -37,7 +37,7 @@ interface RolesResponse {
 
 interface ActualizarRolResponse {
   success: boolean
-  usuario: UsuarioConSucursal
+  usuario: UsuarioConNegocio
 }
 
 /**

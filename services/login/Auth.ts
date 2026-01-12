@@ -30,7 +30,7 @@ import '@/types/next-auth';
  * @property {string} email - El email del usuario.
  * @property {string} [nombre] - El nombre del usuario (opcional).
  * @property {string} [tipo] - El rol del usuario (opcional).
- * @property {string} [id_sucursal] - El ID de la sucursal del usuario (opcional).
+ * @property {string} [id_negocio] - El ID de la sucursal del usuario (opcional).
  */
 interface AuthUser {
   id: string;
@@ -39,7 +39,7 @@ interface AuthUser {
   nombre?: string;
   tipo?: string;
   email_verificado?: boolean;
-  id_sucursal?: string;
+  id_negocio?: string;
 }
 
 /**
