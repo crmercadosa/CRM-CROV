@@ -12,6 +12,7 @@ export default function DashboardPage() {
   const { data: session, status } = useSession();
 
   useEffect(() => {
+    setTitle('Dashboard');
     // Redirigir a login si no está autenticado
     if (status === 'unauthenticated') {
       router.push('/login');

@@ -51,8 +51,8 @@ export async function cargarUsuarios(
 ): Promise<UsuariosResponse & { totalPages: number; paginaActual: number }> {
   const params = new URLSearchParams()
 
-  if (filtros?.sinSucursal) {
-    params.append('sinSucursal', 'true')
+  if (filtros?.sinNegocio) {
+    params.append('sinNegocio', 'true')
   }
   if (filtros?.rol && filtros.rol !== 'todos') {
     params.append('rol', filtros.rol)
