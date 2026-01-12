@@ -1,3 +1,4 @@
+//types/sucursal.ts
 export interface Sucursal {
   id: string;
   id_usuario: string;

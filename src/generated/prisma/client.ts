@@ -85,7 +85,7 @@ export type prompt_atributos = Prisma.prompt_atributosModel
  */
 export type usuario = Prisma.usuarioModel
 /**
- * Model negocio
+ * Model sucursal
  * 
  */
-export type negocio = Prisma.negocioModel
+export type sucursal = Prisma.sucursalModel

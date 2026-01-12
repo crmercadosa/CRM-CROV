@@ -232,7 +232,7 @@ export type usuarioWhereInput = {
   password_hash?: Prisma.StringFilter<"usuario"> | string
   fecha_creacion?: Prisma.DateTimeNullableFilter<"usuario"> | Date | string | null
   nombre?: Prisma.StringNullableFilter<"usuario"> | string | null
-  negocio?: Prisma.NegocioListRelationFilter
+  sucursal?: Prisma.SucursalListRelationFilter
 }
 
 export type usuarioOrderByWithRelationInput = {
@@ -243,7 +243,7 @@ export type usuarioOrderByWithRelationInput = {
   password_hash?: Prisma.SortOrder
   fecha_creacion?: Prisma.SortOrderInput | Prisma.SortOrder
   nombre?: Prisma.SortOrderInput | Prisma.SortOrder
-  negocio?: Prisma.negocioOrderByRelationAggregateInput
+  sucursal?: Prisma.sucursalOrderByRelationAggregateInput
   _relevance?: Prisma.usuarioOrderByRelevanceInput
 }
 
@@ -258,7 +258,7 @@ export type usuarioWhereUniqueInput = Prisma.AtLeast<{
   password_hash?: Prisma.StringFilter<"usuario"> | string
   fecha_creacion?: Prisma.DateTimeNullableFilter<"usuario"> | Date | string | null
   nombre?: Prisma.StringNullableFilter<"usuario"> | string | null
-  negocio?: Prisma.NegocioListRelationFilter
+  sucursal?: Prisma.SucursalListRelationFilter
 }, "id" | "email">
 
 export type usuarioOrderByWithAggregationInput = {
@@ -297,7 +297,7 @@ export type usuarioCreateInput = {
   password_hash: string
   fecha_creacion?: Date | string | null
   nombre?: string | null
-  negocio?: Prisma.negocioCreateNestedManyWithoutUsuarioInput
+  sucursal?: Prisma.sucursalCreateNestedManyWithoutUsuarioInput
 }
 
 export type usuarioUncheckedCreateInput = {
@@ -308,7 +308,7 @@ export type usuarioUncheckedCreateInput = {
   password_hash: string
   fecha_creacion?: Date | string | null
   nombre?: string | null
-  negocio?: Prisma.negocioUncheckedCreateNestedManyWithoutUsuarioInput
+  sucursal?: Prisma.sucursalUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type usuarioUpdateInput = {
@@ -319,7 +319,7 @@ export type usuarioUpdateInput = {
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   fecha_creacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  negocio?: Prisma.negocioUpdateManyWithoutUsuarioNestedInput
+  sucursal?: Prisma.sucursalUpdateManyWithoutUsuarioNestedInput
 }
 
 export type usuarioUncheckedUpdateInput = {
@@ -330,7 +330,7 @@ export type usuarioUncheckedUpdateInput = {
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   fecha_creacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  negocio?: Prisma.negocioUncheckedUpdateManyWithoutUsuarioNestedInput
+  sucursal?: Prisma.sucursalUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 export type usuarioCreateManyInput = {
@@ -420,21 +420,21 @@ export type Enumusuario_estadoFieldUpdateOperationsInput = {
   set?: $Enums.usuario_estado
 }
 
-export type usuarioCreateNestedOneWithoutNegocioInput = {
-  create?: Prisma.XOR<Prisma.usuarioCreateWithoutNegocioInput, Prisma.usuarioUncheckedCreateWithoutNegocioInput>
-  connectOrCreate?: Prisma.usuarioCreateOrConnectWithoutNegocioInput
+export type usuarioCreateNestedOneWithoutSucursalInput = {
+  create?: Prisma.XOR<Prisma.usuarioCreateWithoutSucursalInput, Prisma.usuarioUncheckedCreateWithoutSucursalInput>
+  connectOrCreate?: Prisma.usuarioCreateOrConnectWithoutSucursalInput
   connect?: Prisma.usuarioWhereUniqueInput
 }
 
-export type usuarioUpdateOneRequiredWithoutNegocioNestedInput = {
-  create?: Prisma.XOR<Prisma.usuarioCreateWithoutNegocioInput, Prisma.usuarioUncheckedCreateWithoutNegocioInput>
-  connectOrCreate?: Prisma.usuarioCreateOrConnectWithoutNegocioInput
-  upsert?: Prisma.usuarioUpsertWithoutNegocioInput
+export type usuarioUpdateOneRequiredWithoutSucursalNestedInput = {
+  create?: Prisma.XOR<Prisma.usuarioCreateWithoutSucursalInput, Prisma.usuarioUncheckedCreateWithoutSucursalInput>
+  connectOrCreate?: Prisma.usuarioCreateOrConnectWithoutSucursalInput
+  upsert?: Prisma.usuarioUpsertWithoutSucursalInput
   connect?: Prisma.usuarioWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.usuarioUpdateToOneWithWhereWithoutNegocioInput, Prisma.usuarioUpdateWithoutNegocioInput>, Prisma.usuarioUncheckedUpdateWithoutNegocioInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usuarioUpdateToOneWithWhereWithoutSucursalInput, Prisma.usuarioUpdateWithoutSucursalInput>, Prisma.usuarioUncheckedUpdateWithoutSucursalInput>
 }
 
-export type usuarioCreateWithoutNegocioInput = {
+export type usuarioCreateWithoutSucursalInput = {
   id?: bigint | number
   tipo?: $Enums.usuario_tipo
   estado?: $Enums.usuario_estado
@@ -444,7 +444,7 @@ export type usuarioCreateWithoutNegocioInput = {
   nombre?: string | null
 }
 
-export type usuarioUncheckedCreateWithoutNegocioInput = {
+export type usuarioUncheckedCreateWithoutSucursalInput = {
   id?: bigint | number
   tipo?: $Enums.usuario_tipo
   estado?: $Enums.usuario_estado
@@ -454,23 +454,23 @@ export type usuarioUncheckedCreateWithoutNegocioInput = {
   nombre?: string | null
 }
 
-export type usuarioCreateOrConnectWithoutNegocioInput = {
+export type usuarioCreateOrConnectWithoutSucursalInput = {
   where: Prisma.usuarioWhereUniqueInput
-  create: Prisma.XOR<Prisma.usuarioCreateWithoutNegocioInput, Prisma.usuarioUncheckedCreateWithoutNegocioInput>
+  create: Prisma.XOR<Prisma.usuarioCreateWithoutSucursalInput, Prisma.usuarioUncheckedCreateWithoutSucursalInput>
 }
 
-export type usuarioUpsertWithoutNegocioInput = {
-  update: Prisma.XOR<Prisma.usuarioUpdateWithoutNegocioInput, Prisma.usuarioUncheckedUpdateWithoutNegocioInput>
-  create: Prisma.XOR<Prisma.usuarioCreateWithoutNegocioInput, Prisma.usuarioUncheckedCreateWithoutNegocioInput>
+export type usuarioUpsertWithoutSucursalInput = {
+  update: Prisma.XOR<Prisma.usuarioUpdateWithoutSucursalInput, Prisma.usuarioUncheckedUpdateWithoutSucursalInput>
+  create: Prisma.XOR<Prisma.usuarioCreateWithoutSucursalInput, Prisma.usuarioUncheckedCreateWithoutSucursalInput>
   where?: Prisma.usuarioWhereInput
 }
 
-export type usuarioUpdateToOneWithWhereWithoutNegocioInput = {
+export type usuarioUpdateToOneWithWhereWithoutSucursalInput = {
   where?: Prisma.usuarioWhereInput
-  data: Prisma.XOR<Prisma.usuarioUpdateWithoutNegocioInput, Prisma.usuarioUncheckedUpdateWithoutNegocioInput>
+  data: Prisma.XOR<Prisma.usuarioUpdateWithoutSucursalInput, Prisma.usuarioUncheckedUpdateWithoutSucursalInput>
 }
 
-export type usuarioUpdateWithoutNegocioInput = {
+export type usuarioUpdateWithoutSucursalInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
   estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
@@ -480,7 +480,7 @@ export type usuarioUpdateWithoutNegocioInput = {
   nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
-export type usuarioUncheckedUpdateWithoutNegocioInput = {
+export type usuarioUncheckedUpdateWithoutSucursalInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
   estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
@@ -496,11 +496,11 @@ export type usuarioUncheckedUpdateWithoutNegocioInput = {
  */
 
 export type UsuarioCountOutputType = {
-  negocio: number
+  sucursal: number
 }
 
 export type UsuarioCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  negocio?: boolean | UsuarioCountOutputTypeCountNegocioArgs
+  sucursal?: boolean | UsuarioCountOutputTypeCountSucursalArgs
 }
 
 /**
@@ -516,8 +516,8 @@ export type UsuarioCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * UsuarioCountOutputType without action
  */
-export type UsuarioCountOutputTypeCountNegocioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.negocioWhereInput
+export type UsuarioCountOutputTypeCountSucursalArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.sucursalWhereInput
 }
 
 
@@ -529,7 +529,7 @@ export type usuarioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   password_hash?: boolean
   fecha_creacion?: boolean
   nombre?: boolean
-  negocio?: boolean | Prisma.usuario$negocioArgs<ExtArgs>
+  sucursal?: boolean | Prisma.usuario$sucursalArgs<ExtArgs>
   _count?: boolean | Prisma.UsuarioCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["usuario"]>
 
@@ -547,14 +547,14 @@ export type usuarioSelectScalar = {
 
 export type usuarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tipo" | "estado" | "email" | "password_hash" | "fecha_creacion" | "nombre", ExtArgs["result"]["usuario"]>
 export type usuarioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  negocio?: boolean | Prisma.usuario$negocioArgs<ExtArgs>
+  sucursal?: boolean | Prisma.usuario$sucursalArgs<ExtArgs>
   _count?: boolean | Prisma.UsuarioCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $usuarioPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "usuario"
   objects: {
-    negocio: Prisma.$negocioPayload<ExtArgs>[]
+    sucursal: Prisma.$sucursalPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
@@ -904,7 +904,7 @@ readonly fields: usuarioFieldRefs;
  */
 export interface Prisma__usuarioClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  negocio<T extends Prisma.usuario$negocioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usuario$negocioArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$negocioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sucursal<T extends Prisma.usuario$sucursalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usuario$sucursalArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$sucursalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1284,27 +1284,27 @@ export type usuarioDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * usuario.negocio
+ * usuario.sucursal
  */
-export type usuario$negocioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type usuario$sucursalArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the negocio
+   * Select specific fields to fetch from the sucursal
    */
-  select?: Prisma.negocioSelect<ExtArgs> | null
+  select?: Prisma.sucursalSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the negocio
+   * Omit specific fields from the sucursal
    */
-  omit?: Prisma.negocioOmit<ExtArgs> | null
+  omit?: Prisma.sucursalOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.negocioInclude<ExtArgs> | null
-  where?: Prisma.negocioWhereInput
-  orderBy?: Prisma.negocioOrderByWithRelationInput | Prisma.negocioOrderByWithRelationInput[]
-  cursor?: Prisma.negocioWhereUniqueInput
+  include?: Prisma.sucursalInclude<ExtArgs> | null
+  where?: Prisma.sucursalWhereInput
+  orderBy?: Prisma.sucursalOrderByWithRelationInput | Prisma.sucursalOrderByWithRelationInput[]
+  cursor?: Prisma.sucursalWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.NegocioScalarFieldEnum | Prisma.NegocioScalarFieldEnum[]
+  distinct?: Prisma.SucursalScalarFieldEnum | Prisma.SucursalScalarFieldEnum[]
 }
 
 /**

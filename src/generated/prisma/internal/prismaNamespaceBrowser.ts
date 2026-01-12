@@ -60,7 +60,7 @@ export const ModelName = {
   prompt: 'prompt',
   prompt_atributos: 'prompt_atributos',
   usuario: 'usuario',
-  negocio: 'negocio'
+  sucursal: 'sucursal'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -184,7 +184,7 @@ export const UsuarioScalarFieldEnum = {
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
 
 
-export const NegocioScalarFieldEnum = {
+export const SucursalScalarFieldEnum = {
   id: 'id',
   id_usuario: 'id_usuario',
   nombre_negocio: 'nombre_negocio',
@@ -195,7 +195,7 @@ export const NegocioScalarFieldEnum = {
   estado: 'estado'
 } as const
 
-export type NegocioScalarFieldEnum = (typeof NegocioScalarFieldEnum)[keyof typeof NegocioScalarFieldEnum]
+export type SucursalScalarFieldEnum = (typeof SucursalScalarFieldEnum)[keyof typeof SucursalScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -319,7 +319,7 @@ export const usuarioOrderByRelevanceFieldEnum = {
 export type usuarioOrderByRelevanceFieldEnum = (typeof usuarioOrderByRelevanceFieldEnum)[keyof typeof usuarioOrderByRelevanceFieldEnum]
 
 
-export const negocioOrderByRelevanceFieldEnum = {
+export const sucursalOrderByRelevanceFieldEnum = {
   nombre_negocio: 'nombre_negocio',
   giro: 'giro',
   ciudad: 'ciudad',
@@ -328,5 +328,5 @@ export const negocioOrderByRelevanceFieldEnum = {
   estado: 'estado'
 } as const
 
-export type negocioOrderByRelevanceFieldEnum = (typeof negocioOrderByRelevanceFieldEnum)[keyof typeof negocioOrderByRelevanceFieldEnum]
+export type sucursalOrderByRelevanceFieldEnum = (typeof sucursalOrderByRelevanceFieldEnum)[keyof typeof sucursalOrderByRelevanceFieldEnum]
 

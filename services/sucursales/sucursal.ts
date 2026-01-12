@@ -1,3 +1,4 @@
+//services/sucursales/sucursal.ts
 import {prisma} from '../../lib/prisma';
 
 

@@ -1,3 +1,4 @@
+//api/sucursales/[id]/route.ts
 import { NextResponse } from 'next/server';
 import { auth } from '../../../../services/login/Auth';
 import { 
