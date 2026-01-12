@@ -1,34 +1,34 @@
-import { Sucursal } from '@/types/sucursal';
+import { Negocio } from '@/types/negocio';
 import { Edit, Trash, Ban, CheckCircle, MapPin, Clock, Building2, ExternalLink, Tag } from 'lucide-react';
 
-interface SucursalCardsProps {
-  sucursales: Sucursal[];
-  onEdit: (sucursal: Sucursal) => void;
+interface NegocioCardsProps {
+  negocios: Negocio[];
+  onEdit: (negocio: Negocio) => void;
   onDelete: (id: string) => void;
   onToggleStatus: (id: string, currentStatus: string) => void;
   loadingStatusId?: string | null;
 }
 
-export default function SucursalCards({
-  sucursales,
+export default function NegocioCards({
+  negocios,
   onEdit,
   onDelete,
   onToggleStatus,
   loadingStatusId,
-}: SucursalCardsProps) {
-  if (sucursales.length === 0) {
+}: NegocioCardsProps) {
+  if (negocios.length === 0) {
     return (
       <div className="p-8 text-center text-gray-500">
-        No se encontraron sucursales
+        No se encontraron negocios
       </div>
     );
   }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-      {sucursales.map((sucursal) => (
+      {negocios.map((negocio) => (
         <div
-          key={sucursal.id}
+          key={negocio.id}
           className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden"
         >
           {/* Header con nombre y estado */}
@@ -38,29 +38,29 @@ export default function SucursalCards({
                 <div className="flex items-center gap-2 mb-1">
                   <Building2 className="w-5 h-5 text-blue-600" />
                   <h3 className="font-bold text-gray-900 text-lg line-clamp-1">
-                    {sucursal.nombre_negocio}
+                    {negocio.nombre_negocio}
                   </h3>
                 </div>
                 <p className="text-xs text-gray-600">
-                  ID Usuario: {sucursal.id_usuario}
+                  ID Usuario: {negocio.id_usuario}
                 </p>
               </div>
               
               {/* Estado */}
               <div className="ml-2">
-                {loadingStatusId === sucursal.id ? (
+                {loadingStatusId === negocio.id ? (
                   <div className="flex justify-center items-center h-6">
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
                   </div>
                 ) : (
                   <span
                     className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                      sucursal.estado === 'activo'
+                      negocio.estado === 'activo'
                         ? 'bg-green-100 text-green-800'
                         : 'bg-red-100 text-red-800'
                     }`}
                   >
-                    {sucursal.estado}
+                    {negocio.estado}
                   </span>
                 )}
               </div>
@@ -75,7 +75,7 @@ export default function SucursalCards({
               <Tag className="w-4 h-4 text-purple-500 flex-shrink-0" />
               <div>
                 <p className="text-xs text-gray-500">Giro</p>
-                <p className="font-medium text-gray-900">{sucursal.giro}</p>
+                <p className="font-medium text-gray-900">{negocio.giro}</p>
               </div>
             </div>
 
@@ -84,7 +84,7 @@ export default function SucursalCards({
               <MapPin className="w-4 h-4 text-red-500 flex-shrink-0" />
               <div>
                 <p className="text-xs text-gray-500">Ubicación</p>
-                <p className="font-medium text-gray-900">{sucursal.ciudad}</p>
+                <p className="font-medium text-gray-900">{negocio.ciudad}</p>
               </div>
             </div>
 
@@ -93,15 +93,15 @@ export default function SucursalCards({
               <Clock className="w-4 h-4 text-orange-500 flex-shrink-0" />
               <div>
                 <p className="text-xs text-gray-500">Horarios</p>
-                <p className="font-medium text-gray-900">{sucursal.horarios}</p>
+                <p className="font-medium text-gray-900">{negocio.horarios}</p>
               </div>
             </div>
 
             {/* Redes sociales */}
-            {sucursal.url_redes_sociales && (
+            {negocio.url_redes_sociales && (
               <div className="pt-2 border-t border-gray-100">
                 <a
-                  href={sucursal.url_redes_sociales}
+                  href={negocio.url_redes_sociales}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 transition-colors"
@@ -116,16 +116,16 @@ export default function SucursalCards({
           {/* Footer con acciones */}
           <div className="p-4 bg-gray-50 border-t border-gray-200 flex justify-end gap-2">
             <button
-              onClick={() => onEdit(sucursal)}
+              onClick={() => onEdit(negocio)}
               className="p-2 bg-yellow-400 hover:bg-yellow-500 text-white rounded transition-colors cursor-pointer"
               title="Editar"
             >
               <Edit className="w-4 h-4" />
             </button>
 
-            {sucursal.estado === 'activo' ? (
+            {negocio.estado === 'activo' ? (
               <button
-                onClick={() => onToggleStatus(sucursal.id, sucursal.estado)}
+                onClick={() => onToggleStatus(negocio.id, negocio.estado)}
                 className="p-2 bg-orange-500 hover:bg-orange-600 text-white rounded transition-colors cursor-pointer"
                 title="Desactivar"
               >
@@ -133,7 +133,7 @@ export default function SucursalCards({
               </button>
             ) : (
               <button
-                onClick={() => onToggleStatus(sucursal.id, sucursal.estado)}
+                onClick={() => onToggleStatus(negocio.id, negocio.estado)}
                 className="p-2 bg-green-500 hover:bg-green-600 text-white rounded transition-colors cursor-pointer"
                 title="Activar"
               >
@@ -142,7 +142,7 @@ export default function SucursalCards({
             )}
 
             <button
-              onClick={() => onDelete(sucursal.id)}
+              onClick={() => onDelete(negocio.id)}
               className="p-2 bg-red-500 hover:bg-red-600 text-white rounded transition-colors cursor-pointer"
               title="Eliminar"
             >

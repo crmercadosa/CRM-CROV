@@ -1,10 +1,10 @@
-// api/sucursales/route.ts
+// api/negocios/route.ts
 import { NextResponse } from 'next/server';
 import { auth } from '../../../services/login/Auth';
-import { getSucursalesByUsuario, createSucursal } from '../../../services/sucursales/sucursal';
+import { getNegociosByUsuario, createNegocio } from '../../../services/negocios/negocio';
 
 /**
- * GET - Obtener todas las sucursales del usuario autenticado
+ * GET - Obtener todos los negocios del usuario autenticado
  */
 
 export async function GET(request: Request) {
@@ -28,20 +28,20 @@ export async function GET(request: Request) {
       );
     }
 
-    const sucursales = await getSucursalesByUsuario(userId);
+    const negocios = await getNegociosByUsuario(userId);
 
-    return NextResponse.json(sucursales);
+    return NextResponse.json(negocios);
   } catch (error) {
-    console.error('Error al obtener sucursales:', error);
+    console.error('Error al obtener negocios:', error);
     return NextResponse.json(
-      { error: 'Error al obtener sucursales' },
+      { error: 'Error al obtener negocios' },
       { status: 500 }
     );
   }
 }
 
 /**
- * POST - Crear una nueva sucursal
+ * POST - Crear un nuevo negocio
  */
 export async function POST(request: Request) {
   try {
@@ -74,8 +74,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Crear la sucursal con el id del usuario autenticado
-    const nuevaSucursal = await createSucursal({
+    // Crear el negocio con el id del usuario autenticado
+    const nuevoNegocio = await createNegocio({
       id_usuario: userId,
       nombre_negocio: body.nombre_negocio,
       giro: body.giro,
@@ -85,11 +85,11 @@ export async function POST(request: Request) {
       estado: body.estado || 'activo',
     });
 
-    return NextResponse.json(nuevaSucursal, { status: 201 });
+    return NextResponse.json(nuevoNegocio, { status: 201 });
   } catch (error) {
-    console.error('Error al crear sucursal:', error);
+    console.error('Error al crear negocio:', error);
     return NextResponse.json(
-      { error: 'Error al crear la sucursal' },
+      { error: 'Error al crear el negocio' },
       { status: 500 }
     );
   }

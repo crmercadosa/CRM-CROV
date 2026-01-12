@@ -19,12 +19,12 @@ import Link from "next/link";
  * Interfaz `Branch`.
  * --------------------------------------------------------------------------
  *
- * Esta interfaz define la estructura de un objeto de sucursal.
+ * Esta interfaz define la estructura de un objeto de negocio.
  *
- * @property {string} name - El nombre de la sucursal.
- * @property {"Activa" | "Inactiva"} status - El estado de la sucursal.
+ * @property {string} name - El nombre del negocio.
+ * @property {"Activa" | "Inactiva"} status - El estado del negocio.
  * @property {string} ai - La IA asignada.
- * @property {string} lastActivity - La última actividad de la sucursal.
+ * @property {string} lastActivity - La última actividad del negocio.
  */
 export interface Branch {
   name: string;
@@ -40,7 +40,7 @@ export interface Branch {
  *
  * Esta interfaz define las props para el componente `BranchCard`.
  *
- * @property {Branch} branch - El objeto de la sucursal.
+ * @property {Branch} branch - El objeto del negocio.
  */
 interface BranchCardProps {
   branch: Branch;
@@ -51,7 +51,7 @@ interface BranchCardProps {
  * Componente `BranchCard`.
  * --------------------------------------------------------------------------
  *
- * Este componente representa una tarjeta que muestra información sobre una sucursal.
+ * Este componente representa una tarjeta que muestra información sobre un negocio.
  *
  * @param {BranchCardProps} { branch } - Las props para el componente.
  * @returns {JSX.Element} El componente `BranchCard` renderizado.
@@ -80,7 +80,7 @@ export function BranchCard({ branch }: BranchCardProps) {
         </div>
       </CardContent>
       <CardFooter>
-        <Link href={`/dashboard/sucursales/${slug}`} className="w-full">
+        <Link href={`/operacion/negocios/${slug}`} className="w-full">
           <Button className="w-full">Seleccionar</Button>
         </Link>
       </CardFooter>

@@ -7,7 +7,7 @@
  *
  * Esta página permite a los administradores:
  * - Ver todos los usuarios activos registrados en la plataforma
- * - Aplicar filtros avanzados (sin sucursales, rol, estado)
+ * - Aplicar filtros avanzados (sin negocios, rol, estado)
  * - Buscar usuarios por email o nombre
  * - Ver estadísticas de usuarios
  */
@@ -196,7 +196,7 @@ export default function UsuariosPage() {
             </div>
           </div>
 
-          {/* Usuarios sin sucursal */}
+          {/* Usuarios sin negocio */}
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>

@@ -6,7 +6,7 @@
  * --------------------------------------------------------------------------
  *
  * Este componente renderiza una tabla con todos los usuarios activos y
- * proporciona información sobre su estado, rol, sucursal asignada, etc.
+ * proporciona información sobre su estado, rol, negocio asignado, etc.
  */
 
 import { formatDistanceToNow } from "date-fns";
@@ -93,7 +93,7 @@ export function UsuariosTable({ usuarios, isLoading, onUpdateRole }: UsuariosTab
                 Estado
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
-                Sucursal
+                Negocio
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                 Registrado
@@ -160,7 +160,7 @@ export function UsuariosTable({ usuarios, isLoading, onUpdateRole }: UsuariosTab
                   {usuario.sucursal ? (
                     <div>
                       <p className="text-sm text-gray-900">
-                        {usuario.sucursal.nombre_sucursal}
+                        {usuario.sucursal.nombre_negocio}
                       </p>
                       <Badge
                         className={usuario.sucursal.estado ? "bg-green-100 text-green-800 mt-1" : "bg-red-100 text-red-800 mt-1"}
@@ -170,7 +170,7 @@ export function UsuariosTable({ usuarios, isLoading, onUpdateRole }: UsuariosTab
                     </div>
                   ) : (
                     <Badge variant="outline" className="bg-yellow-50 text-yellow-800">
-                      Sin sucursal
+                      Sin negocio
                     </Badge>
                   )}
                 </td>

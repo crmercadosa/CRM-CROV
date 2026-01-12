@@ -15,14 +15,14 @@ export default function LoginPage() {
           <div className="mb-8 text-5xl font-bold">CROV AI</div>
           <h1 className="text-4xl font-bold mb-6">Plataforma para Negocios</h1>
           <p className="text-lg text-primary-foreground/90 mb-8">
-            Gestiona tus sucursales y automatiza procesos con inteligencia artificial avanzada.
+            Gestiona tus negocios y automatiza procesos con inteligencia artificial avanzada.
           </p>
           <div className="space-y-4 text-left">
             <div className="flex items-start gap-3">
               <div className="text-2xl">✓</div>
               <div>
                 <p className="font-semibold">Gestión Centralizada</p>
-                <p className="text-sm text-primary-foreground/80">Controla todas tus sucursales desde un solo lugar</p>
+                <p className="text-sm text-primary-foreground/80">Controla todos tus negocios desde un solo lugar</p>
               </div>
             </div>
             <div className="flex items-start gap-3">

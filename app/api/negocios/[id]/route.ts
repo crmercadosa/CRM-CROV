@@ -1,14 +1,14 @@
-//api/sucursales/[id]/route.ts
+//api/negocios/[id]/route.ts
 import { NextResponse } from 'next/server';
 import { auth } from '../../../../services/login/Auth';
 import { 
-  updateSucursal,
-  toggleSucursalStatus,
-  deleteSucursal
-} from '../../../../services/sucursales/sucursal';
+  updateNegocio,
+  toggleNegocioStatus,
+  deleteNegocio
+} from '../../../../services/negocios/negocio';
 
 /**
- * PUT - Actualizar una sucursal completa
+ * PUT - Actualizar un negocio completo
  */
 export async function PUT(
   request: Request,
@@ -28,7 +28,7 @@ export async function PUT(
     const { id } = await params;
     const body = await request.json();
 
-    const sucursalActualizada = await updateSucursal(id, {
+    const negocioActualizado = await updateNegocio(id, {
       nombre_negocio: body.nombre_negocio,
       giro: body.giro,
       ciudad: body.ciudad,
@@ -37,18 +37,18 @@ export async function PUT(
       estado: body.estado,
     });
 
-    return NextResponse.json(sucursalActualizada, { status: 200 });
+    return NextResponse.json(negocioActualizado, { status: 200 });
   } catch (error) {
-    console.error('Error al actualizar sucursal:', error);
+    console.error('Error al actualizar negocio:', error);
     return NextResponse.json(
-      { error: 'Error al actualizar la sucursal' },
+      { error: 'Error al actualizar el negocio' },
       { status: 500 }
     );
   }
 }
 
 /**
- * PATCH - Cambiar el estado de la sucursal (activar/desactivar)
+ * PATCH - Cambiar el estado del negocio (activar/desactivar)
  */
 export async function PATCH(
   request: Request,
@@ -75,20 +75,20 @@ export async function PATCH(
       );
     }
 
-    const sucursalActualizada = await toggleSucursalStatus(id, body.estado);
+    const negocioActualizado = await toggleNegocioStatus(id, body.estado);
 
-    return NextResponse.json(sucursalActualizada, { status: 200 });
+    return NextResponse.json(negocioActualizado, { status: 200 });
   } catch (error) {
-    console.error('Error al cambiar estado de sucursal:', error);
+    console.error('Error al cambiar estado de negocio:', error);
     return NextResponse.json(
-      { error: 'Error al cambiar el estado de la sucursal' },
+      { error: 'Error al cambiar el estado del negocio' },
       { status: 500 }
     );
   }
 }
 
 /**
- * DELETE - Eliminar una sucursal
+ * DELETE - Eliminar un negocio
  */
 export async function DELETE(
   request: Request,
@@ -106,16 +106,16 @@ export async function DELETE(
 
     const { id } = await params;
 
-    await deleteSucursal(id);
+    await deleteNegocio(id);
 
     return NextResponse.json(
-      { message: 'Sucursal eliminada exitosamente' },
+      { message: 'Negocio eliminado exitosamente' },
       { status: 200 }
     );
   } catch (error) {
-    console.error('Error al eliminar sucursal:', error);
+    console.error('Error al eliminar negocio:', error);
     return NextResponse.json(
-      { error: 'Error al eliminar la sucursal' },
+      { error: 'Error al eliminar el negocio' },
       { status: 500 }
     );
   }

@@ -7,7 +7,7 @@
  *
  * Retorna:
  * - Total de usuarios
- * - Usuarios sin sucursal
+ * - Usuarios sin negocio
  * - Usuarios activos
  * - Usuarios inactivos
  * - Conteo por rol

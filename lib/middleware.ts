@@ -25,8 +25,8 @@ export default auth((req: NextRequest & { auth: any }) => {
   }
 
   // Autorización por rol - Usuario Normal
-  // Los usuarios normales pueden acceder a sucursales, pero no a rutas de admin
-  const userRoutes = ['/dashboard/sucursales', '/dashboard/perfil'];
+  // Los usuarios normales pueden acceder a negocios, pero no a rutas de admin
+  const userRoutes = ['/operacion/negocios', '/dashboard/perfil'];
   const isUserRestrictedRoute = userRoutes.some((route) => pathname.startsWith(route));
 
   // Si es una ruta de usuario y el rol no es admin ni user, rechazar
