@@ -22,10 +22,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/AdminUsuarios/dropdown-menu";
 import { Shield, User, Headphones, ChevronDown } from "lucide-react";
-import { UsuarioConSucursal } from "@/services/usuarios/usuario.service";
+import { UsuarioConNegocio } from "@/services/usuarios/usuario.service";
 
 interface UsuariosTableProps {
-  usuarios: UsuarioConSucursal[];
+  usuarios: UsuarioConNegocio[];
   isLoading?: boolean;
   onUpdateRole?: (id: string, newRole: 'cliente' | 'admin') => void;
 }

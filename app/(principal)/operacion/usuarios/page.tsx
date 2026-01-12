@@ -18,7 +18,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { UsuarioFilters } from '@/components/AdminUsuarios/usuario-filters'
 import { UsuariosTable } from '@/components/AdminUsuarios/usuarios-table'
 import { Users, TrendingUp } from 'lucide-react'
-import type { UsuarioConSucursal, FiltrosUsuarios } from '@/services/usuarios/usuario.service'
+import type { UsuarioConNegocio, FiltrosUsuarios } from '@/services/usuarios/usuario.service'
 import {
   cargarUsuarios,
   cargarEstadisticas,
@@ -40,8 +40,8 @@ export default function UsuariosPage() {
   const user = session?.user as any
 
   // Estados
-  const [usuarios, setUsuarios] = useState<UsuarioConSucursal[]>([])
-  const [usuariosFiltrados, setUsuariosFiltrados] = useState<UsuarioConSucursal[]>([])
+  const [usuarios, setUsuarios] = useState<UsuarioConNegocio[]>([])
+  const [usuariosFiltrados, setUsuariosFiltrados] = useState<UsuarioConNegocio[]>([])
   const [estadisticas, setEstadisticas] = useState<Estadisticas | null>(null)
   const [rolesDisponibles, setRolesDisponibles] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(true)

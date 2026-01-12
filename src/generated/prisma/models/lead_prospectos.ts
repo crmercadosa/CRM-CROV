@@ -228,7 +228,7 @@ export type lead_prospectosWhereInput = {
   telefono?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
   fuente?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
   etapa?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
-  sucursal?: Prisma.XOR<Prisma.SucursalNullableScalarRelationFilter, Prisma.sucursalWhereInput> | null
+  sucursal?: Prisma.XOR<Prisma.NegocioNullableScalarRelationFilter, Prisma.negocioWhereInput> | null
   mensaje?: Prisma.MensajeListRelationFilter
 }
 
@@ -239,7 +239,7 @@ export type lead_prospectosOrderByWithRelationInput = {
   telefono?: Prisma.SortOrderInput | Prisma.SortOrder
   fuente?: Prisma.SortOrderInput | Prisma.SortOrder
   etapa?: Prisma.SortOrderInput | Prisma.SortOrder
-  sucursal?: Prisma.sucursalOrderByWithRelationInput
+  sucursal?: Prisma.negocioOrderByWithRelationInput
   mensaje?: Prisma.mensajeOrderByRelationAggregateInput
   _relevance?: Prisma.lead_prospectosOrderByRelevanceInput
 }
@@ -254,7 +254,7 @@ export type lead_prospectosWhereUniqueInput = Prisma.AtLeast<{
   telefono?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
   fuente?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
   etapa?: Prisma.StringNullableFilter<"lead_prospectos"> | string | null
-  sucursal?: Prisma.XOR<Prisma.SucursalNullableScalarRelationFilter, Prisma.sucursalWhereInput> | null
+  sucursal?: Prisma.XOR<Prisma.NegocioNullableScalarRelationFilter, Prisma.negocioWhereInput> | null
   mensaje?: Prisma.MensajeListRelationFilter
 }, "id">
 
@@ -290,7 +290,7 @@ export type lead_prospectosCreateInput = {
   telefono?: string | null
   fuente?: string | null
   etapa?: string | null
-  sucursal?: Prisma.sucursalCreateNestedOneWithoutLead_prospectosInput
+  sucursal?: Prisma.negocioCreateNestedOneWithoutLead_prospectosInput
   mensaje?: Prisma.mensajeCreateNestedManyWithoutLead_prospectosInput
 }
 
@@ -310,7 +310,7 @@ export type lead_prospectosUpdateInput = {
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fuente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   etapa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sucursal?: Prisma.sucursalUpdateOneWithoutLead_prospectosNestedInput
+  sucursal?: Prisma.negocioUpdateOneWithoutLead_prospectosNestedInput
   mensaje?: Prisma.mensajeUpdateManyWithoutLead_prospectosNestedInput
 }
 
@@ -480,7 +480,7 @@ export type lead_prospectosCreateWithoutMensajeInput = {
   telefono?: string | null
   fuente?: string | null
   etapa?: string | null
-  sucursal?: Prisma.sucursalCreateNestedOneWithoutLead_prospectosInput
+  sucursal?: Prisma.negocioCreateNestedOneWithoutLead_prospectosInput
 }
 
 export type lead_prospectosUncheckedCreateWithoutMensajeInput = {
@@ -514,7 +514,7 @@ export type lead_prospectosUpdateWithoutMensajeInput = {
   telefono?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fuente?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   etapa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sucursal?: Prisma.sucursalUpdateOneWithoutLead_prospectosNestedInput
+  sucursal?: Prisma.negocioUpdateOneWithoutLead_prospectosNestedInput
 }
 
 export type lead_prospectosUncheckedUpdateWithoutMensajeInput = {
@@ -680,7 +680,7 @@ export type lead_prospectosInclude<ExtArgs extends runtime.Types.Extensions.Inte
 export type $lead_prospectosPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "lead_prospectos"
   objects: {
-    sucursal: Prisma.$sucursalPayload<ExtArgs> | null
+    sucursal: Prisma.$negocioPayload<ExtArgs> | null
     mensaje: Prisma.$mensajePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1030,7 +1030,7 @@ readonly fields: lead_prospectosFieldRefs;
  */
 export interface Prisma__lead_prospectosClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  sucursal<T extends Prisma.lead_prospectos$sucursalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.lead_prospectos$sucursalArgs<ExtArgs>>): Prisma.Prisma__sucursalClient<runtime.Types.Result.GetResult<Prisma.$sucursalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  sucursal<T extends Prisma.lead_prospectos$sucursalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.lead_prospectos$sucursalArgs<ExtArgs>>): Prisma.Prisma__negocioClient<runtime.Types.Result.GetResult<Prisma.$negocioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   mensaje<T extends Prisma.lead_prospectos$mensajeArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.lead_prospectos$mensajeArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$mensajePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1414,18 +1414,18 @@ export type lead_prospectosDeleteManyArgs<ExtArgs extends runtime.Types.Extensio
  */
 export type lead_prospectos$sucursalArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the sucursal
+   * Select specific fields to fetch from the negocio
    */
-  select?: Prisma.sucursalSelect<ExtArgs> | null
+  select?: Prisma.negocioSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the sucursal
+   * Omit specific fields from the negocio
    */
-  omit?: Prisma.sucursalOmit<ExtArgs> | null
+  omit?: Prisma.negocioOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.sucursalInclude<ExtArgs> | null
-  where?: Prisma.sucursalWhereInput
+  include?: Prisma.negocioInclude<ExtArgs> | null
+  where?: Prisma.negocioWhereInput
 }
 
 /**

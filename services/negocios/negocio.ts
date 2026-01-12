@@ -11,7 +11,7 @@ import { prisma } from '../../lib/prisma';
 
 export async function getNegociosByUsuario(id_usuario: bigint | number) {
   try {
-    const negocios = await prisma.sucursal.findMany({
+    const negocios = await prisma.negocio.findMany({
       where: {
         id_usuario: BigInt(id_usuario),
       },
@@ -48,7 +48,7 @@ export async function createNegocio(data: {
   estado?: 'activo' | 'inactivo';
 }) {
   try {
-    const nuevoNegocio = await prisma.sucursal.create({
+    const nuevoNegocio = await prisma.negocio.create({
       data: {
         id_usuario: BigInt(data.id_usuario),
         nombre_negocio: data.nombre_negocio,
@@ -100,7 +100,7 @@ export async function updateNegocio(
     if (data.url_redes_sociales !== undefined) updateData.url_redes_sociales = data.url_redes_sociales;
     if (data.estado !== undefined) updateData.estado = data.estado;
     
-    const negocioActualizado = await prisma.sucursal.update({
+    const negocioActualizado = await prisma.negocio.update({
       where: {
         id: BigInt(id),
       },
@@ -129,7 +129,7 @@ export async function toggleNegocioStatus(
   nuevoEstado: 'activo' | 'inactivo'
 ) {
   try {
-    const negocioActualizado = await prisma.sucursal.update({
+    const negocioActualizado = await prisma.negocio.update({
       where: {
         id: BigInt(id),
       },
@@ -156,7 +156,7 @@ export async function toggleNegocioStatus(
  */
 export async function deleteNegocio(id: bigint | number | string) {
   try {
-    const negocioEliminado = await prisma.sucursal.delete({
+    const negocioEliminado = await prisma.negocio.delete({
       where: {
         id: BigInt(id),
       },

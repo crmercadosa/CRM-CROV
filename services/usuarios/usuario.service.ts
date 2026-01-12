@@ -18,14 +18,14 @@ import { prisma } from "@/lib/prisma";
  * --------------------------------------------------------------------------
  */
 
-export interface UsuarioConSucursal {
+export interface UsuarioConNegocio {
   id: bigint;
   email: string;
   nombre: string | null;
   tipo: string | null;
   estado: string | null;
   fecha_creacion: Date | null;
-  sucursal: {
+  negocio: {
     id: bigint;
     nombre_negocio: string | null;
     estado: string | null;
@@ -33,7 +33,7 @@ export interface UsuarioConSucursal {
 }
 
 export interface FiltrosUsuarios {
-  sinSucursal?: boolean;
+  sinNegocio?: boolean;
   rol?: string;
   estado?: string;
   busqueda?: string;
@@ -44,7 +44,7 @@ export interface FiltrosUsuarios {
  * Obtener todos los usuarios con opciones de filtrado
  * --------------------------------------------------------------------------
  */
-export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<UsuarioConSucursal[]> {
+export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<UsuarioConNegocio[]> {
   try {
     // Excluir administradores por defecto
     const where: any = {
@@ -54,8 +54,8 @@ export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<Usuario
     };
 
     // Filtro: usuarios sin negocios activos
-    if (filtros.sinSucursal) {
-      where.sucursal = {
+    if (filtros.sinNegocio) {
+      where.negocio = {
         none: {},
       };
     }
@@ -91,7 +91,7 @@ export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<Usuario
     const usuarios = await prisma.usuario.findMany({
       where,
       include: {
-        sucursal: {
+        negocio: {
           where: {
             estado: 'activo',
           },
@@ -110,7 +110,7 @@ export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<Usuario
 
     return usuarios.map(usuario => ({
       ...usuario,
-      sucursal: usuario.sucursal[0] || null,
+      negocio: usuario.negocio[0] || null,
     }));
   } catch (error) {
     console.error('Error al obtener usuarios:', error);
@@ -123,12 +123,12 @@ export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<Usuario
  * Obtener un usuario por ID
  * --------------------------------------------------------------------------
  */
-export async function obtenerUsuarioById(id: bigint): Promise<UsuarioConSucursal | null> {
+export async function obtenerUsuarioById(id: bigint): Promise<UsuarioConNegocio | null> {
   try {
     const usuario = await prisma.usuario.findUnique({
       where: { id },
       include: {
-        sucursal: {
+        negocio: {
           where: {
             estado: 'activo',
           },
@@ -146,7 +146,7 @@ export async function obtenerUsuarioById(id: bigint): Promise<UsuarioConSucursal
 
     return {
       ...usuario,
-      sucursal: usuario.sucursal[0] || null,
+      negocio: usuario.negocio[0] || null,
     };
   } catch (error) {
     console.error('Error al obtener usuario:', error);
@@ -169,7 +169,7 @@ export async function obtenerEstadisticasUsuarios() {
       },
     });
 
-    const sinSucursal = await prisma.usuario.count({
+    const sinNegocio = await prisma.usuario.count({
       where: {
         AND: [
           {
@@ -178,7 +178,7 @@ export async function obtenerEstadisticasUsuarios() {
             },
           },
           {
-            sucursal: {
+            negocio: {
               none: {},
             },
           },
@@ -224,7 +224,7 @@ export async function obtenerEstadisticasUsuarios() {
 
     return {
       total,
-      sinSucursal,
+      sinNegocio,
       activos,
       inactivos,
       porRol: rolesCuenta,
