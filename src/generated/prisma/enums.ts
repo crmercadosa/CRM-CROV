@@ -9,9 +9,36 @@
 * 🟢 You can import this file directly.
 */
 
+export const mensaje_tipo = {
+  texto: 'texto',
+  imagen: 'imagen',
+  boton: 'boton',
+  archivo: 'archivo'
+} as const
+
+export type mensaje_tipo = (typeof mensaje_tipo)[keyof typeof mensaje_tipo]
+
+
+export const verification_tokens_type = {
+  EMAIL_VERIFICATION: 'EMAIL_VERIFICATION',
+  PASSWORD_RESET: 'PASSWORD_RESET'
+} as const
+
+export type verification_tokens_type = (typeof verification_tokens_type)[keyof typeof verification_tokens_type]
+
+
+export const usuario_provedor = {
+  EMAIL: 'EMAIL',
+  GOOGLE: 'GOOGLE'
+} as const
+
+export type usuario_provedor = (typeof usuario_provedor)[keyof typeof usuario_provedor]
+
+
 export const usuario_tipo = {
   cliente: 'cliente',
-  admin: 'admin'
+  admin: 'admin',
+  agente: 'agente'
 } as const
 
 export type usuario_tipo = (typeof usuario_tipo)[keyof typeof usuario_tipo]
@@ -23,13 +50,3 @@ export const usuario_estado = {
 } as const
 
 export type usuario_estado = (typeof usuario_estado)[keyof typeof usuario_estado]
-
-
-export const mensaje_tipo = {
-  texto: 'texto',
-  imagen: 'imagen',
-  boton: 'boton',
-  archivo: 'archivo'
-} as const
-
-export type mensaje_tipo = (typeof mensaje_tipo)[keyof typeof mensaje_tipo]

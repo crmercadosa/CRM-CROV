@@ -42,12 +42,13 @@ interface ActualizarRolResponse {
 
 /**
  * --------------------------------------------------------------------------
- * Cargar usuarios con filtros opcionales
+ * Cargar usuarios con filtros opcionales y paginación
  * --------------------------------------------------------------------------
  */
 export async function cargarUsuarios(
-  filtros?: Partial<FiltrosUsuarios>
-): Promise<UsuariosResponse> {
+  filtros?: Partial<FiltrosUsuarios>,
+  pagina: number = 1
+): Promise<UsuariosResponse & { totalPages: number; paginaActual: number }> {
   const params = new URLSearchParams()
 
   if (filtros?.sinSucursal) {
@@ -62,9 +63,11 @@ export async function cargarUsuarios(
   if (filtros?.busqueda) {
     params.append('busqueda', filtros.busqueda)
   }
+  
+  params.append('pagina', String(pagina))
 
   const queryString = params.toString()
-  const url = queryString ? `/api/usuarios?${queryString}` : '/api/usuarios'
+  const url = `/api/usuarios?${queryString}`
 
   const response = await fetch(url)
 
@@ -118,7 +121,7 @@ export async function cargarRoles(): Promise<RolesResponse> {
  */
 export async function actualizarRolUsuario(
   id: string,
-  nuevoRol: 'cliente' | 'admin'
+  nuevoRol: 'cliente' | 'admin' | 'agente'
 ): Promise<ActualizarRolResponse> {
   const response = await fetch('/api/usuarios', {
     method: 'PATCH',

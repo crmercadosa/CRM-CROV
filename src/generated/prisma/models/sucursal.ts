@@ -28,17 +28,17 @@ export type AggregateSucursal = {
 
 export type SucursalAvgAggregateOutputType = {
   id: number | null
-  id_usuario: number | null
+  fk_usuario: number | null
 }
 
 export type SucursalSumAggregateOutputType = {
   id: bigint | null
-  id_usuario: bigint | null
+  fk_usuario: bigint | null
 }
 
 export type SucursalMinAggregateOutputType = {
   id: bigint | null
-  id_usuario: bigint | null
+  fk_usuario: bigint | null
   nombre_negocio: string | null
   giro: string | null
   ciudad: string | null
@@ -49,7 +49,7 @@ export type SucursalMinAggregateOutputType = {
 
 export type SucursalMaxAggregateOutputType = {
   id: bigint | null
-  id_usuario: bigint | null
+  fk_usuario: bigint | null
   nombre_negocio: string | null
   giro: string | null
   ciudad: string | null
@@ -60,7 +60,7 @@ export type SucursalMaxAggregateOutputType = {
 
 export type SucursalCountAggregateOutputType = {
   id: number
-  id_usuario: number
+  fk_usuario: number
   nombre_negocio: number
   giro: number
   ciudad: number
@@ -73,17 +73,17 @@ export type SucursalCountAggregateOutputType = {
 
 export type SucursalAvgAggregateInputType = {
   id?: true
-  id_usuario?: true
+  fk_usuario?: true
 }
 
 export type SucursalSumAggregateInputType = {
   id?: true
-  id_usuario?: true
+  fk_usuario?: true
 }
 
 export type SucursalMinAggregateInputType = {
   id?: true
-  id_usuario?: true
+  fk_usuario?: true
   nombre_negocio?: true
   giro?: true
   ciudad?: true
@@ -94,7 +94,7 @@ export type SucursalMinAggregateInputType = {
 
 export type SucursalMaxAggregateInputType = {
   id?: true
-  id_usuario?: true
+  fk_usuario?: true
   nombre_negocio?: true
   giro?: true
   ciudad?: true
@@ -105,7 +105,7 @@ export type SucursalMaxAggregateInputType = {
 
 export type SucursalCountAggregateInputType = {
   id?: true
-  id_usuario?: true
+  fk_usuario?: true
   nombre_negocio?: true
   giro?: true
   ciudad?: true
@@ -203,7 +203,7 @@ export type sucursalGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type SucursalGroupByOutputType = {
   id: bigint
-  id_usuario: bigint
+  fk_usuario: bigint | null
   nombre_negocio: string | null
   giro: string | null
   ciudad: string | null
@@ -237,7 +237,7 @@ export type sucursalWhereInput = {
   OR?: Prisma.sucursalWhereInput[]
   NOT?: Prisma.sucursalWhereInput | Prisma.sucursalWhereInput[]
   id?: Prisma.BigIntFilter<"sucursal"> | bigint | number
-  id_usuario?: Prisma.BigIntFilter<"sucursal"> | bigint | number
+  fk_usuario?: Prisma.BigIntNullableFilter<"sucursal"> | bigint | number | null
   nombre_negocio?: Prisma.StringNullableFilter<"sucursal"> | string | null
   giro?: Prisma.StringNullableFilter<"sucursal"> | string | null
   ciudad?: Prisma.StringNullableFilter<"sucursal"> | string | null
@@ -246,12 +246,12 @@ export type sucursalWhereInput = {
   estado?: Prisma.StringNullableFilter<"sucursal"> | string | null
   canal?: Prisma.CanalListRelationFilter
   lead_prospectos?: Prisma.Lead_prospectosListRelationFilter
-  usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.usuarioWhereInput>
+  usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.usuarioWhereInput> | null
 }
 
 export type sucursalOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  id_usuario?: Prisma.SortOrder
+  fk_usuario?: Prisma.SortOrderInput | Prisma.SortOrder
   nombre_negocio?: Prisma.SortOrderInput | Prisma.SortOrder
   giro?: Prisma.SortOrderInput | Prisma.SortOrder
   ciudad?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -269,7 +269,7 @@ export type sucursalWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.sucursalWhereInput | Prisma.sucursalWhereInput[]
   OR?: Prisma.sucursalWhereInput[]
   NOT?: Prisma.sucursalWhereInput | Prisma.sucursalWhereInput[]
-  id_usuario?: Prisma.BigIntFilter<"sucursal"> | bigint | number
+  fk_usuario?: Prisma.BigIntNullableFilter<"sucursal"> | bigint | number | null
   nombre_negocio?: Prisma.StringNullableFilter<"sucursal"> | string | null
   giro?: Prisma.StringNullableFilter<"sucursal"> | string | null
   ciudad?: Prisma.StringNullableFilter<"sucursal"> | string | null
@@ -278,12 +278,12 @@ export type sucursalWhereUniqueInput = Prisma.AtLeast<{
   estado?: Prisma.StringNullableFilter<"sucursal"> | string | null
   canal?: Prisma.CanalListRelationFilter
   lead_prospectos?: Prisma.Lead_prospectosListRelationFilter
-  usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.usuarioWhereInput>
+  usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.usuarioWhereInput> | null
 }, "id">
 
 export type sucursalOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  id_usuario?: Prisma.SortOrder
+  fk_usuario?: Prisma.SortOrderInput | Prisma.SortOrder
   nombre_negocio?: Prisma.SortOrderInput | Prisma.SortOrder
   giro?: Prisma.SortOrderInput | Prisma.SortOrder
   ciudad?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -302,7 +302,7 @@ export type sucursalScalarWhereWithAggregatesInput = {
   OR?: Prisma.sucursalScalarWhereWithAggregatesInput[]
   NOT?: Prisma.sucursalScalarWhereWithAggregatesInput | Prisma.sucursalScalarWhereWithAggregatesInput[]
   id?: Prisma.BigIntWithAggregatesFilter<"sucursal"> | bigint | number
-  id_usuario?: Prisma.BigIntWithAggregatesFilter<"sucursal"> | bigint | number
+  fk_usuario?: Prisma.BigIntNullableWithAggregatesFilter<"sucursal"> | bigint | number | null
   nombre_negocio?: Prisma.StringNullableWithAggregatesFilter<"sucursal"> | string | null
   giro?: Prisma.StringNullableWithAggregatesFilter<"sucursal"> | string | null
   ciudad?: Prisma.StringNullableWithAggregatesFilter<"sucursal"> | string | null
@@ -321,12 +321,12 @@ export type sucursalCreateInput = {
   estado?: string | null
   canal?: Prisma.canalCreateNestedManyWithoutSucursalInput
   lead_prospectos?: Prisma.lead_prospectosCreateNestedManyWithoutSucursalInput
-  usuario: Prisma.usuarioCreateNestedOneWithoutSucursalInput
+  usuario?: Prisma.usuarioCreateNestedOneWithoutSucursalInput
 }
 
 export type sucursalUncheckedCreateInput = {
   id?: bigint | number
-  id_usuario: bigint | number
+  fk_usuario?: bigint | number | null
   nombre_negocio?: string | null
   giro?: string | null
   ciudad?: string | null
@@ -347,12 +347,12 @@ export type sucursalUpdateInput = {
   estado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   canal?: Prisma.canalUpdateManyWithoutSucursalNestedInput
   lead_prospectos?: Prisma.lead_prospectosUpdateManyWithoutSucursalNestedInput
-  usuario?: Prisma.usuarioUpdateOneRequiredWithoutSucursalNestedInput
+  usuario?: Prisma.usuarioUpdateOneWithoutSucursalNestedInput
 }
 
 export type sucursalUncheckedUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  id_usuario?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  fk_usuario?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   nombre_negocio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   giro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -365,7 +365,7 @@ export type sucursalUncheckedUpdateInput = {
 
 export type sucursalCreateManyInput = {
   id?: bigint | number
-  id_usuario: bigint | number
+  fk_usuario?: bigint | number | null
   nombre_negocio?: string | null
   giro?: string | null
   ciudad?: string | null
@@ -386,7 +386,7 @@ export type sucursalUpdateManyMutationInput = {
 
 export type sucursalUncheckedUpdateManyInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  id_usuario?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  fk_usuario?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   nombre_negocio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   giro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -413,7 +413,7 @@ export type sucursalOrderByRelevanceInput = {
 
 export type sucursalCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_usuario?: Prisma.SortOrder
+  fk_usuario?: Prisma.SortOrder
   nombre_negocio?: Prisma.SortOrder
   giro?: Prisma.SortOrder
   ciudad?: Prisma.SortOrder
@@ -424,12 +424,12 @@ export type sucursalCountOrderByAggregateInput = {
 
 export type sucursalAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_usuario?: Prisma.SortOrder
+  fk_usuario?: Prisma.SortOrder
 }
 
 export type sucursalMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_usuario?: Prisma.SortOrder
+  fk_usuario?: Prisma.SortOrder
   nombre_negocio?: Prisma.SortOrder
   giro?: Prisma.SortOrder
   ciudad?: Prisma.SortOrder
@@ -440,7 +440,7 @@ export type sucursalMaxOrderByAggregateInput = {
 
 export type sucursalMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_usuario?: Prisma.SortOrder
+  fk_usuario?: Prisma.SortOrder
   nombre_negocio?: Prisma.SortOrder
   giro?: Prisma.SortOrder
   ciudad?: Prisma.SortOrder
@@ -451,7 +451,7 @@ export type sucursalMinOrderByAggregateInput = {
 
 export type sucursalSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  id_usuario?: Prisma.SortOrder
+  fk_usuario?: Prisma.SortOrder
 }
 
 export type SucursalListRelationFilter = {
@@ -545,12 +545,12 @@ export type sucursalCreateWithoutCanalInput = {
   url_redes_sociales?: string | null
   estado?: string | null
   lead_prospectos?: Prisma.lead_prospectosCreateNestedManyWithoutSucursalInput
-  usuario: Prisma.usuarioCreateNestedOneWithoutSucursalInput
+  usuario?: Prisma.usuarioCreateNestedOneWithoutSucursalInput
 }
 
 export type sucursalUncheckedCreateWithoutCanalInput = {
   id?: bigint | number
-  id_usuario: bigint | number
+  fk_usuario?: bigint | number | null
   nombre_negocio?: string | null
   giro?: string | null
   ciudad?: string | null
@@ -585,12 +585,12 @@ export type sucursalUpdateWithoutCanalInput = {
   url_redes_sociales?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lead_prospectos?: Prisma.lead_prospectosUpdateManyWithoutSucursalNestedInput
-  usuario?: Prisma.usuarioUpdateOneRequiredWithoutSucursalNestedInput
+  usuario?: Prisma.usuarioUpdateOneWithoutSucursalNestedInput
 }
 
 export type sucursalUncheckedUpdateWithoutCanalInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  id_usuario?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  fk_usuario?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   nombre_negocio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   giro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -609,12 +609,12 @@ export type sucursalCreateWithoutLead_prospectosInput = {
   url_redes_sociales?: string | null
   estado?: string | null
   canal?: Prisma.canalCreateNestedManyWithoutSucursalInput
-  usuario: Prisma.usuarioCreateNestedOneWithoutSucursalInput
+  usuario?: Prisma.usuarioCreateNestedOneWithoutSucursalInput
 }
 
 export type sucursalUncheckedCreateWithoutLead_prospectosInput = {
   id?: bigint | number
-  id_usuario: bigint | number
+  fk_usuario?: bigint | number | null
   nombre_negocio?: string | null
   giro?: string | null
   ciudad?: string | null
@@ -649,12 +649,12 @@ export type sucursalUpdateWithoutLead_prospectosInput = {
   url_redes_sociales?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estado?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   canal?: Prisma.canalUpdateManyWithoutSucursalNestedInput
-  usuario?: Prisma.usuarioUpdateOneRequiredWithoutSucursalNestedInput
+  usuario?: Prisma.usuarioUpdateOneWithoutSucursalNestedInput
 }
 
 export type sucursalUncheckedUpdateWithoutLead_prospectosInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  id_usuario?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  fk_usuario?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   nombre_negocio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   giro?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ciudad?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -719,7 +719,7 @@ export type sucursalScalarWhereInput = {
   OR?: Prisma.sucursalScalarWhereInput[]
   NOT?: Prisma.sucursalScalarWhereInput | Prisma.sucursalScalarWhereInput[]
   id?: Prisma.BigIntFilter<"sucursal"> | bigint | number
-  id_usuario?: Prisma.BigIntFilter<"sucursal"> | bigint | number
+  fk_usuario?: Prisma.BigIntNullableFilter<"sucursal"> | bigint | number | null
   nombre_negocio?: Prisma.StringNullableFilter<"sucursal"> | string | null
   giro?: Prisma.StringNullableFilter<"sucursal"> | string | null
   ciudad?: Prisma.StringNullableFilter<"sucursal"> | string | null
@@ -814,7 +814,7 @@ export type SucursalCountOutputTypeCountLead_prospectosArgs<ExtArgs extends runt
 
 export type sucursalSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  id_usuario?: boolean
+  fk_usuario?: boolean
   nombre_negocio?: boolean
   giro?: boolean
   ciudad?: boolean
@@ -823,7 +823,7 @@ export type sucursalSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   estado?: boolean
   canal?: boolean | Prisma.sucursal$canalArgs<ExtArgs>
   lead_prospectos?: boolean | Prisma.sucursal$lead_prospectosArgs<ExtArgs>
-  usuario?: boolean | Prisma.usuarioDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.sucursal$usuarioArgs<ExtArgs>
   _count?: boolean | Prisma.SucursalCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["sucursal"]>
 
@@ -831,7 +831,7 @@ export type sucursalSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type sucursalSelectScalar = {
   id?: boolean
-  id_usuario?: boolean
+  fk_usuario?: boolean
   nombre_negocio?: boolean
   giro?: boolean
   ciudad?: boolean
@@ -840,11 +840,11 @@ export type sucursalSelectScalar = {
   estado?: boolean
 }
 
-export type sucursalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "id_usuario" | "nombre_negocio" | "giro" | "ciudad" | "horarios" | "url_redes_sociales" | "estado", ExtArgs["result"]["sucursal"]>
+export type sucursalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "fk_usuario" | "nombre_negocio" | "giro" | "ciudad" | "horarios" | "url_redes_sociales" | "estado", ExtArgs["result"]["sucursal"]>
 export type sucursalInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   canal?: boolean | Prisma.sucursal$canalArgs<ExtArgs>
   lead_prospectos?: boolean | Prisma.sucursal$lead_prospectosArgs<ExtArgs>
-  usuario?: boolean | Prisma.usuarioDefaultArgs<ExtArgs>
+  usuario?: boolean | Prisma.sucursal$usuarioArgs<ExtArgs>
   _count?: boolean | Prisma.SucursalCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -853,11 +853,11 @@ export type $sucursalPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   objects: {
     canal: Prisma.$canalPayload<ExtArgs>[]
     lead_prospectos: Prisma.$lead_prospectosPayload<ExtArgs>[]
-    usuario: Prisma.$usuarioPayload<ExtArgs>
+    usuario: Prisma.$usuarioPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
-    id_usuario: bigint
+    fk_usuario: bigint | null
     nombre_negocio: string | null
     giro: string | null
     ciudad: string | null
@@ -1206,7 +1206,7 @@ export interface Prisma__sucursalClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   canal<T extends Prisma.sucursal$canalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.sucursal$canalArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$canalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   lead_prospectos<T extends Prisma.sucursal$lead_prospectosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.sucursal$lead_prospectosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$lead_prospectosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  usuario<T extends Prisma.usuarioDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usuarioDefaultArgs<ExtArgs>>): Prisma.Prisma__usuarioClient<runtime.Types.Result.GetResult<Prisma.$usuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  usuario<T extends Prisma.sucursal$usuarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.sucursal$usuarioArgs<ExtArgs>>): Prisma.Prisma__usuarioClient<runtime.Types.Result.GetResult<Prisma.$usuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1237,7 +1237,7 @@ export interface Prisma__sucursalClient<T, Null = never, ExtArgs extends runtime
  */
 export interface sucursalFieldRefs {
   readonly id: Prisma.FieldRef<"sucursal", 'BigInt'>
-  readonly id_usuario: Prisma.FieldRef<"sucursal", 'BigInt'>
+  readonly fk_usuario: Prisma.FieldRef<"sucursal", 'BigInt'>
   readonly nombre_negocio: Prisma.FieldRef<"sucursal", 'String'>
   readonly giro: Prisma.FieldRef<"sucursal", 'String'>
   readonly ciudad: Prisma.FieldRef<"sucursal", 'String'>
@@ -1462,7 +1462,7 @@ export type sucursalCreateArgs<ExtArgs extends runtime.Types.Extensions.Internal
   /**
    * The data needed to create a sucursal.
    */
-  data: Prisma.XOR<Prisma.sucursalCreateInput, Prisma.sucursalUncheckedCreateInput>
+  data?: Prisma.XOR<Prisma.sucursalCreateInput, Prisma.sucursalUncheckedCreateInput>
 }
 
 /**
@@ -1632,6 +1632,25 @@ export type sucursal$lead_prospectosArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.Lead_prospectosScalarFieldEnum | Prisma.Lead_prospectosScalarFieldEnum[]
+}
+
+/**
+ * sucursal.usuario
+ */
+export type sucursal$usuarioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the usuario
+   */
+  select?: Prisma.usuarioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the usuario
+   */
+  omit?: Prisma.usuarioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.usuarioInclude<ExtArgs> | null
+  where?: Prisma.usuarioWhereInput
 }
 
 /**

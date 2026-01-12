@@ -15,6 +15,11 @@ export default auth((req: NextRequest & { auth: any }) => {
     return NextResponse.redirect(new URL('/dashboard', req.nextUrl));
   }
 
+  // Verificación de email - El usuario debe estar verificado para acceder al dashboard
+  if (user && pathname.startsWith('/dashboard') && user.email_verificado === false) {
+    return NextResponse.redirect(new URL('/verify-email', req.nextUrl));
+  }
+
   // Autorización por rol - Administrador
   // Solo los administradores pueden acceder a estas rutas
   const adminRoutes = ['/dashboard'];

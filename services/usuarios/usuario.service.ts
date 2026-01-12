@@ -19,12 +19,12 @@ import { prisma } from "@/lib/prisma";
  */
 
 export interface UsuarioConSucursal {
-  id: bigint;
+  id_usuario: bigint;
   email: string;
   nombre: string | null;
   tipo: string | null;
   estado: string | null;
-  fecha_creacion: Date | null;
+  created_at: Date | null;
   sucursal: {
     id: bigint;
     nombre_negocio: string | null;
@@ -104,12 +104,17 @@ export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<Usuario
         },
       },
       orderBy: {
-        fecha_creacion: 'desc',
+        created_at: 'desc',
       },
     });
 
     return usuarios.map(usuario => ({
-      ...usuario,
+      id_usuario: usuario.id_usuario,
+      email: usuario.email,
+      nombre: usuario.nombre,
+      tipo: usuario.tipo,
+      estado: usuario.estado,
+      created_at: usuario.created_at,
       sucursal: usuario.sucursal[0] || null,
     }));
   } catch (error) {
@@ -126,7 +131,7 @@ export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<Usuario
 export async function obtenerUsuarioById(id: bigint): Promise<UsuarioConSucursal | null> {
   try {
     const usuario = await prisma.usuario.findUnique({
-      where: { id },
+      where: { id_usuario: id },
       include: {
         sucursal: {
           where: {
@@ -145,7 +150,12 @@ export async function obtenerUsuarioById(id: bigint): Promise<UsuarioConSucursal
     if (!usuario) return null;
 
     return {
-      ...usuario,
+      id_usuario: usuario.id_usuario,
+      email: usuario.email,
+      nombre: usuario.nombre,
+      tipo: usuario.tipo,
+      estado: usuario.estado,
+      created_at: usuario.created_at,
       sucursal: usuario.sucursal[0] || null,
     };
   } catch (error) {
@@ -271,10 +281,10 @@ export async function obtenerTiposRol() {
  * Actualizar el rol de un usuario
  * --------------------------------------------------------------------------
  */
-export async function actualizarRolUsuario(id: bigint, nuevoRol: 'cliente' | 'admin') {
+export async function actualizarRolUsuario(id: bigint, nuevoRol: 'cliente' | 'admin' | 'agente') {
   try {
     const usuario = await prisma.usuario.update({
-      where: { id },
+      where: { id_usuario: id },
       data: { tipo: nuevoRol },
     });
     return usuario;

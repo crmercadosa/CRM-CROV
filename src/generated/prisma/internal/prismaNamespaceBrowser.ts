@@ -60,7 +60,8 @@ export const ModelName = {
   prompt: 'prompt',
   prompt_atributos: 'prompt_atributos',
   sucursal: 'sucursal',
-  usuario: 'usuario'
+  usuario: 'usuario',
+  verification_tokens: 'verification_tokens'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -173,7 +174,7 @@ export type Prompt_atributosScalarFieldEnum = (typeof Prompt_atributosScalarFiel
 
 export const SucursalScalarFieldEnum = {
   id: 'id',
-  id_usuario: 'id_usuario',
+  fk_usuario: 'fk_usuario',
   nombre_negocio: 'nombre_negocio',
   giro: 'giro',
   ciudad: 'ciudad',
@@ -186,16 +187,32 @@ export type SucursalScalarFieldEnum = (typeof SucursalScalarFieldEnum)[keyof typ
 
 
 export const UsuarioScalarFieldEnum = {
-  id: 'id',
-  tipo: 'tipo',
-  estado: 'estado',
+  id_usuario: 'id_usuario',
   email: 'email',
   password_hash: 'password_hash',
-  fecha_creacion: 'fecha_creacion',
+  provedor: 'provedor',
+  email_verificado: 'email_verificado',
+  estado: 'estado',
+  tipo: 'tipo',
+  created_at: 'created_at',
   nombre: 'nombre'
 } as const
 
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
+
+
+export const Verification_tokensScalarFieldEnum = {
+  id: 'id',
+  id_usuario: 'id_usuario',
+  token_hash: 'token_hash',
+  type: 'type',
+  expires_at: 'expires_at',
+  used: 'used',
+  attempts: 'attempts',
+  created_at: 'created_at'
+} as const
+
+export type Verification_tokensScalarFieldEnum = (typeof Verification_tokensScalarFieldEnum)[keyof typeof Verification_tokensScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -329,4 +346,12 @@ export const usuarioOrderByRelevanceFieldEnum = {
 } as const
 
 export type usuarioOrderByRelevanceFieldEnum = (typeof usuarioOrderByRelevanceFieldEnum)[keyof typeof usuarioOrderByRelevanceFieldEnum]
+
+
+export const verification_tokensOrderByRelevanceFieldEnum = {
+  id: 'id',
+  token_hash: 'token_hash'
+} as const
+
+export type verification_tokensOrderByRelevanceFieldEnum = (typeof verification_tokensOrderByRelevanceFieldEnum)[keyof typeof verification_tokensOrderByRelevanceFieldEnum]
 

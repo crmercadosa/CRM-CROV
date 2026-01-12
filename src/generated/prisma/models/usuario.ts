@@ -27,80 +27,92 @@ export type AggregateUsuario = {
 }
 
 export type UsuarioAvgAggregateOutputType = {
-  id: number | null
+  id_usuario: number | null
 }
 
 export type UsuarioSumAggregateOutputType = {
-  id: bigint | null
+  id_usuario: bigint | null
 }
 
 export type UsuarioMinAggregateOutputType = {
-  id: bigint | null
-  tipo: $Enums.usuario_tipo | null
-  estado: $Enums.usuario_estado | null
+  id_usuario: bigint | null
   email: string | null
   password_hash: string | null
-  fecha_creacion: Date | null
+  provedor: $Enums.usuario_provedor | null
+  email_verificado: boolean | null
+  estado: $Enums.usuario_estado | null
+  tipo: $Enums.usuario_tipo | null
+  created_at: Date | null
   nombre: string | null
 }
 
 export type UsuarioMaxAggregateOutputType = {
-  id: bigint | null
-  tipo: $Enums.usuario_tipo | null
-  estado: $Enums.usuario_estado | null
+  id_usuario: bigint | null
   email: string | null
   password_hash: string | null
-  fecha_creacion: Date | null
+  provedor: $Enums.usuario_provedor | null
+  email_verificado: boolean | null
+  estado: $Enums.usuario_estado | null
+  tipo: $Enums.usuario_tipo | null
+  created_at: Date | null
   nombre: string | null
 }
 
 export type UsuarioCountAggregateOutputType = {
-  id: number
-  tipo: number
-  estado: number
+  id_usuario: number
   email: number
   password_hash: number
-  fecha_creacion: number
+  provedor: number
+  email_verificado: number
+  estado: number
+  tipo: number
+  created_at: number
   nombre: number
   _all: number
 }
 
 
 export type UsuarioAvgAggregateInputType = {
-  id?: true
+  id_usuario?: true
 }
 
 export type UsuarioSumAggregateInputType = {
-  id?: true
+  id_usuario?: true
 }
 
 export type UsuarioMinAggregateInputType = {
-  id?: true
-  tipo?: true
-  estado?: true
+  id_usuario?: true
   email?: true
   password_hash?: true
-  fecha_creacion?: true
+  provedor?: true
+  email_verificado?: true
+  estado?: true
+  tipo?: true
+  created_at?: true
   nombre?: true
 }
 
 export type UsuarioMaxAggregateInputType = {
-  id?: true
-  tipo?: true
-  estado?: true
+  id_usuario?: true
   email?: true
   password_hash?: true
-  fecha_creacion?: true
+  provedor?: true
+  email_verificado?: true
+  estado?: true
+  tipo?: true
+  created_at?: true
   nombre?: true
 }
 
 export type UsuarioCountAggregateInputType = {
-  id?: true
-  tipo?: true
-  estado?: true
+  id_usuario?: true
   email?: true
   password_hash?: true
-  fecha_creacion?: true
+  provedor?: true
+  email_verificado?: true
+  estado?: true
+  tipo?: true
+  created_at?: true
   nombre?: true
   _all?: true
 }
@@ -192,13 +204,15 @@ export type usuarioGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 export type UsuarioGroupByOutputType = {
-  id: bigint
-  tipo: $Enums.usuario_tipo
-  estado: $Enums.usuario_estado
+  id_usuario: bigint
   email: string
-  password_hash: string
-  fecha_creacion: Date | null
-  nombre: string | null
+  password_hash: string | null
+  provedor: $Enums.usuario_provedor
+  email_verificado: boolean
+  estado: $Enums.usuario_estado
+  tipo: $Enums.usuario_tipo
+  created_at: Date
+  nombre: string
   _count: UsuarioCountAggregateOutputType | null
   _avg: UsuarioAvgAggregateOutputType | null
   _sum: UsuarioSumAggregateOutputType | null
@@ -225,50 +239,61 @@ export type usuarioWhereInput = {
   AND?: Prisma.usuarioWhereInput | Prisma.usuarioWhereInput[]
   OR?: Prisma.usuarioWhereInput[]
   NOT?: Prisma.usuarioWhereInput | Prisma.usuarioWhereInput[]
-  id?: Prisma.BigIntFilter<"usuario"> | bigint | number
-  tipo?: Prisma.Enumusuario_tipoFilter<"usuario"> | $Enums.usuario_tipo
-  estado?: Prisma.Enumusuario_estadoFilter<"usuario"> | $Enums.usuario_estado
+  id_usuario?: Prisma.BigIntFilter<"usuario"> | bigint | number
   email?: Prisma.StringFilter<"usuario"> | string
-  password_hash?: Prisma.StringFilter<"usuario"> | string
-  fecha_creacion?: Prisma.DateTimeNullableFilter<"usuario"> | Date | string | null
-  nombre?: Prisma.StringNullableFilter<"usuario"> | string | null
+  password_hash?: Prisma.StringNullableFilter<"usuario"> | string | null
+  provedor?: Prisma.Enumusuario_provedorFilter<"usuario"> | $Enums.usuario_provedor
+  email_verificado?: Prisma.BoolFilter<"usuario"> | boolean
+  estado?: Prisma.Enumusuario_estadoFilter<"usuario"> | $Enums.usuario_estado
+  tipo?: Prisma.Enumusuario_tipoFilter<"usuario"> | $Enums.usuario_tipo
+  created_at?: Prisma.DateTimeFilter<"usuario"> | Date | string
+  nombre?: Prisma.StringFilter<"usuario"> | string
   sucursal?: Prisma.SucursalListRelationFilter
+  verification_tokens?: Prisma.Verification_tokensListRelationFilter
 }
 
 export type usuarioOrderByWithRelationInput = {
-  id?: Prisma.SortOrder
-  tipo?: Prisma.SortOrder
-  estado?: Prisma.SortOrder
+  id_usuario?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  password_hash?: Prisma.SortOrder
-  fecha_creacion?: Prisma.SortOrderInput | Prisma.SortOrder
-  nombre?: Prisma.SortOrderInput | Prisma.SortOrder
+  password_hash?: Prisma.SortOrderInput | Prisma.SortOrder
+  provedor?: Prisma.SortOrder
+  email_verificado?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  nombre?: Prisma.SortOrder
   sucursal?: Prisma.sucursalOrderByRelationAggregateInput
+  verification_tokens?: Prisma.verification_tokensOrderByRelationAggregateInput
   _relevance?: Prisma.usuarioOrderByRelevanceInput
 }
 
 export type usuarioWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id_usuario?: bigint | number
   email?: string
   AND?: Prisma.usuarioWhereInput | Prisma.usuarioWhereInput[]
   OR?: Prisma.usuarioWhereInput[]
   NOT?: Prisma.usuarioWhereInput | Prisma.usuarioWhereInput[]
-  tipo?: Prisma.Enumusuario_tipoFilter<"usuario"> | $Enums.usuario_tipo
+  password_hash?: Prisma.StringNullableFilter<"usuario"> | string | null
+  provedor?: Prisma.Enumusuario_provedorFilter<"usuario"> | $Enums.usuario_provedor
+  email_verificado?: Prisma.BoolFilter<"usuario"> | boolean
   estado?: Prisma.Enumusuario_estadoFilter<"usuario"> | $Enums.usuario_estado
-  password_hash?: Prisma.StringFilter<"usuario"> | string
-  fecha_creacion?: Prisma.DateTimeNullableFilter<"usuario"> | Date | string | null
-  nombre?: Prisma.StringNullableFilter<"usuario"> | string | null
+  tipo?: Prisma.Enumusuario_tipoFilter<"usuario"> | $Enums.usuario_tipo
+  created_at?: Prisma.DateTimeFilter<"usuario"> | Date | string
+  nombre?: Prisma.StringFilter<"usuario"> | string
   sucursal?: Prisma.SucursalListRelationFilter
-}, "id" | "email">
+  verification_tokens?: Prisma.Verification_tokensListRelationFilter
+}, "id_usuario" | "email">
 
 export type usuarioOrderByWithAggregationInput = {
-  id?: Prisma.SortOrder
-  tipo?: Prisma.SortOrder
-  estado?: Prisma.SortOrder
+  id_usuario?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  password_hash?: Prisma.SortOrder
-  fecha_creacion?: Prisma.SortOrderInput | Prisma.SortOrder
-  nombre?: Prisma.SortOrderInput | Prisma.SortOrder
+  password_hash?: Prisma.SortOrderInput | Prisma.SortOrder
+  provedor?: Prisma.SortOrder
+  email_verificado?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  nombre?: Prisma.SortOrder
   _count?: Prisma.usuarioCountOrderByAggregateInput
   _avg?: Prisma.usuarioAvgOrderByAggregateInput
   _max?: Prisma.usuarioMaxOrderByAggregateInput
@@ -280,92 +305,112 @@ export type usuarioScalarWhereWithAggregatesInput = {
   AND?: Prisma.usuarioScalarWhereWithAggregatesInput | Prisma.usuarioScalarWhereWithAggregatesInput[]
   OR?: Prisma.usuarioScalarWhereWithAggregatesInput[]
   NOT?: Prisma.usuarioScalarWhereWithAggregatesInput | Prisma.usuarioScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"usuario"> | bigint | number
-  tipo?: Prisma.Enumusuario_tipoWithAggregatesFilter<"usuario"> | $Enums.usuario_tipo
-  estado?: Prisma.Enumusuario_estadoWithAggregatesFilter<"usuario"> | $Enums.usuario_estado
+  id_usuario?: Prisma.BigIntWithAggregatesFilter<"usuario"> | bigint | number
   email?: Prisma.StringWithAggregatesFilter<"usuario"> | string
-  password_hash?: Prisma.StringWithAggregatesFilter<"usuario"> | string
-  fecha_creacion?: Prisma.DateTimeNullableWithAggregatesFilter<"usuario"> | Date | string | null
-  nombre?: Prisma.StringNullableWithAggregatesFilter<"usuario"> | string | null
+  password_hash?: Prisma.StringNullableWithAggregatesFilter<"usuario"> | string | null
+  provedor?: Prisma.Enumusuario_provedorWithAggregatesFilter<"usuario"> | $Enums.usuario_provedor
+  email_verificado?: Prisma.BoolWithAggregatesFilter<"usuario"> | boolean
+  estado?: Prisma.Enumusuario_estadoWithAggregatesFilter<"usuario"> | $Enums.usuario_estado
+  tipo?: Prisma.Enumusuario_tipoWithAggregatesFilter<"usuario"> | $Enums.usuario_tipo
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"usuario"> | Date | string
+  nombre?: Prisma.StringWithAggregatesFilter<"usuario"> | string
 }
 
 export type usuarioCreateInput = {
-  id?: bigint | number
-  tipo?: $Enums.usuario_tipo
-  estado?: $Enums.usuario_estado
+  id_usuario?: bigint | number
   email: string
-  password_hash: string
-  fecha_creacion?: Date | string | null
-  nombre?: string | null
+  password_hash?: string | null
+  provedor?: $Enums.usuario_provedor
+  email_verificado?: boolean
+  estado?: $Enums.usuario_estado
+  tipo?: $Enums.usuario_tipo
+  created_at?: Date | string
+  nombre: string
   sucursal?: Prisma.sucursalCreateNestedManyWithoutUsuarioInput
+  verification_tokens?: Prisma.verification_tokensCreateNestedManyWithoutUsuarioInput
 }
 
 export type usuarioUncheckedCreateInput = {
-  id?: bigint | number
-  tipo?: $Enums.usuario_tipo
-  estado?: $Enums.usuario_estado
+  id_usuario?: bigint | number
   email: string
-  password_hash: string
-  fecha_creacion?: Date | string | null
-  nombre?: string | null
+  password_hash?: string | null
+  provedor?: $Enums.usuario_provedor
+  email_verificado?: boolean
+  estado?: $Enums.usuario_estado
+  tipo?: $Enums.usuario_tipo
+  created_at?: Date | string
+  nombre: string
   sucursal?: Prisma.sucursalUncheckedCreateNestedManyWithoutUsuarioInput
+  verification_tokens?: Prisma.verification_tokensUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type usuarioUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
-  estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
+  id_usuario?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_creacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provedor?: Prisma.Enumusuario_provedorFieldUpdateOperationsInput | $Enums.usuario_provedor
+  email_verificado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
+  tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
   sucursal?: Prisma.sucursalUpdateManyWithoutUsuarioNestedInput
+  verification_tokens?: Prisma.verification_tokensUpdateManyWithoutUsuarioNestedInput
 }
 
 export type usuarioUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
-  estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
+  id_usuario?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_creacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provedor?: Prisma.Enumusuario_provedorFieldUpdateOperationsInput | $Enums.usuario_provedor
+  email_verificado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
+  tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
   sucursal?: Prisma.sucursalUncheckedUpdateManyWithoutUsuarioNestedInput
+  verification_tokens?: Prisma.verification_tokensUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 export type usuarioCreateManyInput = {
-  id?: bigint | number
-  tipo?: $Enums.usuario_tipo
-  estado?: $Enums.usuario_estado
+  id_usuario?: bigint | number
   email: string
-  password_hash: string
-  fecha_creacion?: Date | string | null
-  nombre?: string | null
+  password_hash?: string | null
+  provedor?: $Enums.usuario_provedor
+  email_verificado?: boolean
+  estado?: $Enums.usuario_estado
+  tipo?: $Enums.usuario_tipo
+  created_at?: Date | string
+  nombre: string
 }
 
 export type usuarioUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
-  estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
+  id_usuario?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_creacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provedor?: Prisma.Enumusuario_provedorFieldUpdateOperationsInput | $Enums.usuario_provedor
+  email_verificado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
+  tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type usuarioUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
-  estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
+  id_usuario?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_creacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provedor?: Prisma.Enumusuario_provedorFieldUpdateOperationsInput | $Enums.usuario_provedor
+  email_verificado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
+  tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type UsuarioScalarRelationFilter = {
-  is?: Prisma.usuarioWhereInput
-  isNot?: Prisma.usuarioWhereInput
+export type UsuarioNullableScalarRelationFilter = {
+  is?: Prisma.usuarioWhereInput | null
+  isNot?: Prisma.usuarioWhereInput | null
 }
 
 export type usuarioOrderByRelevanceInput = {
@@ -375,41 +420,52 @@ export type usuarioOrderByRelevanceInput = {
 }
 
 export type usuarioCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  tipo?: Prisma.SortOrder
-  estado?: Prisma.SortOrder
+  id_usuario?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password_hash?: Prisma.SortOrder
-  fecha_creacion?: Prisma.SortOrder
+  provedor?: Prisma.SortOrder
+  email_verificado?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
 }
 
 export type usuarioAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
+  id_usuario?: Prisma.SortOrder
 }
 
 export type usuarioMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  tipo?: Prisma.SortOrder
-  estado?: Prisma.SortOrder
+  id_usuario?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password_hash?: Prisma.SortOrder
-  fecha_creacion?: Prisma.SortOrder
+  provedor?: Prisma.SortOrder
+  email_verificado?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
 }
 
 export type usuarioMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  tipo?: Prisma.SortOrder
-  estado?: Prisma.SortOrder
+  id_usuario?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password_hash?: Prisma.SortOrder
-  fecha_creacion?: Prisma.SortOrder
+  provedor?: Prisma.SortOrder
+  email_verificado?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  tipo?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
   nombre?: Prisma.SortOrder
 }
 
 export type usuarioSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
+  id_usuario?: Prisma.SortOrder
+}
+
+export type UsuarioScalarRelationFilter = {
+  is?: Prisma.usuarioWhereInput
+  isNot?: Prisma.usuarioWhereInput
 }
 
 export type usuarioCreateNestedOneWithoutSucursalInput = {
@@ -418,40 +474,74 @@ export type usuarioCreateNestedOneWithoutSucursalInput = {
   connect?: Prisma.usuarioWhereUniqueInput
 }
 
-export type usuarioUpdateOneRequiredWithoutSucursalNestedInput = {
+export type usuarioUpdateOneWithoutSucursalNestedInput = {
   create?: Prisma.XOR<Prisma.usuarioCreateWithoutSucursalInput, Prisma.usuarioUncheckedCreateWithoutSucursalInput>
   connectOrCreate?: Prisma.usuarioCreateOrConnectWithoutSucursalInput
   upsert?: Prisma.usuarioUpsertWithoutSucursalInput
+  disconnect?: Prisma.usuarioWhereInput | boolean
+  delete?: Prisma.usuarioWhereInput | boolean
   connect?: Prisma.usuarioWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.usuarioUpdateToOneWithWhereWithoutSucursalInput, Prisma.usuarioUpdateWithoutSucursalInput>, Prisma.usuarioUncheckedUpdateWithoutSucursalInput>
 }
 
-export type Enumusuario_tipoFieldUpdateOperationsInput = {
-  set?: $Enums.usuario_tipo
+export type Enumusuario_provedorFieldUpdateOperationsInput = {
+  set?: $Enums.usuario_provedor
+}
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
 }
 
 export type Enumusuario_estadoFieldUpdateOperationsInput = {
   set?: $Enums.usuario_estado
 }
 
+export type Enumusuario_tipoFieldUpdateOperationsInput = {
+  set?: $Enums.usuario_tipo
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
+export type usuarioCreateNestedOneWithoutVerification_tokensInput = {
+  create?: Prisma.XOR<Prisma.usuarioCreateWithoutVerification_tokensInput, Prisma.usuarioUncheckedCreateWithoutVerification_tokensInput>
+  connectOrCreate?: Prisma.usuarioCreateOrConnectWithoutVerification_tokensInput
+  connect?: Prisma.usuarioWhereUniqueInput
+}
+
+export type usuarioUpdateOneRequiredWithoutVerification_tokensNestedInput = {
+  create?: Prisma.XOR<Prisma.usuarioCreateWithoutVerification_tokensInput, Prisma.usuarioUncheckedCreateWithoutVerification_tokensInput>
+  connectOrCreate?: Prisma.usuarioCreateOrConnectWithoutVerification_tokensInput
+  upsert?: Prisma.usuarioUpsertWithoutVerification_tokensInput
+  connect?: Prisma.usuarioWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usuarioUpdateToOneWithWhereWithoutVerification_tokensInput, Prisma.usuarioUpdateWithoutVerification_tokensInput>, Prisma.usuarioUncheckedUpdateWithoutVerification_tokensInput>
+}
+
 export type usuarioCreateWithoutSucursalInput = {
-  id?: bigint | number
-  tipo?: $Enums.usuario_tipo
-  estado?: $Enums.usuario_estado
+  id_usuario?: bigint | number
   email: string
-  password_hash: string
-  fecha_creacion?: Date | string | null
-  nombre?: string | null
+  password_hash?: string | null
+  provedor?: $Enums.usuario_provedor
+  email_verificado?: boolean
+  estado?: $Enums.usuario_estado
+  tipo?: $Enums.usuario_tipo
+  created_at?: Date | string
+  nombre: string
+  verification_tokens?: Prisma.verification_tokensCreateNestedManyWithoutUsuarioInput
 }
 
 export type usuarioUncheckedCreateWithoutSucursalInput = {
-  id?: bigint | number
-  tipo?: $Enums.usuario_tipo
-  estado?: $Enums.usuario_estado
+  id_usuario?: bigint | number
   email: string
-  password_hash: string
-  fecha_creacion?: Date | string | null
-  nombre?: string | null
+  password_hash?: string | null
+  provedor?: $Enums.usuario_provedor
+  email_verificado?: boolean
+  estado?: $Enums.usuario_estado
+  tipo?: $Enums.usuario_tipo
+  created_at?: Date | string
+  nombre: string
+  verification_tokens?: Prisma.verification_tokensUncheckedCreateNestedManyWithoutUsuarioInput
 }
 
 export type usuarioCreateOrConnectWithoutSucursalInput = {
@@ -471,23 +561,97 @@ export type usuarioUpdateToOneWithWhereWithoutSucursalInput = {
 }
 
 export type usuarioUpdateWithoutSucursalInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
-  estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
+  id_usuario?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_creacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provedor?: Prisma.Enumusuario_provedorFieldUpdateOperationsInput | $Enums.usuario_provedor
+  email_verificado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
+  tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  verification_tokens?: Prisma.verification_tokensUpdateManyWithoutUsuarioNestedInput
 }
 
 export type usuarioUncheckedUpdateWithoutSucursalInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
-  estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
+  id_usuario?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_creacion?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  nombre?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provedor?: Prisma.Enumusuario_provedorFieldUpdateOperationsInput | $Enums.usuario_provedor
+  email_verificado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
+  tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  verification_tokens?: Prisma.verification_tokensUncheckedUpdateManyWithoutUsuarioNestedInput
+}
+
+export type usuarioCreateWithoutVerification_tokensInput = {
+  id_usuario?: bigint | number
+  email: string
+  password_hash?: string | null
+  provedor?: $Enums.usuario_provedor
+  email_verificado?: boolean
+  estado?: $Enums.usuario_estado
+  tipo?: $Enums.usuario_tipo
+  created_at?: Date | string
+  nombre: string
+  sucursal?: Prisma.sucursalCreateNestedManyWithoutUsuarioInput
+}
+
+export type usuarioUncheckedCreateWithoutVerification_tokensInput = {
+  id_usuario?: bigint | number
+  email: string
+  password_hash?: string | null
+  provedor?: $Enums.usuario_provedor
+  email_verificado?: boolean
+  estado?: $Enums.usuario_estado
+  tipo?: $Enums.usuario_tipo
+  created_at?: Date | string
+  nombre: string
+  sucursal?: Prisma.sucursalUncheckedCreateNestedManyWithoutUsuarioInput
+}
+
+export type usuarioCreateOrConnectWithoutVerification_tokensInput = {
+  where: Prisma.usuarioWhereUniqueInput
+  create: Prisma.XOR<Prisma.usuarioCreateWithoutVerification_tokensInput, Prisma.usuarioUncheckedCreateWithoutVerification_tokensInput>
+}
+
+export type usuarioUpsertWithoutVerification_tokensInput = {
+  update: Prisma.XOR<Prisma.usuarioUpdateWithoutVerification_tokensInput, Prisma.usuarioUncheckedUpdateWithoutVerification_tokensInput>
+  create: Prisma.XOR<Prisma.usuarioCreateWithoutVerification_tokensInput, Prisma.usuarioUncheckedCreateWithoutVerification_tokensInput>
+  where?: Prisma.usuarioWhereInput
+}
+
+export type usuarioUpdateToOneWithWhereWithoutVerification_tokensInput = {
+  where?: Prisma.usuarioWhereInput
+  data: Prisma.XOR<Prisma.usuarioUpdateWithoutVerification_tokensInput, Prisma.usuarioUncheckedUpdateWithoutVerification_tokensInput>
+}
+
+export type usuarioUpdateWithoutVerification_tokensInput = {
+  id_usuario?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provedor?: Prisma.Enumusuario_provedorFieldUpdateOperationsInput | $Enums.usuario_provedor
+  email_verificado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
+  tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  sucursal?: Prisma.sucursalUpdateManyWithoutUsuarioNestedInput
+}
+
+export type usuarioUncheckedUpdateWithoutVerification_tokensInput = {
+  id_usuario?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  provedor?: Prisma.Enumusuario_provedorFieldUpdateOperationsInput | $Enums.usuario_provedor
+  email_verificado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  estado?: Prisma.Enumusuario_estadoFieldUpdateOperationsInput | $Enums.usuario_estado
+  tipo?: Prisma.Enumusuario_tipoFieldUpdateOperationsInput | $Enums.usuario_tipo
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  nombre?: Prisma.StringFieldUpdateOperationsInput | string
+  sucursal?: Prisma.sucursalUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 
@@ -497,10 +661,12 @@ export type usuarioUncheckedUpdateWithoutSucursalInput = {
 
 export type UsuarioCountOutputType = {
   sucursal: number
+  verification_tokens: number
 }
 
 export type UsuarioCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sucursal?: boolean | UsuarioCountOutputTypeCountSucursalArgs
+  verification_tokens?: boolean | UsuarioCountOutputTypeCountVerification_tokensArgs
 }
 
 /**
@@ -520,34 +686,47 @@ export type UsuarioCountOutputTypeCountSucursalArgs<ExtArgs extends runtime.Type
   where?: Prisma.sucursalWhereInput
 }
 
+/**
+ * UsuarioCountOutputType without action
+ */
+export type UsuarioCountOutputTypeCountVerification_tokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.verification_tokensWhereInput
+}
+
 
 export type usuarioSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
-  id?: boolean
-  tipo?: boolean
-  estado?: boolean
+  id_usuario?: boolean
   email?: boolean
   password_hash?: boolean
-  fecha_creacion?: boolean
+  provedor?: boolean
+  email_verificado?: boolean
+  estado?: boolean
+  tipo?: boolean
+  created_at?: boolean
   nombre?: boolean
   sucursal?: boolean | Prisma.usuario$sucursalArgs<ExtArgs>
+  verification_tokens?: boolean | Prisma.usuario$verification_tokensArgs<ExtArgs>
   _count?: boolean | Prisma.UsuarioCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["usuario"]>
 
 
 
 export type usuarioSelectScalar = {
-  id?: boolean
-  tipo?: boolean
-  estado?: boolean
+  id_usuario?: boolean
   email?: boolean
   password_hash?: boolean
-  fecha_creacion?: boolean
+  provedor?: boolean
+  email_verificado?: boolean
+  estado?: boolean
+  tipo?: boolean
+  created_at?: boolean
   nombre?: boolean
 }
 
-export type usuarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tipo" | "estado" | "email" | "password_hash" | "fecha_creacion" | "nombre", ExtArgs["result"]["usuario"]>
+export type usuarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_usuario" | "email" | "password_hash" | "provedor" | "email_verificado" | "estado" | "tipo" | "created_at" | "nombre", ExtArgs["result"]["usuario"]>
 export type usuarioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sucursal?: boolean | Prisma.usuario$sucursalArgs<ExtArgs>
+  verification_tokens?: boolean | Prisma.usuario$verification_tokensArgs<ExtArgs>
   _count?: boolean | Prisma.UsuarioCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -555,15 +734,18 @@ export type $usuarioPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "usuario"
   objects: {
     sucursal: Prisma.$sucursalPayload<ExtArgs>[]
+    verification_tokens: Prisma.$verification_tokensPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
-    tipo: $Enums.usuario_tipo
-    estado: $Enums.usuario_estado
+    id_usuario: bigint
     email: string
-    password_hash: string
-    fecha_creacion: Date | null
-    nombre: string | null
+    password_hash: string | null
+    provedor: $Enums.usuario_provedor
+    email_verificado: boolean
+    estado: $Enums.usuario_estado
+    tipo: $Enums.usuario_tipo
+    created_at: Date
+    nombre: string
   }, ExtArgs["result"]["usuario"]>
   composites: {}
 }
@@ -647,8 +829,8 @@ export interface usuarioDelegate<ExtArgs extends runtime.Types.Extensions.Intern
    * // Get first 10 Usuarios
    * const usuarios = await prisma.usuario.findMany({ take: 10 })
    * 
-   * // Only select the `id`
-   * const usuarioWithIdOnly = await prisma.usuario.findMany({ select: { id: true } })
+   * // Only select the `id_usuario`
+   * const usuarioWithId_usuarioOnly = await prisma.usuario.findMany({ select: { id_usuario: true } })
    * 
    */
   findMany<T extends usuarioFindManyArgs>(args?: Prisma.SelectSubset<T, usuarioFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$usuarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -905,6 +1087,7 @@ readonly fields: usuarioFieldRefs;
 export interface Prisma__usuarioClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   sucursal<T extends Prisma.usuario$sucursalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usuario$sucursalArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$sucursalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  verification_tokens<T extends Prisma.usuario$verification_tokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usuario$verification_tokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$verification_tokensPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -934,12 +1117,14 @@ export interface Prisma__usuarioClient<T, Null = never, ExtArgs extends runtime.
  * Fields of the usuario model
  */
 export interface usuarioFieldRefs {
-  readonly id: Prisma.FieldRef<"usuario", 'BigInt'>
-  readonly tipo: Prisma.FieldRef<"usuario", 'usuario_tipo'>
-  readonly estado: Prisma.FieldRef<"usuario", 'usuario_estado'>
+  readonly id_usuario: Prisma.FieldRef<"usuario", 'BigInt'>
   readonly email: Prisma.FieldRef<"usuario", 'String'>
   readonly password_hash: Prisma.FieldRef<"usuario", 'String'>
-  readonly fecha_creacion: Prisma.FieldRef<"usuario", 'DateTime'>
+  readonly provedor: Prisma.FieldRef<"usuario", 'usuario_provedor'>
+  readonly email_verificado: Prisma.FieldRef<"usuario", 'Boolean'>
+  readonly estado: Prisma.FieldRef<"usuario", 'usuario_estado'>
+  readonly tipo: Prisma.FieldRef<"usuario", 'usuario_tipo'>
+  readonly created_at: Prisma.FieldRef<"usuario", 'DateTime'>
   readonly nombre: Prisma.FieldRef<"usuario", 'String'>
 }
     
@@ -1305,6 +1490,30 @@ export type usuario$sucursalArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.SucursalScalarFieldEnum | Prisma.SucursalScalarFieldEnum[]
+}
+
+/**
+ * usuario.verification_tokens
+ */
+export type usuario$verification_tokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the verification_tokens
+   */
+  select?: Prisma.verification_tokensSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the verification_tokens
+   */
+  omit?: Prisma.verification_tokensOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.verification_tokensInclude<ExtArgs> | null
+  where?: Prisma.verification_tokensWhereInput
+  orderBy?: Prisma.verification_tokensOrderByWithRelationInput | Prisma.verification_tokensOrderByWithRelationInput[]
+  cursor?: Prisma.verification_tokensWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Verification_tokensScalarFieldEnum | Prisma.Verification_tokensScalarFieldEnum[]
 }
 
 /**

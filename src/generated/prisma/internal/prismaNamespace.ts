@@ -393,7 +393,8 @@ export const ModelName = {
   prompt: 'prompt',
   prompt_atributos: 'prompt_atributos',
   sucursal: 'sucursal',
-  usuario: 'usuario'
+  usuario: 'usuario',
+  verification_tokens: 'verification_tokens'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -409,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "asistente" | "canal" | "canal_config" | "intencion" | "lead_prospectos" | "mensaje" | "prompt" | "prompt_atributos" | "sucursal" | "usuario"
+    modelProps: "asistente" | "canal" | "canal_config" | "intencion" | "lead_prospectos" | "mensaje" | "prompt" | "prompt_atributos" | "sucursal" | "usuario" | "verification_tokens"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1073,6 +1074,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    verification_tokens: {
+      payload: Prisma.$verification_tokensPayload<ExtArgs>
+      fields: Prisma.verification_tokensFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.verification_tokensFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$verification_tokensPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.verification_tokensFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$verification_tokensPayload>
+        }
+        findFirst: {
+          args: Prisma.verification_tokensFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$verification_tokensPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.verification_tokensFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$verification_tokensPayload>
+        }
+        findMany: {
+          args: Prisma.verification_tokensFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$verification_tokensPayload>[]
+        }
+        create: {
+          args: Prisma.verification_tokensCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$verification_tokensPayload>
+        }
+        createMany: {
+          args: Prisma.verification_tokensCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.verification_tokensDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$verification_tokensPayload>
+        }
+        update: {
+          args: Prisma.verification_tokensUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$verification_tokensPayload>
+        }
+        deleteMany: {
+          args: Prisma.verification_tokensDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.verification_tokensUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.verification_tokensUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$verification_tokensPayload>
+        }
+        aggregate: {
+          args: Prisma.Verification_tokensAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateVerification_tokens>
+        }
+        groupBy: {
+          args: Prisma.verification_tokensGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Verification_tokensGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.verification_tokensCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Verification_tokensCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1206,7 +1273,7 @@ export type Prompt_atributosScalarFieldEnum = (typeof Prompt_atributosScalarFiel
 
 export const SucursalScalarFieldEnum = {
   id: 'id',
-  id_usuario: 'id_usuario',
+  fk_usuario: 'fk_usuario',
   nombre_negocio: 'nombre_negocio',
   giro: 'giro',
   ciudad: 'ciudad',
@@ -1219,16 +1286,32 @@ export type SucursalScalarFieldEnum = (typeof SucursalScalarFieldEnum)[keyof typ
 
 
 export const UsuarioScalarFieldEnum = {
-  id: 'id',
-  tipo: 'tipo',
-  estado: 'estado',
+  id_usuario: 'id_usuario',
   email: 'email',
   password_hash: 'password_hash',
-  fecha_creacion: 'fecha_creacion',
+  provedor: 'provedor',
+  email_verificado: 'email_verificado',
+  estado: 'estado',
+  tipo: 'tipo',
+  created_at: 'created_at',
   nombre: 'nombre'
 } as const
 
 export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
+
+
+export const Verification_tokensScalarFieldEnum = {
+  id: 'id',
+  id_usuario: 'id_usuario',
+  token_hash: 'token_hash',
+  type: 'type',
+  expires_at: 'expires_at',
+  used: 'used',
+  attempts: 'attempts',
+  created_at: 'created_at'
+} as const
+
+export type Verification_tokensScalarFieldEnum = (typeof Verification_tokensScalarFieldEnum)[keyof typeof Verification_tokensScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1364,6 +1447,14 @@ export const usuarioOrderByRelevanceFieldEnum = {
 export type usuarioOrderByRelevanceFieldEnum = (typeof usuarioOrderByRelevanceFieldEnum)[keyof typeof usuarioOrderByRelevanceFieldEnum]
 
 
+export const verification_tokensOrderByRelevanceFieldEnum = {
+  id: 'id',
+  token_hash: 'token_hash'
+} as const
+
+export type verification_tokensOrderByRelevanceFieldEnum = (typeof verification_tokensOrderByRelevanceFieldEnum)[keyof typeof verification_tokensOrderByRelevanceFieldEnum]
+
+
 
 /**
  * Field references
@@ -1420,9 +1511,16 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
 
 
 /**
- * Reference to a field of type 'usuario_tipo'
+ * Reference to a field of type 'usuario_provedor'
  */
-export type Enumusuario_tipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'usuario_tipo'>
+export type Enumusuario_provedorFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'usuario_provedor'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -1430,6 +1528,20 @@ export type Enumusuario_tipoFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'usuario_estado'
  */
 export type Enumusuario_estadoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'usuario_estado'>
+    
+
+
+/**
+ * Reference to a field of type 'usuario_tipo'
+ */
+export type Enumusuario_tipoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'usuario_tipo'>
+    
+
+
+/**
+ * Reference to a field of type 'verification_tokens_type'
+ */
+export type Enumverification_tokens_typeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'verification_tokens_type'>
     
 
 
@@ -1544,6 +1656,7 @@ export type GlobalOmitConfig = {
   prompt_atributos?: Prisma.prompt_atributosOmit
   sucursal?: Prisma.sucursalOmit
   usuario?: Prisma.usuarioOmit
+  verification_tokens?: Prisma.verification_tokensOmit
 }
 
 /* Types for Logging */

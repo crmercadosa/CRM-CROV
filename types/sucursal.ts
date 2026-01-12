@@ -1,6 +1,6 @@
 export interface Sucursal {
   id: string;
-  id_usuario: string;
+  fk_usuario: string | null;
   nombre_negocio: string;
   giro: string;
   ciudad: string;

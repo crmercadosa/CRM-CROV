@@ -13,7 +13,7 @@ export async function getSucursalesByUsuario(id_usuario: bigint | number) {
   try {
     const sucursales = await prisma.sucursal.findMany({
       where: {
-        id_usuario: BigInt(id_usuario),
+        fk_usuario: BigInt(id_usuario),
       },
       orderBy: {
         id: 'desc', // Orden descendente por ID (más reciente primero)
@@ -24,7 +24,7 @@ export async function getSucursalesByUsuario(id_usuario: bigint | number) {
     return sucursales.map(sucursal => ({
       ...sucursal,
       id: sucursal.id.toString(),
-      id_usuario: sucursal.id_usuario.toString(),
+      fk_usuario: sucursal.fk_usuario?.toString(),
     }));
   } catch (error) {
     console.error('Error al obtener sucursales:', error);
@@ -50,7 +50,7 @@ export async function createSucursal(data: {
   try {
     const nuevaSucursal = await prisma.sucursal.create({
       data: {
-        id_usuario: BigInt(data.id_usuario),
+        fk_usuario: BigInt(data.id_usuario),
         nombre_negocio: data.nombre_negocio,
         giro: data.giro,
         ciudad: data.ciudad,
@@ -64,7 +64,7 @@ export async function createSucursal(data: {
     return {
       ...nuevaSucursal,
       id: nuevaSucursal.id.toString(),
-      id_usuario: nuevaSucursal.id_usuario.toString(),
+      fk_usuario: nuevaSucursal.fk_usuario?.toString(),
     };
   } catch (error) {
     console.error('Error al crear sucursal:', error);

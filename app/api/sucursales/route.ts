@@ -18,17 +18,17 @@ export async function GET(request: Request) {
       );
     }
 
-    // Convertir el ID de string a number
-    const userId = parseInt(session.user.id, 10);
+    // Obtener el id_usuario de la sesión
+    const idUsuario = (session.user as any).id_usuario;
     
-    if (isNaN(userId)) {
+    if (!idUsuario) {
       return NextResponse.json(
-        { error: 'ID de usuario inválido' },
+        { error: 'ID de usuario no encontrado en sesión' },
         { status: 400 }
       );
     }
 
-    const sucursales = await getSucursalesByUsuario(userId);
+    const sucursales = await getSucursalesByUsuario(BigInt(idUsuario));
 
     return NextResponse.json(sucursales);
   } catch (error) {
@@ -54,12 +54,12 @@ export async function POST(request: Request) {
       );
     }
 
-    // Convertir el ID de string a number
-    const userId = parseInt(session.user.id, 10);
+    // Obtener el id_usuario de la sesión
+    const idUsuario = (session.user as any).id_usuario;
     
-    if (isNaN(userId)) {
+    if (!idUsuario) {
       return NextResponse.json(
-        { error: 'ID de usuario inválido' },
+        { error: 'ID de usuario no encontrado en sesión' },
         { status: 400 }
       );
     }
@@ -74,9 +74,9 @@ export async function POST(request: Request) {
       );
     }
 
-    // Crear la sucursal con el id del usuario autenticado
+    // Crear la sucursal con el id_usuario del usuario autenticado
     const nuevaSucursal = await createSucursal({
-      id_usuario: userId,
+      id_usuario: BigInt(idUsuario),
       nombre_negocio: body.nombre_negocio,
       giro: body.giro,
       ciudad: body.ciudad,

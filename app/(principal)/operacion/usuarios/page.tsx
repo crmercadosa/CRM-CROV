@@ -45,6 +45,8 @@ export default function UsuariosPage() {
   const [estadisticas, setEstadisticas] = useState<Estadisticas | null>(null)
   const [rolesDisponibles, setRolesDisponibles] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [paginaActual, setPaginaActual] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
   const [filtros, setFiltros] = useState({
     sinSucursal: false,
     rol: 'todos',
@@ -67,19 +69,20 @@ export default function UsuariosPage() {
   // Cargar usuarios al montar el componente
   useEffect(() => {
     if (status === 'authenticated' && user?.tipo === 'admin') {
-      cargarDatos()
+      setPaginaActual(1)
+      cargarDatos(1)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, user?.tipo])
 
   // Función para cargar datos de usuarios y estadísticas
-  const cargarDatos = useCallback(async () => {
+  const cargarDatos = useCallback(async (pagina: number = 1) => {
     try {
       setIsLoading(true)
 
       // Cargar datos en paralelo
       const [usuariosData, estadisticasData, rolesData] = await Promise.all([
-        cargarUsuarios(filtros),
+        cargarUsuarios(filtros, pagina),
         cargarEstadisticas(),
         cargarRoles(),
       ])
@@ -88,6 +91,8 @@ export default function UsuariosPage() {
       setUsuariosFiltrados(usuariosData.usuarios || [])
       setEstadisticas(estadisticasData)
       setRolesDisponibles(rolesData.roles || [])
+      setPaginaActual(usuariosData.paginaActual)
+      setTotalPages(usuariosData.totalPages)
     } catch (error) {
       console.error('Error cargando datos:', error)
     } finally {
@@ -95,40 +100,22 @@ export default function UsuariosPage() {
     }
   }, [filtros])
 
-  // Aplicar filtros a los usuarios
+  // Aplicar filtros a los usuarios y resetear a página 1
   useEffect(() => {
-    let usuariosTemp = [...usuarios]
-
-    // Filtro: búsqueda
-    if (filtros.busqueda) {
-      const busqueda = filtros.busqueda.toLowerCase()
-      usuariosTemp = usuariosTemp.filter(
-        (u) =>
-          u.email.toLowerCase().includes(busqueda) ||
-          (u.nombre && u.nombre.toLowerCase().includes(busqueda))
-      )
-    }
-
-    // Filtro: rol
-    if (filtros.rol !== 'todos') {
-      // Mostrar usuarios con rol específico
-      usuariosTemp = usuariosTemp.filter((u) => u.tipo === filtros.rol)
-    }
-
-    // Filtro: estado
-    if (filtros.estado !== 'todos') {
-      usuariosTemp = usuariosTemp.filter((u) => u.estado === filtros.estado)
-    }
-
-
-    setUsuariosFiltrados(usuariosTemp)
-  }, [filtros, usuarios])
+    setPaginaActual(1)
+    cargarDatos(1)
+  }, [filtros, cargarDatos])
 
   const handleFiltrosChange = (nuevosFiltros: any) => {
     setFiltros(nuevosFiltros)
   }
 
-  const handleUpdateRole = async (userId: string, newRole: 'cliente' | 'admin') => {
+  const handlePaginaChange = (pagina: number) => {
+    setPaginaActual(pagina)
+    cargarDatos(pagina)
+  }
+
+  const handleUpdateRole = async (userId: string, newRole: 'cliente' | 'admin' | 'agente') => {
     // Actualización optimista en la UI para respuesta inmediata
     setUsuarios((prev) =>
       prev.map((u) => (String(u.id) === userId ? { ...u, tipo: newRole } : u))
@@ -233,6 +220,10 @@ export default function UsuariosPage() {
         usuarios={usuariosFiltrados} 
         isLoading={isLoading} 
         onUpdateRole={handleUpdateRole}
+        paginaActual={paginaActual}
+        totalPages={totalPages}
+        onPaginaChange={handlePaginaChange}
+        totalUsuarios={estadisticas?.total || 0}
       />
     </div>
   )

@@ -34,9 +34,11 @@ import '@/types/next-auth';
  */
 interface AuthUser {
   id: string;
+  id_usuario: string;
   email: string;
   nombre?: string;
   tipo?: string;
+  email_verificado?: boolean;
   id_sucursal?: string;
 }
 
@@ -64,14 +66,16 @@ async function login(email: string, password: string): Promise<AuthUser | null> 
       return null;
     }
 
-    const passwordsMatch = await bcrypt.compare(password, user.password_hash);
+    const passwordsMatch = await bcrypt.compare(password, user.password_hash || '');
 
     if (passwordsMatch) {
       return {
-        id: String(user.id),
+        id: String(user.id_usuario),
+        id_usuario: String(user.id_usuario),
         email: user.email,
         nombre: user.nombre || undefined,
         tipo: String(user.tipo),
+        email_verificado: user.email_verificado,
       };
     }
 

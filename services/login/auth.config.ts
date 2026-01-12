@@ -41,8 +41,10 @@ export const authConfig = {
     jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.id_usuario = (user as any).id_usuario;
         token.email = user.email;
         token.tipo = (user as any).tipo;
+        token.email_verificado = (user as any).email_verificado;
       }
       return token;
     },
@@ -58,7 +60,9 @@ export const authConfig = {
     session({ session, token }) {
       if (session.user) {
         (session.user as any).id = token.id;
+        (session.user as any).id_usuario = token.id_usuario;
         (session.user as any).tipo = token.tipo;
+        (session.user as any).email_verificado = token.email_verificado;
       }
       return session;
     },

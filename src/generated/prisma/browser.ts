@@ -67,3 +67,8 @@ export type sucursal = Prisma.sucursalModel
  * 
  */
 export type usuario = Prisma.usuarioModel
+/**
+ * Model verification_tokens
+ * 
+ */
+export type verification_tokens = Prisma.verification_tokensModel

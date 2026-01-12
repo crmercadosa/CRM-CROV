@@ -11,6 +11,7 @@
 
 import { formatDistanceToNow } from "date-fns";
 import { es } from "date-fns/locale";
+import { useState, useEffect } from "react";
 import { Badge } from "./badge";
 import {
   DropdownMenu,
@@ -21,16 +22,61 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/AdminUsuarios/dropdown-menu";
-import { Shield, User, Headphones, ChevronDown } from "lucide-react";
+import { Shield, User, Headphones, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { UsuarioConSucursal } from "@/services/usuarios/usuario.service";
 
 interface UsuariosTableProps {
   usuarios: UsuarioConSucursal[];
   isLoading?: boolean;
-  onUpdateRole?: (id: string, newRole: 'cliente' | 'admin') => void;
+  onUpdateRole?: (id: string, newRole: 'cliente' | 'admin' | 'agente') => void;
+  paginaActual?: number;
+  totalPages?: number;
+  onPaginaChange?: (pagina: number) => void;
+  totalUsuarios?: number;
 }
 
-export function UsuariosTable({ usuarios, isLoading, onUpdateRole }: UsuariosTableProps) {
+export function UsuariosTable({ 
+  usuarios, 
+  isLoading, 
+  onUpdateRole,
+  paginaActual = 1,
+  totalPages = 1,
+  onPaginaChange,
+  totalUsuarios = 0
+}: UsuariosTableProps) {
+  const [usuariosLocales, setUsuariosLocales] = useState<UsuarioConSucursal[]>(usuarios);
+  const [confirmDialog, setConfirmDialog] = useState<{ usuarioId: bigint; nuevoRol: 'cliente' | 'admin' | 'agente' } | null>(null);
+
+  // Sincronizar usuarios cuando cambien los props
+  useEffect(() => {
+    setUsuariosLocales(usuarios);
+  }, [usuarios]);
+
+  const handleRoleChange = (usuarioId: bigint, nuevoRol: 'cliente' | 'admin' | 'agente') => {
+    // Mostrar diálogo de confirmación
+    setConfirmDialog({ usuarioId, nuevoRol });
+  };
+
+  const confirmarCambioRol = () => {
+    if (!confirmDialog) return;
+
+    const { usuarioId, nuevoRol } = confirmDialog;
+
+    // Actualizar el estado local inmediatamente
+    setUsuariosLocales(prevUsuarios =>
+      prevUsuarios.map(u =>
+        u.id_usuario === usuarioId ? { ...u, tipo: nuevoRol } : u
+      )
+    );
+
+    // Llamar al callback del padre
+    if (onUpdateRole) {
+      onUpdateRole(String(usuarioId), nuevoRol);
+    }
+
+    // Cerrar el diálogo
+    setConfirmDialog(null);
+  };
   if (isLoading) {
     return (
       <div className="bg-white rounded-lg shadow p-6">
@@ -101,8 +147,8 @@ export function UsuariosTable({ usuarios, isLoading, onUpdateRole }: UsuariosTab
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {usuarios.map((usuario) => (
-              <tr key={usuario.id} className="hover:bg-gray-50 transition-colors">
+            {usuariosLocales.map((usuario) => (
+              <tr key={usuario.id_usuario} className="hover:bg-gray-50 transition-colors">
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
                     <div className="flex-shrink-0 h-10 w-10 bg-orange-100 rounded-full flex items-center justify-center">
@@ -135,7 +181,7 @@ export function UsuariosTable({ usuarios, isLoading, onUpdateRole }: UsuariosTab
                       <DropdownMenuSeparator />
                       <DropdownMenuRadioGroup 
                         value={usuario.tipo || "cliente"} 
-                        onValueChange={(val) => onUpdateRole && onUpdateRole(String(usuario.id), val as 'cliente' | 'admin')}
+                        onValueChange={(val) => handleRoleChange(usuario.id_usuario, val as 'cliente' | 'admin' | 'agente')}
                       >
                         <DropdownMenuRadioItem value="admin" className="cursor-pointer">
                           <Shield className="mr-2 h-4 w-4 text-purple-500" />
@@ -160,7 +206,7 @@ export function UsuariosTable({ usuarios, isLoading, onUpdateRole }: UsuariosTab
                   {usuario.sucursal ? (
                     <div>
                       <p className="text-sm text-gray-900">
-                        {usuario.sucursal.nombre_sucursal}
+                        {usuario.sucursal.nombre_negocio}
                       </p>
                       <Badge
                         className={usuario.sucursal.estado ? "bg-green-100 text-green-800 mt-1" : "bg-red-100 text-red-800 mt-1"}
@@ -175,8 +221,8 @@ export function UsuariosTable({ usuarios, isLoading, onUpdateRole }: UsuariosTab
                   )}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {usuario.fecha_creacion
-                    ? formatDistanceToNow(new Date(usuario.fecha_creacion), {
+                  {usuario.created_at
+                    ? formatDistanceToNow(new Date(usuario.created_at), {
                         addSuffix: true,
                         locale: es,
                       })
@@ -188,10 +234,68 @@ export function UsuariosTable({ usuarios, isLoading, onUpdateRole }: UsuariosTab
         </table>
       </div>
       <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
-        <p className="text-sm text-gray-600">
-          Total de usuarios mostrados: <span className="font-semibold">{usuarios.length}</span>
-        </p>
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-gray-600">
+            Total de usuarios: <span className="font-semibold">{totalUsuarios}</span>
+          </p>
+          
+          {totalPages > 1 && (
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-gray-600">
+                Página <span className="font-semibold">{paginaActual}</span> de <span className="font-semibold">{totalPages}</span>
+              </span>
+              
+              <div className="flex gap-2">
+                <button
+                  onClick={() => onPaginaChange && onPaginaChange(paginaActual - 1)}
+                  disabled={paginaActual === 1}
+                  className="flex items-center gap-1 px-3 py-2 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  aria-label="Página anterior"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  Anterior
+                </button>
+                
+                <button
+                  onClick={() => onPaginaChange && onPaginaChange(paginaActual + 1)}
+                  disabled={paginaActual === totalPages}
+                  className="flex items-center gap-1 px-3 py-2 text-sm bg-white border border-gray-300 rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  aria-label="Página siguiente"
+                >
+                  Siguiente
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
+
+      {/* Modal de Confirmación */}
+      {confirmDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl max-w-sm w-full mx-4 p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Confirmar cambio de rol</h3>
+            <p className="text-gray-600 mb-6">
+              ¿Estás seguro que deseas cambiar el rol de este usuario a <span className="font-semibold">{confirmDialog.nuevoRol}</span>?
+            </p>
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => setConfirmDialog(null)}
+                className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                Cancelar
+              </button>
+              <button
+                onClick={confirmarCambioRol}
+                className="px-4 py-2 text-sm font-medium text-white bg-orange-500 rounded-lg hover:bg-orange-600 transition-colors"
+              >
+                Confirmar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
