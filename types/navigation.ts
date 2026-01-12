@@ -41,10 +41,10 @@ export const navigationItems: NavItem[] = [
     icon: Building2,
     children: [
       {
-        id: 'sucursales',
-        label: 'Sucursales',
+        id: 'negocios',
+        label: 'Negocios',
         icon: Store,
-        href: '/operacion/sucursales',
+        href: '/operacion/negocios',
       },
       {
         id: 'usuarios-roles',

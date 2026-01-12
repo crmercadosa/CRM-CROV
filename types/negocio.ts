@@ -1,5 +1,5 @@
-//types/sucursal.ts
-export interface Sucursal {
+//types/negocio.ts
+export interface Negocio {
   id: string;
   id_usuario: string;
   nombre_negocio: string;
@@ -10,7 +10,7 @@ export interface Sucursal {
   estado: 'activo' | 'inactivo';
 }
 
-export interface SucursalFormData {
+export interface NegocioFormData {
   id_usuario: string;
   nombre_negocio: string;
   giro: string;

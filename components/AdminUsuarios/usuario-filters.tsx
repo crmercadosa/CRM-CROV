@@ -9,7 +9,7 @@
  * - Búsqueda por email o nombre
  * - Filtro por rol
  * - Filtro por estado
- * - Filtro para usuarios sin sucursales
+ * - Filtro para usuarios sin negocios
  */
 
 import { Search, X } from "lucide-react";
@@ -134,7 +134,7 @@ export function UsuarioFilters({
           </select>
         </div>
 
-        {/* Filtro Sin Sucursal */}
+        {/* Filtro Sin Negocio */}
         <div className="flex items-end">
           <label className="flex items-center cursor-pointer">
             <input
@@ -144,7 +144,7 @@ export function UsuarioFilters({
               className="w-4 h-4 text-orange-500 rounded focus:ring-2 focus:ring-orange-500"
             />
             <span className="ml-2 text-sm font-medium text-gray-700">
-              Sin sucursales
+              Sin negocios
             </span>
           </label>
         </div>

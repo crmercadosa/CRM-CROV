@@ -5,7 +5,7 @@
  *
  * Este servicio proporciona métodos para obtener y filtrar usuarios de la
  * plataforma. Incluye funcionalidad para filtros avanzados como:
- * - Usuarios sin sucursales activas
+ * - Usuarios sin negocios activos
  * - Filtrado por tipo de rol
  * - Filtrado por estado
  */
@@ -53,7 +53,7 @@ export async function obtenerUsuarios(filtros: FiltrosUsuarios): Promise<Usuario
       },
     };
 
-    // Filtro: usuarios sin sucursales activas
+    // Filtro: usuarios sin negocios activos
     if (filtros.sinSucursal) {
       where.sucursal = {
         none: {},

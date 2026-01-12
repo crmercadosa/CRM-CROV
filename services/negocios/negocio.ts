@@ -1,18 +1,17 @@
-//services/sucursales/sucursal.ts
-import {prisma} from '../../lib/prisma';
-
+//services/negocios/negocio.ts
+import { prisma } from '../../lib/prisma';
 
 /**
  * --------------------------------------------------------------------------
- * Funcion para obtener los datos de las sucursales que tieene un usuario
+ * Funcion para obtener los datos de los negocios que tiene un usuario
  * en la base de datos.
  * --------------------------------------------------------------------------
  * 
  */
 
-export async function getSucursalesByUsuario(id_usuario: bigint | number) {
+export async function getNegociosByUsuario(id_usuario: bigint | number) {
   try {
-    const sucursales = await prisma.sucursal.findMany({
+    const negocios = await prisma.sucursal.findMany({
       where: {
         id_usuario: BigInt(id_usuario),
       },
@@ -22,24 +21,24 @@ export async function getSucursalesByUsuario(id_usuario: bigint | number) {
     });
 
     // Convertir BigInt a string para evitar problemas de serialización en Next.js
-    return sucursales.map(sucursal => ({
-      ...sucursal,
-      id: sucursal.id.toString(),
-      id_usuario: sucursal.id_usuario.toString(),
+    return negocios.map(negocio => ({
+      ...negocio,
+      id: negocio.id.toString(),
+      id_usuario: negocio.id_usuario.toString(),
     }));
   } catch (error) {
-    console.error('Error al obtener sucursales:', error);
-    throw new Error('No se pudieron obtener las sucursales');
+    console.error('Error al obtener negocios:', error);
+    throw new Error('No se pudieron obtener los negocios');
   }
 }
 
 /**
  * --------------------------------------------------------------------------
- * Funcion para crear una nueva sucursal dentro de la base de datos
+ * Funcion para crear un nuevo negocio dentro de la base de datos
  * --------------------------------------------------------------------------
  */
 
-export async function createSucursal(data: {
+export async function createNegocio(data: {
   id_usuario: bigint | number;
   nombre_negocio: string;
   giro: string;
@@ -49,7 +48,7 @@ export async function createSucursal(data: {
   estado?: 'activo' | 'inactivo';
 }) {
   try {
-    const nuevaSucursal = await prisma.sucursal.create({
+    const nuevoNegocio = await prisma.sucursal.create({
       data: {
         id_usuario: BigInt(data.id_usuario),
         nombre_negocio: data.nombre_negocio,
@@ -63,23 +62,23 @@ export async function createSucursal(data: {
 
     // Convertir BigInt a string para evitar problemas de serialización
     return {
-      ...nuevaSucursal,
-      id: nuevaSucursal.id.toString(),
-      id_usuario: nuevaSucursal.id_usuario.toString(),
+      ...nuevoNegocio,
+      id: nuevoNegocio.id.toString(),
+      id_usuario: nuevoNegocio.id_usuario.toString(),
     };
   } catch (error) {
-    console.error('Error al crear sucursal:', error);
-    throw new Error('No se pudo crear la sucursal');
+    console.error('Error al crear negocio:', error);
+    throw new Error('No se pudo crear el negocio');
   }
 }
 
 
 /**
  * --------------------------------------------------------------------------
- * Función para actualizar una sucursal existente.
+ * Función para actualizar un negocio existente.
  * --------------------------------------------------------------------------
  */
-export async function updateSucursal(
+export async function updateNegocio(
   id: bigint | number | string,
   data: {
     nombre_negocio?: string;
@@ -101,7 +100,7 @@ export async function updateSucursal(
     if (data.url_redes_sociales !== undefined) updateData.url_redes_sociales = data.url_redes_sociales;
     if (data.estado !== undefined) updateData.estado = data.estado;
     
-    const sucursalActualizada = await prisma.sucursal.update({
+    const negocioActualizado = await prisma.sucursal.update({
       where: {
         id: BigInt(id),
       },
@@ -110,27 +109,27 @@ export async function updateSucursal(
 
     // Convertir BigInt a string
     return {
-      ...sucursalActualizada,
-      id: sucursalActualizada.id.toString(),
-      id_usuario: sucursalActualizada.id_usuario.toString(),
+      ...negocioActualizado,
+      id: negocioActualizado.id.toString(),
+      id_usuario: negocioActualizado.id_usuario.toString(),
     };
   } catch (error) {
-    console.error('Error al actualizar sucursal:', error);
-    throw new Error('No se pudo actualizar la sucursal');
+    console.error('Error al actualizar negocio:', error);
+    throw new Error('No se pudo actualizar el negocio');
   }
 }
 
 /**
  * --------------------------------------------------------------------------
- * Función para cambiar el estado de una sucursal (activar/desactivar).
+ * Función para cambiar el estado de un negocio (activar/desactivar).
  * --------------------------------------------------------------------------
  */
-export async function toggleSucursalStatus(
+export async function toggleNegocioStatus(
   id: bigint | number | string,
   nuevoEstado: 'activo' | 'inactivo'
 ) {
   try {
-    const sucursalActualizada = await prisma.sucursal.update({
+    const negocioActualizado = await prisma.sucursal.update({
       where: {
         id: BigInt(id),
       },
@@ -140,36 +139,36 @@ export async function toggleSucursalStatus(
     });
 
     return {
-      ...sucursalActualizada,
-      id: sucursalActualizada.id.toString(),
-      id_usuario: sucursalActualizada.id_usuario.toString(),
+      ...negocioActualizado,
+      id: negocioActualizado.id.toString(),
+      id_usuario: negocioActualizado.id_usuario.toString(),
     };
   } catch (error) {
-    console.error('Error al cambiar estado de sucursal:', error);
-    throw new Error('No se pudo cambiar el estado de la sucursal');
+    console.error('Error al cambiar estado de negocio:', error);
+    throw new Error('No se pudo cambiar el estado del negocio');
   }
 }
 
 /**
  * --------------------------------------------------------------------------
- * Función para eliminar una sucursal (eliminación física).
+ * Función para eliminar un negocio (eliminación física).
  * --------------------------------------------------------------------------
  */
-export async function deleteSucursal(id: bigint | number | string) {
+export async function deleteNegocio(id: bigint | number | string) {
   try {
-    const sucursalEliminada = await prisma.sucursal.delete({
+    const negocioEliminado = await prisma.sucursal.delete({
       where: {
         id: BigInt(id),
       },
     });
 
     return {
-      ...sucursalEliminada,
-      id: sucursalEliminada.id.toString(),
-      id_usuario: sucursalEliminada.id_usuario.toString(),
+      ...negocioEliminado,
+      id: negocioEliminado.id.toString(),
+      id_usuario: negocioEliminado.id_usuario.toString(),
     };
   } catch (error) {
-    console.error('Error al eliminar sucursal:', error);
-    throw new Error('No se pudo eliminar la sucursal');
+    console.error('Error al eliminar negocio:', error);
+    throw new Error('No se pudo eliminar el negocio');
   }
 }
